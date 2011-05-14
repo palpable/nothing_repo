@@ -1,0 +1,58 @@
+<script language="javaScript">
+function Check()
+{
+   if (!$(".control").attr("checked"))
+   {
+    $(".control").attr("checked", true);
+   }
+  else
+    {
+       $(".control").attr("checked", false);
+    }
+}
+</script>
+
+     <% form_tag :controller =>'pendings',:action =>'activate' do %>
+                <table  class="tablesorter" width="100%" border="1">
+                    <thead>
+                        <tr>
+                            <th width="50%"  align="center">
+                                Pending User Name
+                            </th>
+                            <th width="50%" align="center">
+                               Check here to active
+                            </th>
+                              </tr>
+                    </thead>
+                    <tbody>
+                       <%if !@pendings.empty?%>
+                       <%for p in @pendings%>
+                        <tr>
+                            <td width="50%">
+                                <%=link_to p.name,:controller=>'/people',:action=>'show',:id=>p.id%>
+                            </td>
+                            <td width="50%" >
+                              
+                               <%= check_box_tag 'active[]',p.id,false,:class =>'control' %>
+                            </td>
+                             </tr>
+                        <%end -%>
+                        <tr>
+                        <td colspan="2" align='right'>
+                               <%= submit_tag 'Activate'%>
+                            </td>
+                             </tr>
+                       <%else%>
+                       <tr class="">
+                            <td  colspan="2" width="50%">
+                                No Pending List 
+                            </td>
+                       </tr>
+                       <%end%>
+                    </tbody>
+                </table>
+                <%if !@pendings.empty?%>
+                <input id="check_ctr" name="check_ctr" type="checkbox" onclick="Check()">Check all
+                <%end%>
+                     <%end%>
+     

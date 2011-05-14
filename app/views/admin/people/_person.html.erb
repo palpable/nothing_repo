@@ -1,0 +1,28 @@
+<li>
+  
+  <%= person_link_with_image person, :class => "url fn" %>
+  <%- activity = activated_status(person) -%>
+
+  <%if person.active == false%>
+  <%=link_to "First time Activation", :action=>"first_time_activation", :id=> person.id%>
+  |
+  <%end%>
+  <%= link_to activity, 
+              admin_person_path(person, :task => "deactivated"),
+              :method => :put %>
+  |
+  <%- activity = person.admin? ? "unadmin" : "make admin" -%>
+  <%= link_to activity, 
+              admin_person_path(person, :task => "admin"),
+              :method => :put %>
+  <p class="person_meta">
+    <strong>Forum Posts:</strong> 
+    <%= person.forum_posts_count -%> | 
+    <strong>Blog Posts:</strong>
+   
+    <%= link_to person.blog.posts.count.to_s, blog_path(person) -%> |
+    <strong>Connections:</strong> 
+      <%= link_to person.connections.count,
+                  person_connections_path(person) -%>
+  </p>
+</li>

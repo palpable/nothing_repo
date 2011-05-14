@@ -1,0 +1,35 @@
+<div id="backEnd">
+ <div class="pageHdr">
+<h4>Contacts for <%= h @person.name %></h4>
+</div>
+<div class="leftContent wide">
+<% if @all_contact_list.length > 0 %>
+<% if @person.connections.count > Person::MAX_DEFAULT_CONTACTS %>
+  <%= will_paginate @all_contact_list%>
+<% end %>
+<% unless @all_contact_list.empty? -%>
+   <table class="memberProfiles" cellspacing="0" cellpadding="0" border="1" summary="A table of member profiles
+							with the image of the member and an option to message them or add them as a contact">
+ <%#= render :partial => 'shared/contacts_grid',:locals => { :contacts => @all_contact_list } %>
+ <% @all_contact_list.in_groups_of(2).each do |contacts| %>
+		<% contacts.compact! %>
+       <tr> <%= render :partial =>'contacts_grid', :locals => { :contacts => contacts } %></tr>
+       <%end%>
+   </table>
+  <% if @person.connections.count > Person::MAX_DEFAULT_CONTACTS %>
+   <%= will_paginate @all_contact_list %>
+  <% end %>
+<% else %>
+  <h3>No contacts (yet)</h3>
+<% end -%>
+<%elsif @all_contact_list.length == 0 && @contact_permission == "false" %>
+<h3>This user locked the contact list.</h3>
+<%elsif @all_contact_list.length == 0 && @access_denied == "true" %>
+<h3>You don't have permission to access the contact list.</h3>
+<%else%>
+<h3>You cannot view the contact list. You are not connected with this user.</h3>
+<%end%>
+</div>
+</div>
+
+ 

@@ -1,0 +1,24 @@
+<div id="backEnd">
+  <div class="pageHdr">
+  <h4>New News Feed</h4>
+  </div>
+   <div class="leftContent wide">
+  <% form_tag(:controller =>'news_feeds',:action =>'create') do %>
+      <p>
+      <p><%= label_tag :name %>
+      <%= text_field :news_feed,:name,:class =>'text' %></p>
+    </p>
+    <p>
+     <p> <%= label_tag :addr %>
+      <%= text_field :news_feed,:addr ,:class =>'text'%></p>
+    </p>
+    <p>
+     <%= check_box_tag 'accept'%> set as default
+    </p>
+    <p>
+     <p> <%=  image_submit_tag "../images/new_images/button_create.png" %>
+      <%= link_to 'Cancel', :controller =>'news_feeds',:action =>'index', :class => "button", :id => "cancel" %></p>
+    </p>
+  <%- end -%>
+   </div>
+</div>

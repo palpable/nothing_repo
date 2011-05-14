@@ -1,0 +1,52 @@
+<div id="backEnd">
+<div class="rightContent small profile">
+  <%= render :partial => 'searches/box' %>
+   <div class="rightContentWrap">
+    <p><%= link_to image_tag('../images/new_images/invite_user.jpg'), :controller =>'home',:action =>'invite_user'%></p>
+     <%= render :partial => 'shared/requested_contacts' ,:locals => {:requested_contacts => @requested_contacts}%>
+     <%= render :partial => 'shared/latest_news' ,:locals => {:items => @items}%>
+  </div>
+							<!-- end of right content wrap -->
+<div class="rightContentWrap noSpacing">
+  
+   <h6>Contacts</h6>
+    <ul class="contacts">
+  <%= render :partial => 'shared/contacts_preview',:locals => { :person => current_person } %>
+    </ul>
+     <ul class="contactLinks">
+   <li><%= link_to "All contacts", person_connections_path(current_person) %></li>
+   
+   </ul>
+  </div>
+  </div>
+
+
+<div class="leftContent wide">
+  <ul class="form vertical timeZone">
+<%if current_person.time_zone != nil %>
+
+<li>Your Time Zone is <%= current_person.time_zone %></li>
+<li> Edit your Time Zone</li>
+<li>
+<% form_for :time_zone, @person ,:url => {:action => "edit_time_zone",:id=>@person.id } do |f| %>
+<%#= time_zone_select 'people', 'time_zone', TZInfo::Timezone.all.sort, :model => TZInfo::Timezone %>
+<%= time_zone_select 'people', 'time_zone', TZInfo::Timezone.all.sort, :model => TZInfo::Timezone %>
+<%= image_submit_tag "../images/new_images/button_create.png" %></li>
+<%end %>
+
+<%else %>
+
+
+  <li>You have not selected your time Zone .........  </li>
+<li><h4>Select your Time Zone</h4></li>
+
+<li>
+<% form_for :time_zone, @person ,:url => {:action => "time_zone",:id=>@person.id } do |f| %>
+<%#= time_zone_select 'people', 'time_zone', TZInfo::Timezone.all.sort, :model => TZInfo::Timezone %>
+<%= time_zone_select 'people', 'time_zone', TZInfo::Timezone.all.sort, :model => TZInfo::Timezone %>
+<%= image_submit_tag "../images/new_images/button_create.png" %></li> 
+<%end %>
+<%end %>
+  </ul>
+</div>
+</div>

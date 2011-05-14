@@ -1,0 +1,39 @@
+<div id="backEnd">
+<div class="pageHdr">
+	 <h4>Resources</h4>
+		<a class="plusLink floatRight" href="#">Add a Sovereign Wealth Fund</a>
+	</div>
+     <div id="view" class="rightContent">
+<table class="centralBanks" cellspacing="0" cellpadding="0" borde="0" summary="the columns from left to right is the country,
+								the name of the bank, and the option links for edit and delete.">
+	<thead>
+	<tr>
+	 <th>Country</th>
+		<th class="bank" colspan="2">Bank Name</th>
+	  </tr>
+	</thead>
+	<tbody>
+	  <% @central_banks.each do |bank| %>
+          <% cycle_var = cycle("odd", "even") %>
+		 <tr class="<%= cycle_var %>-row">
+		<td>
+			<%=bank.country_name%>
+			</td>
+                        <td> <a href="http://<%=bank.url_name%>" target="_blank"><%=bank.bank_name%></a></td>
+				  <%- if current_person.admin? -%>		
+				<td> 
+                   <ul class="options">
+                   <li><%= link_to  'Edit' ,:controller=>'banks',:action=>'edit_bank',:id=>bank.id%></li>
+					<li class="noBorderRight"><%= link_to  'Delete' ,{:controller=>'resources/banks',:action=>'delete_bank',:id=>bank.id},:confirm=>'Are you Sure to delete this bank'%></li>
+                   </ul>
+                       </td>
+					<%end%>
+					
+					</tr>
+		             <%end%>
+  </tbody></table></div>
+    <ul id="leftMenu">
+       <%= render :partial =>'left_nav' %>
+</ul>	
+
+</div>

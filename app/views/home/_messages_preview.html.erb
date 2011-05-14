@@ -1,0 +1,10 @@
+<%- unless current_person.recent_messages.empty? -%>
+ <table class="dashboard" cellspacing="0" cellpadding="0" border="0" summary="A table of dashboard messages. The
+							left column, the next column is the person who posted the message along with a timestamp, and the last column is the actual message.">
+     <%= render :partial => 'message',:collection => current_person.recent_messages %>
+      <tr>
+    <td class="noBorder" colspan="3"> <%= link_to " See all messages", messages_path %></td>
+    </tr>
+  </table>
+ <%- end -%>
+

@@ -1,0 +1,11 @@
+<h6>Advance Search</h6>
+<div class="list">
+  <% form_tag({}, {:id => "advanesearch"}) do %>
+    <%= select('search', 'sort',@sort_by=sort_by ,{:prompt => 'Sort By'},{:style=>"width: 150px;"})%>
+  <% end %>
+  <%= observe_field 'search_sort',
+    :update => "partialLoadDiv",
+    :url => {:controller => "forums", :action => "search_sort_by",:id => @cb_forum.id},
+     :with => "'sort=' + escape(value)"
+%>
+</div>

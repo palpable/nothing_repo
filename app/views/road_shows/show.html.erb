@@ -1,0 +1,118 @@
+<%= javascript_include_tag 'swfobject' %>
+<div id="backEnd">
+  <div class="pageHdr">
+ <% if @road_show.person_id==current_person.id %>
+    <%= link_to 'Edit',{:action=>:edit,:id=>@road_show.id},:class =>"plusLink roadshow" %>
+    <%= link_to 'Destroy', @road_show, :confirm => 'Are you sure?', :method => :delete,:class =>"plusLink roadshow" %>
+  <%end%>
+  <%= link_to 'Create new',{:action=>'new'},:class =>"plusLink roadshow" %>
+  <%= link_to 'Email the Road Show',{:controller =>'road_shows',:action=>'road_show_message',:id =>@road_show.id},:class =>"plusLink roadshow"%>
+ </div>
+ <div class="rightContent small">
+     <%= render :partial => 'searches/box' %>
+ <div class="rightContentWrap">
+   <p><%= link_to image_tag('../images/new_images/invite_user.jpg'), :controller =>'home',:action =>'invite_user'%></p>
+     <%= render :partial => 'shared/requested_contacts' ,:locals => {:requested_contacts => @requested_contacts}%>
+     <%= render :partial => 'shared/latest_news' ,:locals => {:items => @items}%>
+ </div>
+<div class="rightContentWrap noSpacing">
+  
+    <h6>Contacts</h6>
+    <ul class="contacts">
+    <%= render :partial => 'shared/contacts_preview',:locals => { :person => current_person } %>
+   </ul>
+   <ul class="contactLinks">
+     <li><%= link_to "All contacts", person_connections_path(current_person) %></li>
+     <li><%= link_to "Invite users ", :controller =>'home',:action =>'invite_user'%></li>
+   </ul>
+  </div>
+<!-- end of right content wrap -->
+</div>
+ <div class="leftContent wide">
+  <% if  @road_show.youtube_u_links.length > 0 %>
+    <table>
+      <% @road_show.youtube_u_links.each do |video|%>
+        <% if youtube_addr(video.addr) %>
+          <tr>
+            <td>
+              <% @curr_video = YouTube.find_by_id(@uniqueid) %>
+              <%=youtube_embed @curr_video%>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <%=@curr_video.title%>
+            </td>
+          </tr>
+        <%else%>
+          <tr><td>
+              Saved Youtube URL is not Correct.
+            </td></tr>
+        <%end%>
+      <%end%>
+    </table>
+    <br>
+  <%end%>
+	<div class="roadShowImg">
+  <% if  @road_show.flvu_u_urls.length > 0 %>
+    <table>
+      <% @road_show.flvu_u_urls.each do |video|%>
+        <tr>
+          <td>
+            <%= flv_player :file => video.addr %>
+          </td>
+        </tr>
+      <%end%>
+    </table>
+    <br>
+  <%end%>
+  <% if  @road_show.docattachments.length > 0 %>
+
+    <table>
+      <% @road_show.docattachments.each do |attachment|%>
+        <tr>
+          <td><% next if attachment.size.nil? %>
+            <%attachment_images(attachment.content_type)%>
+            <% if attachment.content_type=='video/x-flv' %>
+               <%#= flv_player :file =>attachment.public_filename.to_s%>
+              <%#=image_tag @img,:class => 'attachments-img'%>
+              <%#=link_to attachment.filename.to_s,attachment.public_filename.to_s%>
+              <div id="container_flash">
+        You need to have <%= link_to 'Flash Player', 'http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash' %>installed to display this video
+    </div>
+
+    <script type="text/javascript">
+              var so = new SWFObject('/swf/player.swf', 'ply', '515', '385', '8', '#ffffff');
+              so.addParam('allowscriptaccess', 'always');
+              so.addParam('allowfullscreen', 'true');
+               so.addParam('wmode','transparent');
+               so.addVariable("width","640");
+               so.addVariable("frontcolor","0xFFFFFF");
+               so.addVariable("height","385");
+               so.addVariable('overstretch', 'true')
+               so.addParam('flashvars', '&file=<%= attachment.public_filename.to_s%>&skin=/swf/stijl-Source.swf&&controlbar=over&autostart=true&icons=false');
+               so.write('container_flash');
+    </script>
+            <%else%>
+              <%=image_tag @img,:class => 'attachments-img'%>
+              <%=link_to attachment.filename.to_s,attachment.public_filename.to_s,:popup => true%>
+            <%end%>
+          </td>
+        </tr>
+      <%end%>
+    </table>
+    <%end%>
+    </div>
+    	<ul class="list">
+          <li><h6><%=link_to @road_show.person.name,:controller=>:people,:action=>:show,:id=>@road_show.person_id%> </h6></li>
+           <% if DateTime.now.strftime("%Y-%m-%d") == @road_show.created_at.strftime("%Y-%m-%d") %>
+            <li><%=@road_show.created_at.strftime("%B %d,%Y")%>-<%= time_ago_in_words @road_show.created_at %> ago</li>
+            <% else %>
+            <li><%=@road_show.created_at.strftime("%B %d,%Y")%>-<%=@road_show.created_at.strftime("%I:%M %p")%></li>
+            <%end%>
+        </ul>
+        <h6 class="roadshowDetail"><%=@road_show.title%></h6>
+        <p><%=@road_show.description%></p>
+      </div>
+</div>
+

@@ -1,0 +1,20 @@
+<%#=debug(attachments)%>
+<table>
+ <% attachments.each do |attachment|%>
+  <tr>
+    <td>
+      <%attachment_images(attachment.content_type)%>
+      
+      <% if attachment.content_type=='video/x-flv' %>
+      <%= flv_player :file =>attachment.public_filename.to_s%>
+      <%=image_tag @img,:class => 'attachments-img'%>
+      <%=link_to attachment.filename.to_s,attachment.public_filename.to_s%>
+      <%else%>
+      <%=image_tag @img,:class => 'attachments-img'%>
+      <%=link_to attachment.filename.to_s,attachment.public_filename.to_s,:popup => true%>
+      <%end%>
+    </td>
+  </tr>
+ 
+  <%end%>
+</table>

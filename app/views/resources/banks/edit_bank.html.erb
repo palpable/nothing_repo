@@ -1,0 +1,73 @@
+<script language="javascript">
+  function resetNavigation() {
+   $("#leftMenu li").each(function(){
+   /* e.preventDefault;
+    this.blur(); */
+   $(this).removeClass('active');
+    /*  return updateNavigation($(this).attr('title'));  */
+
+});
+}
+$("#leftMenu li").live('click', function(e) {
+   /* e.preventDefault;
+    this.blur(); */
+    resetNavigation();
+   $(this).addClass('active');
+    /*  return updateNavigation($(this).attr('title'));  */
+
+});
+  </script>
+
+<div id="backEnd" style="padding:10px 30px 0px 0px;">
+  <div class="pageHdr">
+    	<h4>Resources</h4>
+	 <a class="plusLink floatRight" href="#">Add a Sovereign Wealth Fund</a>
+	</div>	
+<div id ="view" class="rightContent">
+  <div class="editBank lightGrayBg">
+    <fieldset>
+<h4>Edit Bank Information</h4>
+
+<% form_for :central_bank, @central_bank , :url => {:action => "update_bank",:id=>@central_bank.id } do |f| %>
+
+<%= error_messages_for :central_bank %>
+
+<ul class="form vertical">
+<%= flash[:notice] %>
+<li>
+    <label for="country">Country</label>
+    <%= f.text_field :country_name,:class => "text" %>
+</li>
+
+  <li>
+  <label for="bank_name">Bank Name</label>
+    <%= f.text_field :bank_name,:class => "text" %>
+  </li>
+<li>
+<label for="url">URL</label>
+    <%= f.text_field :url_name,:class => "text" %>
+  </li>
+
+ <li>
+    <%= image_submit_tag "/images/new_images/button_update.png",:class => "button" %>
+ </li>
+<% end %>
+
+<li>
+<%= link_to 'Back to list of Central Banks',{:action=>'index'},:class =>"back" %></li>
+</ul>
+</fieldset>
+  </div>
+</div>
+ <ul id="leftMenu">
+ <li id="one"><%=link_to_remote "Central Bank", :update =>'view', :success => "updateNavigation();" ,:url =>{:controller => 'banks',:action => 'central_bank'},:with => "'choose=' +encodeURIComponent('central_bank')" %></li>
+	<li><%=link_to_remote "Sovereign wealth Funds",:update =>'view',:url =>{:controller => 'banks',:action => 'central_bank'},:method => :post,:with => "'choose=' +encodeURIComponent('wealthfunds')" %></li>
+  	<li><%=link_to_remote "Supranational &amp; Sovereign Issuers",:update =>'view',:url =>{:controller => 'banks',:action => 'central_bank'},:with => "'choose=' +encodeURIComponent('sovereign')" %></li>
+	<li><%=link_to_remote "Asset Managers",:update =>'view',:url =>{:controller => 'banks',:action => 'central_bank'},:with => "'choose=' +encodeURIComponent('asset')" %></li>
+   	<li><%=link_to_remote "Hedge Funds",:update =>'view',:url =>{:controller => 'banks',:action => 'central_bank'},:with => "'choose=' +encodeURIComponent('hedge')" %></li>
+   	<li><%=link_to_remote "Banks &amp; dealers",:update =>'view',:url =>{:controller => 'banks',:action => 'central_bank'},:with => "'choose=' +encodeURIComponent('bankdealers')" %></li>
+    <li><%=link_to_remote "Other issuers",:update =>'view',:url =>{:controller => 'banks',:action => 'central_bank'},:with => "'choose=' +encodeURIComponent('otherissuer')" %></li>
+   	<li><a href="resources_news.html">News</a></li>
+   <li><%=link_to_remote "Links",:update =>'view',:url =>{:controller => 'banks',:action => 'central_bank'},:with => "'choose=' +encodeURIComponent('links')" %></li>
+	</ul>	
+</div>

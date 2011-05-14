@@ -1,0 +1,22 @@
+ <%- contacts.each do |contact| -%>
+    <tr>
+        <td><ul class="newsInfo"><li><%unless contact.docattachments.length < 1 %>
+            <% contact.docattachments.each do |attachment| %>
+            <%= image_link_new attachment.public_filename, contact,
+            :image_options => { :class => "photo" },
+            :link_options => { :class => "url" },
+            :vcard => true,
+            :image => :bounded_icon,
+            :alt => h(contact.name),:height=>62,:width=>62 %>
+            <%end %>
+            <%else %>
+            <%= image_link_new "default.png", contact,
+            :link_options => { :class => "url" },
+            :vcard => true,
+            :image => :bounded_icon,
+            :height=>62,:width=>62 ,:alt => h(contact.name) %>
+            <%end %>
+      </li></ul>  </td>
+    </tr>
+    <%- end %>
+

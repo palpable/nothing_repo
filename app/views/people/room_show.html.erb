@@ -1,0 +1,82 @@
+<%= javascript_include_tag 'swfobject' %>
+<div id="backEnd">
+  <div class="pageHdr">
+    <h4>Room Item</h4>
+   </div>
+
+<div class="toolbox">
+<% unless @room.person.docattachments.length < 1 %>
+<% @room.person.docattachments.each do |attachment| %>
+<%= image_tag attachment.public_filename,:class =>"profile-image photo",:alt => h(@room.person.name),:height => 62,:weight => 62 %>
+<%end%>
+<%else%>
+<%= image_tag "default.png",:class =>"profile-image photo",:alt => h(@room.person.name),:height => 62,:weight => 62 %>
+<%end%>
+</div>
+ <div class="leftContent wide">
+  <% if  @room.youtube_u_links.length > 0 %>
+    <table>
+      <% @room.youtube_u_links.each do |video|%>
+        <% if youtube_addr(video.addr) %>
+          <tr>
+            <td>
+
+              <% @curr_video = YouTube.find_by_id(@uniqueid) %>
+              <%=youtube_embed @curr_video%>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <%=@curr_video.title%>
+            </td>
+          </tr>
+        <%else%>
+          <tr><td>
+              Saved Youtube URL is not Correct.
+            </td></tr>
+        <%end%>
+      <%end%>
+    </table>
+    <br>
+  <%end%>
+
+  <% if  @room.flvu_u_urls.length > 0 %>
+    <table>
+      <% @room.flvu_u_urls.each do |video|%>
+        <tr>
+          <td>
+            <%= flv_player :file => video.addr %>
+          </td>
+        </tr>
+      <%end%>
+    </table>
+    <br>
+  <%end%>
+  <% if  @room.docattachments.length > 0 %>
+
+    <table>
+      <% @room.docattachments.each do |attachment|%>
+        <tr>
+          <td><% next if attachment.size.nil? %>
+            <%attachment_images(attachment.content_type)%>
+            <% if attachment.content_type=='video/x-flv' %>
+              <%= flv_player :file =>attachment.public_filename.to_s%>
+              <%=image_tag @img,:class => 'attachments-img'%>
+              <%=link_to attachment.filename.to_s,attachment.public_filename.to_s%>
+            <%else%>
+              <%=image_tag @img,:class => 'attachments-img'%>
+              <%=link_to attachment.filename.to_s,attachment.public_filename.to_s,:popup => true%>
+            <%end%>
+          </td>
+        </tr>
+      <%end%>
+    </table>
+  <%end%>
+  <ul class="list">
+  <li><%=@room.person.name%></li>
+  </ul>
+ <h6 class="roadshowDetail"><%=@room.title%></h6>
+  <p><%=@room.description%></p>
+  <%= link_to 'see other items in the room',{:controller =>'people',:action=>'show',:id =>@room.person.id,:tabvalue =>"1"},:class =>"backTo"%>
+  </div>
+</div>

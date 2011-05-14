@@ -1,0 +1,205 @@
+ <%= javascript_include_tag "jquery.min.js","jquery-ui.min.js", "jquery.bgiframe-2.1.1.js","jquery-ui-i18n.min.js"%>
+  <%= stylesheet_link_tag "jquery-ui" %>
+
+	<style type="text/css">
+		/*body { font-size: 62.5%; }
+		label, input { display:block; }
+		input.text { margin-bottom:12px; width:55%; padding: .4em; }
+		fieldset { padding:0; border:0; margin-top:25px; }
+		h1 { font-size: 1.2em; margin: .6em 0; }*/
+		.ui-dialog .ui-state-error { padding: .3em; }
+		.validateTips { border: 1px solid transparent; padding: 0.3em; }
+
+	</style>
+	<script type="text/javascript">
+	$(function() {
+		// a workaround for a flaw in the demo system (http://dev.jqueryui.com/ticket/4375), ignore!
+		$("#dialog").dialog("destroy");
+
+		var name = $("#name"),
+			msg = $("#message"),
+			allFields = $([]).add(name).add(msg),
+			tips = $(".validateTips");
+
+		function updateTips(t) {
+			tips
+				.text(t)
+				.addClass('ui-state-highlight');
+			setTimeout(function() {
+				tips.removeClass('ui-state-highlight', 1500);
+			}, 500);
+		}
+
+		function checkLength(o,n,min,max) {
+
+			if ( o.val().length > max || o.val().length < min ) {
+				o.addClass('ui-state-error');
+				updateTips("Length of " + n + " must be between "+min+" and "+max+".");
+				return false;
+			} else {
+				return true;
+			}
+
+		}
+
+		function checkRegexp(o,regexp,n) {
+
+			if ( !( regexp.test( o.val() ) ) ) {
+				o.addClass('ui-state-error');
+				updateTips(n);
+				return false;
+			} else {
+				return true;
+			}
+
+		}
+      function f_submit() {
+      $('#message_form').submit();
+      }
+ 	$("#dialog-form").dialog({
+			autoOpen: false,
+			height: 400,
+			width: 350,
+			modal: true,
+			buttons: {
+				'Report the user': function() {
+					var bValid = true;
+					allFields.removeClass('ui-state-error');
+
+					bValid = bValid && checkLength(name,"username",3,50);
+					bValid = bValid && checkLength(msg,"message",6,200);
+
+                                                        
+					bValid = bValid && checkRegexp(name,/^[A-Za-z]+.*/,"Username may consist of a-zA-Z, begin with a letter.");
+					bValid = bValid && checkRegexp(msg,/^([a-zA-Z])+.*/,"Message may consist of a-zA-Z,begin with a letter.");
+
+					if (bValid) {
+                         f_submit();
+						$(this).dialog('close');
+					}
+				},
+				Cancel: function() {
+					$(this).dialog('close');
+				}
+			},
+			close: function() {
+				allFields.val('').removeClass('ui-state-error');
+			}
+		});
+
+
+  $('#create-user')
+			.button()
+			.click(function() {
+				$('#dialog-form').dialog('open');
+			});
+
+	});
+	</script>
+
+<div id="backEnd">
+    <div class="pageHdr">
+	 <h4>Messages</h4>
+	 </div>
+     <!-- end of page hdr -->
+	<div class="rightContent small">
+		<%= render :partial => "searches/box" %>
+         <a class="advancedSearch" id="adv_link">Advance Search</a> 
+        <div id="advsearch" style="display:none;">
+          <%= render :partial=> 'advance_search' %>
+        </div>
+        
+      
+ <%= link_to image_tag('../images/new_images/invite_user.jpg'), :controller =>'home',:action =>'invite_user'%>
+  <div class="rightContentWrap">
+     <%= render :partial => 'requested_contacts' %>
+	<h6>Latest News</h6>
+    	<ul class="articleList">
+	    	<%- if logged_in? -%>
+               <% if @items %>
+                   <% @items.each do |item| %>
+                      <li><a href='<%= item.link %>' target="_blank"><%= item.title %></a>
+	
+                      <%end%>
+                       <%end%>
+						<li><a href="#"><strong>More News</strong></a></li>
+				</ul>
+	</div>
+  <!-- end of right content wrap -->
+	<div class="rightContentWrap noSpacing">
+     
+		<h6>Contacts</h6>
+		    <ul class="contacts">
+			  <%= render :partial => 'shared/contacts_preview',:locals => { :person => current_person } %>
+				</ul>
+                <div class="clr"></div>
+				<ul class="contactLinks">
+				 <li><%= link_to "All contacts", person_connections_path(current_person) %></li>
+               
+				</ul>
+				</div>
+				<!-- end of right content wrap -->
+                <%- else -%>
+                  <%- unless global_prefs.app_name.blank? -%>
+                    <h2>About <%= global_prefs.app_name %></h2>
+                        <p>
+                              <%= link_to "Click here", about_path %> to learn more about us.
+                          </p>
+                    <%- end -%>
+                   <%-end%>
+                   
+         <div class="demo">
+          <div id="dialog-form" title="User compliant">
+         	<p class="validateTips">All form fields are required.</p>
+	        <% form_tag({:action => "message"},{:id =>"message_form"}) do %>
+        	 <fieldset>
+		       <label for="name">UserName</label>
+                <%= text_field_tag :username, '', :id => "name", :class => "text ui-widget-content ui-corner-all"%>
+	           <label for="Message">Message</label>
+		       <%= text_area_tag 'message', '', {:id=>'message',:cols => '40',:rows =>'12', :class =>'text ui-widget-content ui-corner-all'} %></p>
+        	    </fieldset>
+            	<%end%>
+             </div>
+            <button id="create-user">Report the User</button>
+          </div><!-- End demo -->
+                   
+     </div>
+	<!-- end of right content -->
+<div class="leftContent wide forums">
+    <div id="partialLoadDiv">
+        <%= render :partial => 'messages_preview' %>
+    </div>
+                   
+							<h4>Forums</h4>
+                            <%= will_paginate @forums, :param_name => 'page_forums' %>
+                              <ul>
+                                <% @forums.each do |forum| %>
+                                  <li>
+                                    <p>
+                                      <%= link_to h(forum.name), forum %> <small>(<%= pluralize(forum.topics_count, 'topic')%>)</small><br />
+                                      <small><%= h(forum.description) %></small>
+                                     </p>
+                                    </li>
+                                  <% end %>
+                                </ul>
+                                <%= will_paginate @forums, :param_name => 'page_forums' %>
+							<ul class="forums">
+							<%= render :partial => 'shared/forums',:locals => {:forums => @forums } %>
+							</ul>
+							 <%= link_to "See complete Forum",forums_path,:class =>"seeForum" %>
+						</div>
+						<!-- end of left content -->
+					</div>
+						
+  
+<script language="javascript">
+        jQuery(function(){
+
+          jQuery("#adv_link").click(function(){
+            jQuery('#advsearch').toggle();
+          });
+        });
+      </script>
+
+
+

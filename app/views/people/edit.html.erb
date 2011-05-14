@@ -1,0 +1,156 @@
+<div id="backEnd">
+  <h4>Edit Your Profile</h4>
+   <div class="rightContent small profile">
+     <%= render :partial => 'searches/box' %>
+ <div class="rightContentWrap">
+    <p><%= link_to image_tag('../images/new_images/invite_user.jpg'), :controller =>'home',:action =>'invite_user'%></p>
+    <%= render :partial => 'shared/requested_contacts' ,:locals => {:requested_contacts => @requested_contacts}%>
+     <%= render :partial => 'shared/latest_news' ,:locals => {:items => @items}%>
+ </div>
+<div class="rightContentWrap noSpacing">
+    <h6>Contacts</h6>
+    <ul class="contacts">
+    <%= render :partial => 'shared/contacts_preview',:locals => { :person => current_person } %>
+   </ul>
+    <div class="clr"></div>
+   <ul class="contactLinks">
+     <li><%= link_to "All contacts", person_connections_path(current_person) %></li>
+   
+   </ul>
+  </div>
+<!-- end of right content wrap -->
+</div>
+<div class="leftContent wide">
+ <%= error_messages_for :person %>
+<% form_for @person do |f| -%>      
+  <p>
+    <p><label for="person_name">Name
+  <span class="small">(will be displayed)</span></label>
+   <%= f.text_field :name, :class => "text"%></p>
+  </p>
+  <p>
+    <p><%= f.label :email %>
+    <%= f.text_field :email, :class =>"text" %>
+    <span class="side-option">
+      <%= f.check_box :email_visibility %> <label for="person_email_visibility">Visible</label>
+    </span></p>
+  </p>
+<% if @newbanker != "false" %>
+  <p>
+   <p> <label for="branch">Name of Central Bank
+      <span class="small">(will be displayed)</span></label>
+    <%= f.text_field :branch,:class =>"text" -%></p>
+  </p>
+
+  <p>
+    <p><label for="country">Country</label>
+  <%= f.collection_select(:country_id,@conuntires,:id,:country_name) %></p>
+  </p>
+
+  <p>
+    <p><label for="department">Department within Central Bank
+      <span class="small">(will be displayed)</span></label>
+    <%= f.text_field :department,:class => "text" -%></p>
+  </p>
+    <p><%= f.hidden_field(:isbanker, :value => 1) %></p>
+<% else %>
+
+ <p>
+  <p> <label for="company_name">Name of Company
+     <span class="small">(will be displayed)</span></label>
+   <%= f.text_field :company_name,:class => "text" -%></p>
+ </p>
+
+ <p>
+   <p><label for="business_type">Type of Business
+     <span class="small">(will be displayed)</span></label>
+   <%= f.select :business_type, Person::BUSINESS_TYPES ,:class => "text"-%></p>
+ </p>
+
+<% end %>
+
+<p>
+ <p><label for="title">Title
+   <span class="small">(will be displayed)</span></label>
+ <%= f.text_field :title,:class => "text" -%></p>
+</p>
+
+<p>
+  <p><%= f.label :phone %>
+  <%= f.text_field :phone,:class => "text" -%>
+  <span class="side-option">
+    <%= f.check_box :phone_visibility %> <label for="person_phone_visibility">Visible</label>
+  </span></p>
+</p>
+
+<p>
+  <p>
+  <label for="fax">Fax
+    <span class="small">(not required)</span></label>
+  <%= f.text_field :fax,:class => "text"%></p>
+</p>
+      <%- if global_prefs.email_notifications? -%>
+        <a name="email_prefs"></a>
+        <h4>Email Notification Preferences</h4>
+
+        <p class="meta">Get emails when these events occur</p>
+
+        <p>
+          <p>
+            <%= f.label :connection_notifications, 'Connections', 
+              :class => "checkbox" %>
+            <%= f.check_box :connection_notifications, {}, 'true', 'false' %>
+          </p>
+          <p>
+            <%= f.label :message_notifications, 'Messages', 
+              :class => "checkbox" %>
+            <%= f.check_box :message_notifications, {}, 'true', 'false' %>
+          </p>
+          <p>
+            <%= f.label :wall_comment_notifications, 'Wall Comments', 
+              :class => "checkbox" %>
+            <%= f.check_box :wall_comment_notifications,
+                            {}, 'true', 'false' %>
+          </p>
+          <p>
+            <%= f.label :blog_comment_notifications, 'Blog Comments', 
+                                                     :class => "checkbox" %>
+            <%= f.check_box :blog_comment_notifications,
+                            {}, 'true', 'false' %>
+          </p>
+        </p>
+      <%- end -%>
+      <p>
+       <p> <%= image_submit_tag '../images/new_images/button_update.png', :class => "button" %>
+        <%= link_to "Cancel", @person %>
+       <input type="hidden" name="type" value="info_edit" /></p>
+      </p>
+  <% end %>
+    <h4>Change Your Password</h4>
+
+  <% form_for @person, :html => { :id => "change_password" } do |f| %>
+    <p>
+      <p><%= label :person, :verify_password, "Current Password" %>
+      <%= f.password_field :verify_password, :class=>"text" %></p>
+    </p>
+
+    <p>
+      <p><%= label :person, :new_password %>
+      <%= f.password_field :new_password, :class => "text" %></p>
+    </p>
+
+    <p>
+      <p><%= label :person, :password_confirmation, "Confirm Password" %>
+      <%= f.password_field :password_confirmation,  :class =>"text", :value => "" %></p>
+    </p>
+
+    <p>
+      <p><%= image_submit_tag '../images/new_images/button_update.png', :class => "button" %>
+      <input type="hidden" name="type" value="password_edit" /></p>
+    </p>
+  <% end %>
+ </div>
+</div>
+
+
+

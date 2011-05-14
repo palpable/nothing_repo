@@ -1,0 +1,50 @@
+<div id="backEnd">
+   <div class="rightContent small profile">
+
+  <%= render :partial => 'searches/box' %>
+   <div class="rightContentWrap">
+    <p><%= link_to image_tag('../images/new_images/invite_user.jpg'), :controller =>'home',:action =>'invite_user'%></p>
+     <%= render :partial => 'shared/requested_contacts' ,:locals => {:requested_contacts => @requested_contacts}%>
+     <%= render :partial => 'shared/latest_news' ,:locals => {:items => @items}%>
+  </div>
+							<!-- end of right content wrap -->
+<div class="rightContentWrap noSpacing">
+ 
+   <h6>Contacts</h6>
+    <ul class="contacts">
+  <%= render :partial => 'shared/contacts_preview',:locals => { :person => current_person } %>
+    </ul>
+     <ul class="contactLinks">
+   <li><%= link_to "All contacts", person_connections_path(current_person) %></li>
+   
+   </ul>
+  </div>
+  </div>
+
+
+  <div class="leftContent wide">
+  <h3>Connected members to see contacts </h3>
+    <%form_tag :controller =>'people',:action => 'connected_see_contact' do%>
+   <%= select("connect", "contact", %w[Yes No],{:prompt =>'select the option'})%><%=submit_tag 'Choose'%>
+     <p style="color: blue; font-size:.5em; padding-left:10px;">By default "Yes" choosed</p>
+     <% if current_person.contact_permission%>
+     <p style="color: green">You have enable the connected members to see contacts </p>
+     <%else%>
+     <p  style="color: red">You have disabled the connected members to see contacts </p>
+    <%end%>
+   <%end%>
+  <h2><%= @person.name %>'s Contacts</h2>
+  <% if @person.connections.count > Person::MAX_DEFAULT_CONTACTS %>
+    <div class='button see_all_link'>
+      <%= link_to "See All Contacts", person_connections_path(@person) %>
+    </div>
+  <% end %>
+  	<table class="forumTopics contacts" cellspacing="0" cellpadding="0" border="0" summary="A table of the user's contacts.">
+  <%= render :partial => 'shared/contacts_grid',:locals => { :contacts => @person.some_contacts } %>
+  </table>
+</div>
+</div>
+
+
+
+

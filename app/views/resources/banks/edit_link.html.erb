@@ -1,0 +1,35 @@
+
+<%- column_div :type => :primary do -%>
+
+<h2>Edit Link</h2>
+
+
+<%= form_tag ({:action => 'update_link',:id=>@check_link.id },  :multipart => true ) %>
+<%#= error_messages_for :checklink %>
+<br/>
+<%= flash[:notice] %>
+  <p>
+    <b>Link Name</b><br />
+    <%= text_field 'checklink','name', :value=>@check_link.name%>
+  </p>
+
+  <p>
+  	<a href="http://<%=@check_link.icon%>" target="_blank"><%=image_tag((@check_link.icon),:size => "100x40")%></a> 
+    <b>Change Icon</b><br />
+    <%= file_field 'checklink','icon' %>
+  </p>
+
+  <p>
+    <b>Link</b><br />
+    <%= text_field 'checklink','link', :value=>@check_link.link%>
+  </p>
+
+  <p>
+    <%= submit_tag "Update" %>
+  </p>
+
+
+
+<%= link_to 'Back',:action=>'index' %>
+
+<%end%>

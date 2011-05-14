@@ -1,0 +1,46 @@
+<div id="backEnd">
+  <div class="pageHdr">  <h4><%= h @topic.name %></h4></div>
+ <div class="rightContent small ">
+     <%= render :partial => 'searches/box' %>
+<div class="rightContentWrap">
+  <p><%= link_to image_tag('../images/new_images/invite_user.jpg'), :controller =>'home',:action =>'invite_user'%></p>
+     <%= render :partial => 'shared/requested_contacts' ,:locals => {:requested_contacts => @requested_contacts}%>
+     <%= render :partial => 'shared/latest_news' ,:locals => {:items => @items}%>
+ </div>
+<div class="rightContentWrap noSpacing">
+    
+    <h6>Contacts</h6>
+    <ul class="contacts">
+    <%= render :partial => 'shared/contacts_preview',:locals => { :person => current_person } %>
+   </ul>
+   <ul class="contactLinks">
+     <li><%= link_to "All contacts", person_connections_path(current_person) %></li>
+   
+   </ul>
+  </div>
+  </div>
+  <div class="leftContent wide">
+     <table class="forumTopics" cellspacing="0" cellpadding="0" border="0" summary="A table of forum discussion topics. The
+							left column is an image and the right column is the text of the description.">
+    <%= render :partial => 'forum_post', :collection => @posts %>
+     </table>
+  
+
+  <h2>Add Reply</h2>
+
+  <p><%= formatting_note %></p>
+
+  <%= error_messages_for :cb_post %>
+
+  <% form_for :cb_post,
+              :url => cb_forum_cb_topic_cb_posts_path(@cb_forum, @topic)  do |f| %>
+   
+      <%= f.text_area :body, :rows => 10, :cols => 30 %>
+  
+      <%= f.submit "Submit", :class => "button" %>
+    
+  <% end %>
+</div>
+</div>
+
+

@@ -1,0 +1,35 @@
+<tr><td>  
+  <a name="post_<%= forum_post.id %>"></a>
+  <div class="profile-image">
+    <%= image_link forum_post.person, :image => :thumbnail %>
+    </div>
+</td>
+<td>
+   <ul class="newsInfo">
+  <li>Posted by <%= person_link forum_post.person %></li>
+  <% if DateTime.now.strftime("%Y-%m-%d") != forum_post.created_at.strftime("%Y-%m-%d") %>
+    <li>  <%=forum_post.created_at.strftime("%B %d, %Y")%>, <%=forum_post.created_at.strftime("%I:%M %p")%></li>
+      <%else%>
+       <li><%=forum_post.created_at.strftime("%B %d, %Y")%> , <%= time_ago_in_words forum_post.created_at%> ago</li>
+      <%end%>
+
+      </ul>
+      <%- if current_person?(forum_post.person) or admin? -%>
+           <ul class="options">
+      <li>  <%= link_to image_tag("Edit", :class => 'actioner'),
+                edit_cb_forum_cb_topic_cb_post_path(@cb_forum, @topic, forum_post),
+         :title => 'Edit' %></li>
+      <%- end -%>
+      <%- if admin? -%>
+      <li><%= link_to image_tag("Delete", :class => 'actioner'),
+                      cb_forum_cb_topic_cb_post_path(@cb_forum, @topic, forum_post),
+                      :confirm => 'Delete comment?',
+                      :method => :delete,
+             :title => 'Delete' %></li>
+        </ul>
+      <%- end -%>
+  </td>
+ <td>
+    <h6><%= display forum_post.body %></h6>
+  </td>
+  </tr>

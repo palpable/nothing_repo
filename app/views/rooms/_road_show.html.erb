@@ -1,0 +1,29 @@
+ <ul class="list messages small">
+  <li>
+  <div class="profile-image">
+     <%unless road_show.person.docattachments.length < 1%>
+    <%  road_show.person.docattachments.each do |attachment|%>
+
+      <%= image_tag attachment.public_filename, :class => "profile-image photo",
+        :alt => h(road_show.person.name),:height=>50,:width=>50  %>
+    <%end%>
+  <%else%>
+    <%= image_tag "default.png",:height=>50,:width=>50 ,:alt => h(road_show.person.name)  %>
+  <%end%>
+   </div>
+  <p><span class="field">Title:<%=link_to road_show.title,:action=>'show',:id=>road_show.id%></span></p>
+  <p class="meta published"> <span>
+   <% if DateTime.now.strftime("%Y-%m-%d") == road_show.created_at.strftime("%Y-%m-%d") %>
+   created by <%=link_to road_show.person.name,:controller=>:people,:action=>:show,:id=>road_show.person_id%> on <%=road_show.created_at.strftime("%m/%d/%y")%> <%= time_ago_in_words road_show.created_at %> ago 
+   <% else %>
+   created by <%=link_to road_show.person.name,:controller=>:people,:action=>:show,:id=>road_show.person_id%> on <%=road_show.created_at.strftime("%m/%d/%y")%> at <%=road_show.created_at.strftime("%I:%M:%S %p")%>
+  <%end%>
+  <% if road_show.person_id==current_person.id %>
+    <%= link_to image_tag('icons/page_white_delete.png'), road_show, :confirm => 'Are you sure?', :method => :delete %>
+  <%end%>
+   <% if road_show.person_id==current_person.id %>
+    <%= link_to image_tag('icons/page_white_edit.png'),:action=>:edit,:id=>road_show.id %>
+  <%end%></span>
+  </p>
+</li>
+ </ul>

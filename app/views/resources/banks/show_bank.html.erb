@@ -1,0 +1,32 @@
+<%- column_div :type => :primary do -%>
+
+
+<h2>   Bank Details</h2>
+
+<p>  
+    <b>country</b>
+<br/><br/>
+    <%= h(@central_bank.country_name)%>
+</p>
+
+
+
+<p>  
+    <b>Bank Name</b>
+<br/><br/>
+    <%= h(@central_bank.bank_name)%>
+</p>
+
+
+<p>  
+    <b>Url</b>
+<br/><br/>
+    <%= h(@central_bank.url_name)%>
+</p>
+
+
+<br/>
+<%=  link_to 'Edit' ,:action=>'edit_bank',:id=>@central_bank.id%> | 
+<%=  link_to 'Back' ,:action=> 'index'%>
+
+  <%end%>

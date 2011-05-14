@@ -1,0 +1,38 @@
+   <td>
+  <div class="profile-image">
+     <% unless road_show.docattachments.length < 1%>
+      <%  road_show.docattachments.each do |attachment|%>
+        <% if attachment.content_type=='video/x-flv' %>
+          <%temp=attachment.public_filename.to_s%>
+          <%tmp=temp.gsub('.flv','.jpg')%>
+          <%= image_tag "#{tmp}" ,:alt =>"placeholder image" ,:width =>'157',:height =>'119'%>
+         
+           <% else %>
+           <%= image_tag "/images/new_images/ph_roadshow.png" ,:alt =>"placeholder image" %>
+           <%end%>
+        <%end%>
+   
+  <%else%>
+   <%= image_tag "/images/new_images/ph_roadshow.png" ,:alt =>"placeholder image" %>
+  <%end%>
+  </div>
+    <ul class="list">
+      <li> <%=link_to road_show.person.name,:controller=>:people,:action=>:show,:id=>road_show.person_id%> </li>
+   <% if DateTime.now.strftime("%Y-%m-%d") == road_show.created_at.strftime("%Y-%m-%d") %>
+   <li><%=road_show.created_at.strftime("%B  %d,%Y")%>-<%= time_ago_in_words road_show.created_at %> ago</li>
+   <% else %>
+   <li><%=road_show.created_at.strftime("%B %d,%Y")%>-<%=road_show.created_at.strftime("%I:%M %p")%></li>
+  <%end%>
+   </ul>
+   <h6><%=link_to road_show.title,:action=>'show',:id=>road_show.id%></h6>
+   <p><%= link_to sanitize(truncate(road_show.description, :length => 30)), road_show %></p>
+   <ul class="options">
+  <% if road_show.person_id==current_person.id %>
+    <li><%= link_to "Edit",:action=>:edit,:id=>road_show.id %></li>
+    <%end%>
+   <% if road_show.person_id==current_person.id %>
+  <li><%= link_to "Delete", road_show, :confirm => 'Are you sure?', :method => :delete %></li>
+  <%end%>
+   </ul>
+  </td>
+

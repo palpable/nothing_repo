@@ -1,0 +1,11 @@
+
+
+<% form_tag(:controller=>'rooms',:action=>'flvurl_add') do %>
+<p>
+  FLV URL:
+  <%= text_field_tag("addr") %>
+
+    <%= submit_tag "Add" %>
+  </p>
+
+<% end %>

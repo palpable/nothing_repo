@@ -1,0 +1,14 @@
+<li>
+    <%unless contact.docattachments.length < 1 %>
+    <% contact.docattachments.each do |attachment| %>
+    <%= image_link_new attachment.public_filename, contact,  :image_options => { :class => "photo fn" },
+    :link_options =>  { :class => "url" },
+    :image => :thumbnail, :class => "profile-image photo",
+    :alt => h(contact.name),:height=>36,:width=>36 %>
+    <%end %>
+    <%else %>
+    <%= image_link_new "default.png", contact,  :image_options => { :class => "photo fn" },
+    :link_options =>  { :class => "url" },
+    :image => :thumbnail, :height=>36,:width=>36 ,:alt => h(contact.name) %>
+    <%end %>
+</li>

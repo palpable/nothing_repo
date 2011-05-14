@@ -1,0 +1,50 @@
+<div id="backEnd">
+  <div class="rightContent small profile">
+  <%= render :partial => 'searches/box' %>
+   <div class="rightContentWrap">
+      <p><%= link_to image_tag('../images/new_images/invite_user.jpg'), :controller =>'home',:action =>'invite_user'%></p>
+      <%= render :partial => 'shared/requested_contacts' ,:locals => {:requested_contacts => @requested_contacts}%>
+     <%= render :partial => 'shared/latest_news' ,:locals => {:items => @items}%>
+  </div>
+							<!-- end of right content wrap -->
+<div class="rightContentWrap noSpacing">
+   
+   <h6>Contacts</h6>
+    <ul class="contacts">
+  <%= render :partial => 'shared/contacts_preview',:locals => { :person => current_person } %>
+    </ul>
+     <ul class="contactLinks">
+   <li><%= link_to "All contacts", person_connections_path(current_person) %></li>
+   
+   </ul>
+  </div>
+  </div>
+  <div class="leftContent wide">
+<%- if @person.recent_activity.empty? -%>
+  <h2>No recent activity</h2>
+<%- else -%>
+  
+     <h2>
+    <span style="float: right;">
+      <a href="?activity_order=ASC#tRecentActivity">&uarr;</a>
+      <a href="?activity_order=DESC#tRecentActivity">&darr;</a>
+    </span>
+    <%= @person.name %>'s Recent Activity </h2>
+  
+
+  <%- unless @person.last_logged_in_at.nil? or current_person?(@person) -%>
+    <p class="meta">
+      <%= @person.name %> last logged in 
+      <%= time_ago_in_words(@person.last_logged_in_at) %> ago
+    </p>    
+  <%- end -%>
+  
+  <table class="forumTopics recentActivity" cellspacing="0" cellpadding="0" border="0" summary="A table of the user's recent activity.">
+     <%= render :partial => 'shared/activity',
+                :collection => @person.recent_activity(params[:activity_order] || 'DESC'),
+                :locals => { :destroy => current_person?(@person),
+                             :recent => true } %>
+  </table>
+<%- end -%>
+</div>
+</div>

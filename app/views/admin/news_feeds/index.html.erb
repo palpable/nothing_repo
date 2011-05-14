@@ -1,0 +1,50 @@
+<div id="backEnd">
+   <div class="pageHdr">
+  <h4>News Feed</h4>
+   <%= link_to 'Add New Feed',{:controller =>'news_feeds',:action=>'new'},:class =>'plusLink roadshow' %>
+   </div>
+     <div class="rightContent small">
+       <%= render :partial => 'searches/box' %>
+       </div>
+ 
+  <div class="leftContent wide">
+                     <table  class="tablesorter" width="100%" border="0">
+                    <thead>
+                        <tr>
+                            <th width="25%"  align="center">
+                                 Name
+                            </th>
+                            <th width="75%" align="center">
+                               URL
+                            </th>
+                              </tr>
+                    </thead>
+                    <tbody>
+                       <%if !@news_feed.empty?%>
+                       <%for n in @news_feed%>
+                        <tr>
+                            <td width="50%">
+                                <%= n.name%>
+                            </td>
+                            <td width="75%" >
+                               <%= n.addr%> <small><%= link_to 'Edit',:controller =>'news_feeds',:action =>'edit',:id =>n.id %> || <%if !n.set_default%><%= link_to 'Delete',:controller =>'news_feeds',:action =>'delete',:id =>n.id %></small><%end%>
+                            </td>
+                             </tr>
+                        <%end -%>
+                                            
+                       <%else%>
+                       <tr class="">
+                            <td  colspan="2" width="50%">
+                                No New Feeds
+                            </td>
+                       </tr>
+                       <%end%>
+                    </tbody>
+                </table>
+            
+            </div>
+</div>
+
+
+
+

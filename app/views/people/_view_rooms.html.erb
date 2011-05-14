@@ -1,0 +1,51 @@
+<div id="backEnd">
+<div class="leftContent wide">
+
+  <h4><%=@person.name%> Room Items</h4>
+  <%#= render :partial => partial(@person_rooms), :collection => @person_rooms %>
+
+ <% if @contact == "true" %>
+<%if @person_rooms.length > 0 %>
+ <table class="dashboard room" cellspacing="0" cellpadding="0" border="0" summary="A table of messages from a particular user. The
+							left column, the next column is the person who posted the message along with a timestamp, and the last column is the actual message.">
+<% @person_rooms.each do |room| %>
+<tr>
+  <td>
+  <div class="profile-image">
+     <%unless room.person.docattachments.length < 1%>
+    <%room.person.docattachments.each do |attachment|%>
+   <%= image_tag attachment.public_filename, :class => "profile-image photo",:alt => h(room.person.name),:height=>62,:width=>62%>
+   <%end%>
+  <%else%>
+    <%= image_tag "default.png",:height=>62,:width=>62 ,:alt => h(room.person.name)  %>
+  <%end%>
+  </div> </td> <td>
+ 
+  <ul class="newsInfo"> 
+  <% if DateTime.now.strftime("%Y-%m-%d") == room.created_at.strftime("%Y-%m-%d") %>
+   <li> <%=link_to room.person.name,:controller=>:people,:action=>:show,:id=>room.person_id%></li> <li><%=room.created_at.strftime("%B, %d %Y")%> <%= time_ago_in_words room.created_at %> ago</li>
+   <% else %>
+   <li><%=link_to room.person.name,:controller=>:people,:action=>:show,:id=>room.person_id%></li><li><%=room.created_at.strftime("%B, %d %Y")%>-<%=room.created_at.strftime("%I:%M %p")%></li>
+  <%end%>
+  <% if room.person_id==current_person.id %>
+    <%= link_to image_tag('icons/page_white_delete.png'), room, :confirm => 'Are you sure?', :method => :delete %>
+  <%end%>
+   <% if room.person_id==current_person.id %>
+    <%= link_to image_tag('icons/page_white_edit.png'),:controller=>'rooms',:action=>'edit',:id=>room.id %>
+  <%end%>
+  </ul>
+</td> <td><%=link_to room.title,:controller=>'people',:action=>'room_show',:id=>room.id%></td>
+</tr>
+
+<%end%>
+</table>
+<%else%>
+<h4>No Room Items Found</h4>
+<%end%>
+
+<%else%>
+  <h4>   You don't have contact. you cann't view his rooms</h4>
+<%end%>
+
+</div>
+</div>

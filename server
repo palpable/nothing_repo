@@ -1,0 +1,486 @@
+Script started on Fri Jan 22 11:02:22 2010
+bash-3.2$ ls
+Capfile				mydir
+INSTALL				nbproject
+LICENSE				public
+README.rdoc			rsa_key
+Rakefile			rsa_key.pub
+app				script
+app.tar				secret
+config				server
+configure_insoshi_local.sh	spec
+db				sphinx
+doc				stories
+favicon.ico			test
+identifier			tmp
+init.rb				trunk
+lib				uuid.state
+log				vendor
+mkmf.log			views
+bash-3.2$ s[Kscr[K[K[Kls[K[Kscript/server
+=> Booting Mongrel (use 'script/server webrick' to force WEBrick)
+=> Rails 2.2.2 application starting on http://0.0.0.0:3000
+=> Call with -d to detach
+=> Ctrl-C to shutdown server
+** Starting Mongrel listening at 0.0.0.0:3000
+** Starting Rails with development environment...
+  [4;36;1mSQL (36.3ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+** ultrasphinx: spelling support not available (raspell configuration raised "uninitialized constant Ultrasphinx::Spell::Aspell")
+  [4;35;1mPreference Load (32.1ms)[0m   [0mSELECT * FROM `preferences` LIMIT 1[0m
+  [4;36;1mPreference Columns (8.5ms)[0m   [0;1mSHOW FIELDS FROM `preferences`[0m
+  [4;35;1mMessage Columns (43.1ms)[0m   [0mSHOW FIELDS FROM `communications`[0m
+  [4;36;1mPerson Columns (73.5ms)[0m   [0;1mSHOW FIELDS FROM `people`[0m
+  [4;35;1mAllPerson Columns (2.0ms)[0m   [0mSHOW FIELDS FROM `people`[0m
+  [4;36;1mForumPost Columns (28.5ms)[0m   [0;1mSHOW FIELDS FROM `posts`[0m
+  [4;35;1mTopic Columns (44.1ms)[0m   [0mSHOW FIELDS FROM `topics`[0m
+  [4;36;1mRoom Columns (0.0ms)[0m   [0;1mMysql::Error: Table 'test_insoshi_development.rooms' doesn't exist: SHOW FIELDS FROM `rooms`[0m
+** ultrasphinx: warning: model Room does not exist in the database yet
+  [4;35;1mRoadShow Columns (2.3ms)[0m   [0mSHOW FIELDS FROM `road_shows`[0m
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel 1.1.5 available at 0.0.0.0:3000
+** Use CTRL-C to stop.
+
+
+Processing HomeController#index (for 127.0.0.1 at 2010-01-22 11:03:55) [GET]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mPageView Columns (185.2ms)[0m   [0mSHOW FIELDS FROM `page_views`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mPageView Create (0.5ms)[0m   [0mINSERT INTO `page_views` (`created_at`, `updated_at`, `referer`, `person_id`, `user_agent`, `request_url`, `ip_address`) VALUES('2010-01-22 11:03:55', '2010-01-22 11:03:55', NULL, NULL, 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US; rv:1.9.1.7) Gecko/20091221 Firefox/3.5.7 GTB6', '/', '127.0.0.1')[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mTopic Load (0.5ms)[0m   [0mSELECT * FROM `topics` ORDER BY created_at DESC LIMIT 6[0m
+  [4;36;1mPerson Load (22.0ms)[0m   [0;1mSELECT * FROM `people` ORDER BY people.created_at DESC LIMIT 8[0m
+********************************** SET SESSION VALUE  IN HOME ********************************* 
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run': Ruby threads cannot be used in RubyCocoa without patches to the Ruby interpreter
+********************************** SET SESSION VALUE ********************************* 
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run': Ruby threads cannot be used in RubyCocoa without patches to the Ruby interpreter
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run': Ruby threads cannot be used in RubyCocoa without patches to the Ruby interpreter
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run': Ruby threads cannot be used in RubyCocoa without patches to the Ruby interpreter
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run': Ruby threads cannot be used in RubyCocoa without patches to the Ruby interpreter
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run': Ruby threads cannot be used in RubyCocoa without patches to the Ruby interpreter
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run': Ruby threads cannot be used in RubyCocoa without patches to the Ruby interpreter
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run': Ruby threads cannot be used in RubyCocoa without patches to the Ruby interpreter
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run': Ruby threads cannot be used in RubyCocoa without patches to the Ruby interpreter
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run': Ruby threads cannot be used in RubyCocoa without patches to the Ruby interpreter
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run': Ruby threads cannot be used in RubyCocoa without patches to the Ruby interpreter
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run': Ruby threads cannot be used in RubyCocoa without patches to the Ruby interpreter
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run': Ruby threads cannot be used in RubyCocoa without patches to the Ruby interpreter
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run': Ruby threads cannot be used in RubyCocoa without patches to the Ruby interpreter
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run': Ruby threads cannot be used in RubyCocoa without patches to the Ruby interpreter
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run': Ruby threads cannot be used in RubyCocoa without patches to the Ruby interpreter
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run': Ruby threads cannot be used in RubyCocoa without patches to the Ruby interpreter
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run': Ruby threads cannot be used in RubyCocoa without patches to the Ruby interpreter
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run': Ruby threads cannot be used in RubyCocoa without patches to the Ruby interpreter
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run': Ruby threads cannot be used in RubyCocoa without patches to the Ruby interpreter
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run': Ruby threads cannot be used in RubyCocoa without patches to the Ruby interpreter
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run': Ruby threads cannot be used in RubyCocoa without patches to the Ruby interpreter
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run': Ruby threads cannot be used in RubyCocoa without patches to the Ruby interpreter
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run': Ruby threads cannot be used in RubyCocoa without patches to the Ruby interpreter
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run': Ruby threads cannot be used in RubyCocoa without patches to the Ruby interpreter
+  [4;35;1mPhoto Load (15.1ms)[0m   [0mSELECT `photos`.* FROM `photos` WHERE (`photos`.person_id IN (68,67,66,65,64,63,62,61)) ORDER BY created_at[0m
+Redirected to /landing
+Completed in 1430ms (DB: 224) | 302 Found [http://127.0.0.1/]
+
+
+Processing LandingController#index (for 127.0.0.1 at 2010-01-22 11:03:56) [GET]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mPageView Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `page_views`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mPageView Create (0.3ms)[0m   [0mINSERT INTO `page_views` (`created_at`, `updated_at`, `referer`, `person_id`, `user_agent`, `request_url`, `ip_address`) VALUES('2010-01-22 11:03:56', '2010-01-22 11:03:56', NULL, NULL, 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US; rv:1.9.1.7) Gecko/20091221 Firefox/3.5.7 GTB6', '/landing', '127.0.0.1')[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mTopic Load (0.4ms)[0m   [0mSELECT id, name FROM `topics` ORDER BY updated_at DESC LIMIT 5[0m
+  [4;36;1mPerson Columns (2.3ms)[0m   [0;1mSHOW FIELDS FROM `people`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSELECT count(*) AS count_all FROM `people` [0m
+Rendering template within layouts/application
+Rendering landing/index
+  [4;36;1mPreference Load (0.3ms)[0m   [0;1mSELECT * FROM `preferences` LIMIT 1[0m
+  [4;35;1mPreference Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `preferences`[0m
+  [4;36;1mTopic Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `topics`[0m
+Rendered shared/_header (1.4ms)
+Rendered shared/_footer (0.3ms)
+Completed in 331ms (View: 138, DB: 5) | 200 OK [http://127.0.0.1/landing]
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run': Ruby threads cannot be used in RubyCocoa without patches to the Ruby interpreter
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run': Ruby threads cannot be used in RubyCocoa without patches to the Ruby interpreter
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run': Ruby threads cannot be used in RubyCocoa without patches to the Ruby interpreter
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run': Ruby threads cannot be used in RubyCocoa without patches to the Ruby interpreter
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run': Ruby threads cannot be used in RubyCocoa without patches to the Ruby interpreter
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run': Ruby threads cannot be used in RubyCocoa without patches to the Ruby interpreter
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run': Ruby threads cannot be used in RubyCocoa without patches to the Ruby interpreter
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run': Ruby threads cannot be used in RubyCocoa without patches to the Ruby interpreter
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run': Ruby threads cannot be used in RubyCocoa without patches to the Ruby interpreter
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run': Ruby threads cannot be used in RubyCocoa without patches to the Ruby interpreter
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run': Ruby threads cannot be used in RubyCocoa without patches to the Ruby interpreter
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run': Ruby threads cannot be used in RubyCocoa without patches to the Ruby interpreter
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run': Ruby threads cannot be used in RubyCocoa without patches to the Ruby interpreter
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run': Ruby threads cannot be used in RubyCocoa without patches to the Ruby interpreter
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run': Ruby threads cannot be used in RubyCocoa without patches to the Ruby interpreter
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run': Ruby threads cannot be used in RubyCocoa without patches to the Ruby interpreter
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run': Ruby threads cannot be used in RubyCocoa without patches to the Ruby interpreter
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run': Ruby threads cannot be used in RubyCocoa without patches to the Ruby interpreter
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run': Ruby threads cannot be used in RubyCocoa without patches to the Ruby interpreter
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2010-01-22 11:04:01) [GET]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mPageView Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `page_views`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mPageView Create (0.2ms)[0m   [0;1mINSERT INTO `page_views` (`created_at`, `updated_at`, `referer`, `person_id`, `user_agent`, `request_url`, `ip_address`) VALUES('2010-01-22 11:04:01', '2010-01-22 11:04:01', 'http://127.0.0.1:3000/landing', NULL, 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US; rv:1.9.1.7) Gecko/20091221 Firefox/3.5.7 GTB6', '/login', '127.0.0.1')[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mCOMMIT[0m
+Rendering template within layouts/application
+Rendering sessions/new
+  [4;36;1mPreference Load (0.3ms)[0m   [0;1mSELECT * FROM `preferences` LIMIT 1[0m
+  [4;35;1mPreference Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `preferences`[0m
+Rendered shared/_header (0.9ms)
+Rendered shared/_footer (0.2ms)
+Completed in 206ms (View: 193, DB: 2) | 200 OK [http://127.0.0.1/login]
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run': Ruby threads cannot be used in RubyCocoa without patches to the Ruby interpreter
+
+
+Processing SessionsController#create (for 127.0.0.1 at 2010-01-22 11:04:11) [POST]
+  Parameters: {"openid_url"=>"", "remember_me"=>"1", "commit"=>"Sign in", "method"=>:get, "password"=>"qtk1213", "email"=>"shawn_a_johnson@3rmedia.com"}
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mPageView Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `page_views`[0m
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run': Ruby threads cannot be used in RubyCocoa without patches to the Ruby interpreter
+********************************** SET SESSION VALUE  IN HOME ********************************* 
+  [4;36;1mSQL (0.4ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mPageView Create (0.3ms)[0m   [0mINSERT INTO `page_views` (`created_at`, `updated_at`, `referer`, `person_id`, `user_agent`, `request_url`, `ip_address`) VALUES('2010-01-22 11:04:11', '2010-01-22 11:04:11', 'http://127.0.0.1:3000/login', NULL, 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US; rv:1.9.1.7) Gecko/20091221 Firefox/3.5.7 GTB6', '/session', '127.0.0.1')[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mPerson Columns (7.5ms)[0m   [0mSHOW FIELDS FROM `people`[0m
+  [4;36;1mPerson Load (1.0ms)[0m   [0;1mSELECT * FROM `people` WHERE (`people`.`identity_url` IS NULL AND `people`.`email` = 'shawn_a_johnson@3rmedia.com') LIMIT 1[0m
+  [4;35;1mPreference Load (0.4ms)[0m   [0mSELECT * FROM `preferences` LIMIT 1[0m
+  [4;36;1mPreference Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `preferences`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mPerson Exists (0.5ms)[0m   [0;1mSELECT `people`.id FROM `people` WHERE (`people`.`email` = BINARY 'shawn_a_johnson@3rmedia.com' AND `people`.id <> 1) LIMIT 1[0m
+  [4;35;1mPerson Load (0.6ms)[0m   [0mSELECT * FROM `people` WHERE (`people`.`id` = 1) [0m
+  [4;36;1mPerson Update (0.3ms)[0m   [0;1mUPDATE `people` SET `updated_at` = '2010-01-22 11:04:11', `last_logged_in_at` = '2010-01-22 11:04:11' WHERE `id` = 1[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mPerson Load (0.4ms)[0m   [0mSELECT * FROM `people` WHERE (`people`.`id` = 1) [0m
+  [4;36;1mPerson Update (0.3ms)[0m   [0;1mUPDATE `people` SET `updated_at` = '2010-01-22 11:04:11', `remember_token_expires_at` = '2012-01-22 16:04:11', `remember_token` = '3c21cb5b4de1a5f31d7d31174be9647079eb7198' WHERE `id` = 1[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mCOMMIT[0m
+Cookie set: auth_token=3c21cb5b4de1a5f31d7d31174be9647079eb7198; path=/; expires=Sun, 22 Jan 2012 16:04:11 GMT
+Redirected to /
+Completed in 181ms (DB: 16) | 302 Found [http://127.0.0.1/session]
+
+
+Processing HomeController#index (for 127.0.0.1 at 2010-01-22 11:04:11) [GET]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mPageView Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `page_views`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mPageView Create (0.3ms)[0m   [0mINSERT INTO `page_views` (`created_at`, `updated_at`, `referer`, `person_id`, `user_agent`, `request_url`, `ip_address`) VALUES('2010-01-22 11:04:11', '2010-01-22 11:04:11', 'http://127.0.0.1:3000/login', 1, 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US; rv:1.9.1.7) Gecko/20091221 Firefox/3.5.7 GTB6', '/', '127.0.0.1')[0m
+  [4;36;1mSQL (38.3ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mPerson Columns (2.1ms)[0m   [0mSHOW FIELDS FROM `people`[0m
+  [4;36;1mPerson Load (0.4ms)[0m   [0;1mSELECT * FROM `people` WHERE (`people`.`id` = 1) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mPerson Exists (0.4ms)[0m   [0;1mSELECT `people`.id FROM `people` WHERE (`people`.`email` = BINARY 'shawn_a_johnson@3rmedia.com' AND `people`.id <> 1) LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `people` WHERE (`people`.`id` = 1) [0m
+  [4;36;1mPerson Update (0.3ms)[0m   [0;1mUPDATE `people` SET `updated_at` = '2010-01-22 11:04:12', `last_logged_in_at` = '2010-01-22 11:04:12' WHERE `id` = 1[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mCOMMIT[0m
+  [4;36;1mTopic Load (0.4ms)[0m   [0;1mSELECT * FROM `topics` ORDER BY created_at DESC LIMIT 6[0m
+  [4;35;1mPerson Load (0.6ms)[0m   [0mSELECT * FROM `people` ORDER BY people.created_at DESC LIMIT 8[0m
+  [4;36;1mPhoto Load (0.5ms)[0m   [0;1mSELECT `photos`.* FROM `photos` WHERE (`photos`.person_id IN (68,67,66,65,64,63,62,61)) ORDER BY created_at[0m
+  [4;35;1mActivity Columns (53.9ms)[0m   [0mSHOW FIELDS FROM `activities`[0m
+  [4;36;1mActivity Load Including Associations (68.1ms)[0m   [0;1mSELECT `activities`.`id` AS t0_r0, `activities`.`public` AS t0_r1, `activities`.`item_id` AS t0_r2, `activities`.`person_id` AS t0_r3, `activities`.`item_type` AS t0_r4, `activities`.`created_at` AS t0_r5, `activities`.`updated_at` AS t0_r6, `people`.`id` AS t1_r0, `people`.`email` AS t1_r1, `people`.`name` AS t1_r2, `people`.`remember_token` AS t1_r3, `people`.`crypted_password` AS t1_r4, `people`.`description` AS t1_r5, `people`.`remember_token_expires_at` AS t1_r6, `people`.`last_contacted_at` AS t1_r7, `people`.`last_logged_in_at` AS t1_r8, `people`.`forum_posts_count` AS t1_r9, `people`.`blog_post_comments_count` AS t1_r10, `people`.`wall_comments_count` AS t1_r11, `people`.`created_at` AS t1_r12, `people`.`updated_at` AS t1_r13, `people`.`admin` AS t1_r14, `people`.`deactivated` AS t1_r15, `people`.`connection_notifications` AS t1_r16, `people`.`message_notifications` AS t1_r17, `people`.`wall_comment_notifications` AS t1_r18, `people`.`blog_comment_notifications` AS t1_r19, `people`.`email_verified` AS t1_r20, `people`.`avatar_id` AS t1_r21, `people`.`identity_url` AS t1_r22, `people`.`branch` AS t1_r23, `people`.`years` AS t1_r24, `people`.`phone` AS t1_r25, `people`.`fax` AS t1_r26, `people`.`isbanker` AS t1_r27, `people`.`company_name` AS t1_r28, `people`.`business_type` AS t1_r29, `people`.`country` AS t1_r30, `people`.`title` AS t1_r31, `people`.`department` AS t1_r32, `people`.`country_id` AS t1_r33, `people`.`phone_visibility` AS t1_r34, `people`.`email_visibility` AS t1_r35, `people`.`website` AS t1_r36, `people`.`region` AS t1_r37, `people`.`inviter_id` AS t1_r38, `people`.`invitation_code` AS t1_r39, `people`.`active` AS t1_r40 FROM `activities` LEFT OUTER JOIN `people` ON `people`.id = `activities`.person_id INNER JOIN feeds ON activities.id = feeds.activity_id WHERE ((`feeds`.person_id = 1) AND ((people.deactivated = 0))) ORDER BY activities.created_at DESC LIMIT 10[0m
+  [4;35;1mPerson Load (98.4ms)[0m   [0mSELECT `people`.* FROM `people` INNER JOIN connections ON people.id = connections.contact_id WHERE ((`connections`.person_id = 1) AND ((status = 0 AND
+ deactivated = 0 AND
+ (email_verified IS NULL OR email_verified = 1)))) ORDER BY people.created_at DESC[0m
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run': Ruby threads cannot be used in RubyCocoa without patches to the Ruby interpreter
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run': Ruby threads cannot be used in RubyCocoa without patches to the Ruby interpreter
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run': Ruby threads cannot be used in RubyCocoa without patches to the Ruby interpreter
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run': Ruby threads cannot be used in RubyCocoa without patches to the Ruby interpreter
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run': Ruby threads cannot be used in RubyCocoa without patches to the Ruby interpreter
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run': Ruby threads cannot be used in RubyCocoa without patches to the Ruby interpreter
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run': Ruby threads cannot be used in RubyCocoa without patches to the Ruby interpreter
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run': Ruby threads cannot be used in RubyCocoa without patches to the Ruby interpreter
+  [4;36;1mForum Load (399.4ms)[0m   [0;1mSELECT * FROM `forums` ORDER BY created_at DESC LIMIT 0, 15[0m
+Rendering template within layouts/application
+Rendering home/index
+  [4;35;1mMessage Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `communications`[0m
+  [4;36;1mSQL (28.4ms)[0m   [0;1mSELECT count(*) AS count_all FROM `communications` WHERE (recipient_id = 1
+ AND sender_id != 1
+ AND recipient_deleted_at IS NOT NULL
+ AND recipient_read_at IS NULL) AND ( (`communications`.`type` = 'Message' ) ) [0m
+  [4;35;1mMessage Load (1.5ms)[0m   [0mSELECT * FROM `communications` WHERE (recipient_id = 1 AND
+ recipient_deleted_at IS NULL) AND ( (`communications`.`type` = 'Message' ) ) ORDER BY created_at DESC LIMIT 4[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `communications` WHERE (recipient_id = 1 AND
+ recipient_deleted_at IS NULL) AND ( (`communications`.`type` = 'Message' ) ) ORDER BY created_at DESC LIMIT 4[0m
+  [4;35;1mPerson Load (0.5ms)[0m   [0mSELECT * FROM `people` WHERE (`people`.`id` = 24) [0m
+  [4;36;1mDocattachment Load (4.3ms)[0m   [0;1mSELECT * FROM `docattachments` WHERE (`docattachments`.attachable_id = 24 AND `docattachments`.attachable_type = 'Person') [0m
+  [4;35;1mDocattachment Columns (31.3ms)[0m   [0mSHOW FIELDS FROM `docattachments`[0m
+Rendered home/_message (219.5ms)
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `people` WHERE (`people`.`id` = 24) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `docattachments` WHERE (`docattachments`.attachable_id = 24 AND `docattachments`.attachable_type = 'Person') [0m
+Rendered home/_message (2.6ms)
+  [4;36;1mPerson Load (4.5ms)[0m   [0;1mSELECT * FROM `people` WHERE (`people`.`id` = 1) [0m
+  [4;35;1mDocattachment Load (0.5ms)[0m   [0mSELECT * FROM `docattachments` WHERE (`docattachments`.attachable_id = 1 AND `docattachments`.attachable_type = 'Person') [0m
+Rendered home/_message (9.5ms)
+  [4;36;1mPerson Load (0.7ms)[0m   [0;1mSELECT * FROM `people` WHERE (`people`.`id` = 23) [0m
+  [4;35;1mDocattachment Load (0.4ms)[0m   [0mSELECT * FROM `docattachments` WHERE (`docattachments`.attachable_id = 23 AND `docattachments`.attachable_type = 'Person') [0m
+Rendered home/_message (5.4ms)
+  [4;36;1mForum Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `forums`[0m
+  [4;35;1mTopic Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `topics`[0m
+  [4;36;1mForumPost Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `posts`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT count(*) AS count_all FROM `posts` WHERE (`posts`.topic_id = 20) AND ( (`posts`.`type` = 'ForumPost' ) ) [0m
+  [4;36;1mForum Load (0.2ms)[0m   [0;1mSELECT * FROM `forums` WHERE (`forums`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `people` WHERE (`people`.`id` = 24) [0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSELECT count(*) AS count_all FROM `posts` WHERE (`posts`.topic_id = 19) AND ( (`posts`.`type` = 'ForumPost' ) ) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `forums` WHERE (`forums`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `people` WHERE (`people`.`id` = 1) [0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSELECT count(*) AS count_all FROM `posts` WHERE (`posts`.topic_id = 18) AND ( (`posts`.`type` = 'ForumPost' ) ) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `forums` WHERE (`forums`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `people` WHERE (`people`.`id` = 23) [0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSELECT count(*) AS count_all FROM `posts` WHERE (`posts`.topic_id = 17) AND ( (`posts`.`type` = 'ForumPost' ) ) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `forums` WHERE (`forums`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `people` WHERE (`people`.`id` = 24) [0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSELECT count(*) AS count_all FROM `posts` WHERE (`posts`.topic_id = 16) AND ( (`posts`.`type` = 'ForumPost' ) ) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `forums` WHERE (`forums`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `people` WHERE (`people`.`id` = 24) [0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT count(*) AS count_all FROM `posts` WHERE (`posts`.topic_id = 15) AND ( (`posts`.`type` = 'ForumPost' ) ) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `forums` WHERE (`forums`.`id` = 1) [0m
+  [4;36;1mPerson Load (0.3ms)[0m   [0;1mSELECT * FROM `people` WHERE (`people`.`id` = 33) [0m
+Rendered shared/_forums (149.8ms)
+Rendered home/_messages_preview (474.3ms)
+Rendered searches/_box (0.8ms)
+  [4;35;1mCountry Load (2.6ms)[0m   [0mSELECT * FROM `countries` [0m
+  [4;36;1mCountry Columns (1.7ms)[0m   [0;1mSHOW FIELDS FROM `countries`[0m
+Rendered home/_advance_search (16.3ms)
+  [4;35;1mSQL (0.8ms)[0m   [0mSELECT count(*) AS count_all FROM `people` INNER JOIN connections ON people.id = connections.contact_id WHERE ((`connections`.person_id = 1) AND ((status = 1 AND
+ deactivated = 0 AND
+ (email_verified IS NULL OR email_verified = 1)))) [0m
+Rendered home/_requested_contacts (1.9ms)
+  [4;36;1mDocattachment Load (0.4ms)[0m   [0;1mSELECT * FROM `docattachments` WHERE (`docattachments`.attachable_id = 49 AND `docattachments`.attachable_type = 'Person') [0m
+Rendered shared/_contact (1.9ms)
+  [4;35;1mDocattachment Load (0.3ms)[0m   [0mSELECT * FROM `docattachments` WHERE (`docattachments`.attachable_id = 48 AND `docattachments`.attachable_type = 'Person') [0m
+Rendered shared/_contact (1.4ms)
+  [4;36;1mDocattachment Load (0.3ms)[0m   [0;1mSELECT * FROM `docattachments` WHERE (`docattachments`.attachable_id = 47 AND `docattachments`.attachable_type = 'Person') [0m
+Rendered shared/_contact (1.3ms)
+  [4;35;1mDocattachment Load (0.3ms)[0m   [0mSELECT * FROM `docattachments` WHERE (`docattachments`.attachable_id = 46 AND `docattachments`.attachable_type = 'Person') [0m
+Rendered shared/_contact (1.5ms)
+  [4;36;1mDocattachment Load (0.3ms)[0m   [0;1mSELECT * FROM `docattachments` WHERE (`docattachments`.attachable_id = 45 AND `docattachments`.attachable_type = 'Person') [0m
+Rendered shared/_contact (1.3ms)
+  [4;35;1mDocattachment Load (0.3ms)[0m   [0mSELECT * FROM `docattachments` WHERE (`docattachments`.attachable_id = 39 AND `docattachments`.attachable_type = 'Person') [0m
+Rendered shared/_contact (1.2ms)
+  [4;36;1mDocattachment Load (0.3ms)[0m   [0;1mSELECT * FROM `docattachments` WHERE (`docattachments`.attachable_id = 38 AND `docattachments`.attachable_type = 'Person') [0m
+Rendered shared/_contact (1.2ms)
+  [4;35;1mDocattachment Load (0.3ms)[0m   [0mSELECT * FROM `docattachments` WHERE (`docattachments`.attachable_id = 36 AND `docattachments`.attachable_type = 'Person') [0m
+Rendered shared/_contact (1.3ms)
+  [4;36;1mDocattachment Load (0.3ms)[0m   [0;1mSELECT * FROM `docattachments` WHERE (`docattachments`.attachable_id = 35 AND `docattachments`.attachable_type = 'Person') [0m
+Rendered shared/_contact (1.2ms)
+  [4;35;1mDocattachment Load (0.3ms)[0m   [0mSELECT * FROM `docattachments` WHERE (`docattachments`.attachable_id = 34 AND `docattachments`.attachable_type = 'Person') [0m
+Rendered shared/_contact (1.2ms)
+  [4;36;1mDocattachment Load (0.3ms)[0m   [0;1mSELECT * FROM `docattachments` WHERE (`docattachments`.attachable_id = 33 AND `docattachments`.attachable_type = 'Person') [0m
+Rendered shared/_contact (1.2ms)
+  [4;35;1mDocattachment Load (0.3ms)[0m   [0mSELECT * FROM `docattachments` WHERE (`docattachments`.attachable_id = 32 AND `docattachments`.attachable_type = 'Person') [0m
+Rendered shared/_contact (2.2ms)
+Rendered shared/_contacts_preview (19.8ms)
+  [4;36;1mPreference Load (0.4ms)[0m   [0;1mSELECT * FROM `preferences` LIMIT 1[0m
+  [4;35;1mPreference Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `preferences`[0m
+Rendered shared/_header (2.1ms)
+Rendered shared/_footer (0.2ms)
+Completed in 1774ms (View: 617, DB: 756) | 200 OK [http://127.0.0.1/]
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run': Ruby threads cannot be used in RubyCocoa without patches to the Ruby interpreter
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run': Ruby threads cannot be used in RubyCocoa without patches to the Ruby interpreter
+
+
+Processing PeopleController#show (for 127.0.0.1 at 2010-01-22 11:04:18) [GET]
+  Parameters: {"id"=>"1-shawn--a-johnson"}
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mPageView Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `page_views`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mPageView Create (0.3ms)[0m   [0mINSERT INTO `page_views` (`created_at`, `updated_at`, `referer`, `person_id`, `user_agent`, `request_url`, `ip_address`) VALUES('2010-01-22 11:04:18', '2010-01-22 11:04:18', 'http://127.0.0.1:3000/', 1, 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US; rv:1.9.1.7) Gecko/20091221 Firefox/3.5.7 GTB6', '/people/1-shawn--a-johnson', '127.0.0.1')[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mPerson Columns (2.1ms)[0m   [0mSHOW FIELDS FROM `people`[0m
+  [4;36;1mPerson Load (0.4ms)[0m   [0;1mSELECT * FROM `people` WHERE (`people`.`id` = 1) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0mBEGIN[0m
+  [4;36;1mPerson Exists (0.5ms)[0m   [0;1mSELECT `people`.id FROM `people` WHERE (`people`.`email` = BINARY 'shawn_a_johnson@3rmedia.com' AND `people`.id <> 1) LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `people` WHERE (`people`.`id` = 1) [0m
+  [4;36;1mPerson Update (0.3ms)[0m   [0;1mUPDATE `people` SET `updated_at` = '2010-01-22 11:04:18', `last_logged_in_at` = '2010-01-22 11:04:18' WHERE `id` = 1[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mCOMMIT[0m
+  [4;36;1mPreference Load (0.4ms)[0m   [0;1mSELECT * FROM `preferences` LIMIT 1[0m
+  [4;35;1mPreference Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `preferences`[0m
+  [4;36;1mPerson Load (0.5ms)[0m   [0;1mSELECT * FROM `people` WHERE (`people`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `people` WHERE (`people`.`id` = 1) [0m
+  [4;36;1mConnection Load (0.4ms)[0m   [0;1mSELECT connections.contact_id FROM `connections` WHERE (`connections`.person_id = 1) [0m
+  [4;35;1mConnection Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `connections`[0m
+  [4;36;1mRoom Load (0.0ms)[0m   [0;1mMysql::Error: Table 'test_insoshi_development.rooms' doesn't exist: SELECT * FROM `rooms` WHERE (person_id = 1) ORDER BY created_at DESC LIMIT 0, 10[0m
+
+
+ActiveRecord::StatementInvalid (Mysql::Error: Table 'test_insoshi_development.rooms' doesn't exist: SELECT * FROM `rooms` WHERE (person_id = 1)  ORDER BY created_at DESC LIMIT 0, 10):
+    /vendor/rails/activerecord/lib/active_record/connection_adapters/abstract_adapter.rb:188:in `log'
+    /vendor/rails/activerecord/lib/active_record/connection_adapters/mysql_adapter.rb:309:in `execute'
+    /vendor/rails/activerecord/lib/active_record/connection_adapters/mysql_adapter.rb:563:in `select'
+    /vendor/rails/activerecord/lib/active_record/connection_adapters/abstract/database_statements.rb:7:in `select_all_without_query_cache'
+    /vendor/rails/activerecord/lib/active_record/connection_adapters/abstract/query_cache.rb:60:in `select_all'
+    /vendor/rails/activerecord/lib/active_record/connection_adapters/abstract/query_cache.rb:81:in `cache_sql'
+    /vendor/rails/activerecord/lib/active_record/connection_adapters/abstract/query_cache.rb:60:in `select_all'
+    /vendor/rails/activerecord/lib/active_record/base.rb:635:in `find_by_sql'
+    /vendor/rails/activerecord/lib/active_record/base.rb:1490:in `find_every'
+    /vendor/rails/activerecord/lib/active_record/base.rb:589:in `find'
+    /vendor/plugins/will_paginate/lib/will_paginate/finder.rb:82:in `send'
+    /vendor/plugins/will_paginate/lib/will_paginate/finder.rb:82:in `paginate'
+    /vendor/plugins/will_paginate/lib/will_paginate/collection.rb:87:in `create'
+    /vendor/plugins/will_paginate/lib/will_paginate/finder.rb:76:in `paginate'
+    /app/controllers/people_controller.rb:33:in `show'
+    /vendor/rails/actionpack/lib/action_controller/base.rb:1253:in `send'
+    /vendor/rails/actionpack/lib/action_controller/base.rb:1253:in `perform_action_without_filters'
+    /vendor/rails/actionpack/lib/action_controller/filters.rb:617:in `call_filters'
+    /vendor/rails/actionpack/lib/action_controller/filters.rb:610:in `perform_action_without_benchmark'
+    /vendor/rails/actionpack/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /vendor/rails/actionpack/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /vendor/rails/actionpack/lib/action_controller/rescue.rb:136:in `perform_action_without_caching'
+    /vendor/rails/actionpack/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    /vendor/rails/activerecord/lib/active_record/connection_adapters/abstract/query_cache.rb:34:in `cache'
+    /vendor/rails/activerecord/lib/active_record/query_cache.rb:8:in `cache'
+    /vendor/rails/actionpack/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    /vendor/rails/actionpack/lib/action_controller/base.rb:524:in `send'
+    /vendor/rails/actionpack/lib/action_controller/base.rb:524:in `process_without_filters'
+    /vendor/rails/actionpack/lib/action_controller/filters.rb:606:in `process_without_session_management_support'
+    /vendor/rails/actionpack/lib/action_controller/session_management.rb:134:in `process'
+    /vendor/rails/actionpack/lib/action_controller/base.rb:392:in `process'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:183:in `handle_request'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:110:in `dispatch_unlocked'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:123:in `dispatch'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:122:in `synchronize'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:122:in `dispatch'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:132:in `dispatch_cgi'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:39:in `dispatch'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/rails.rb:76:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/rails.rb:74:in `synchronize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/rails.rb:74:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:159:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:158:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:158:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run'
+    /System/Library/Frameworks/RubyCocoa.framework/Resources/ruby/osx/objc/ruby_addition.rb:110:in `initialize'
+    /System/Library/Frameworks/RubyCocoa.framework/Resources/ruby/osx/objc/ruby_addition.rb:110:in `pre_rubycocoa_new'
+    /System/Library/Frameworks/RubyCocoa.framework/Resources/ruby/osx/objc/ruby_addition.rb:110:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel/configurator.rb:282:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel/configurator.rb:281:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel/configurator.rb:281:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:128:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel/command.rb:212:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:281
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:142:in `load_without_new_constant_marking'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:142:in `load'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:142:in `load'
+    /vendor/rails/railties/lib/commands/servers/mongrel.rb:64
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:153:in `require'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:153:in `require'
+    /vendor/rails/railties/lib/commands/server.rb:49
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    script/server:3
+
+Rendered /Users/shawn/codebase/clientwork/kirkwood/centralbank/trunk/central/vendor/rails/actionpack/lib/action_controller/templates/rescues/_trace (149.5ms)
+Rendered /Users/shawn/codebase/clientwork/kirkwood/centralbank/trunk/central/vendor/rails/actionpack/lib/action_controller/templates/rescues/_request_and_response (1.4ms)
+Rendering /Users/shawn/codebase/clientwork/kirkwood/centralbank/trunk/central/vendor/rails/actionpack/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run': Ruby threads cannot be used in RubyCocoa without patches to the Ruby interpreter
+
+
+Processing Resources::BanksController#index (for 127.0.0.1 at 2010-01-22 11:05:29) [GET]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mPageView Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `page_views`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mPageView Create (0.3ms)[0m   [0;1mINSERT INTO `page_views` (`created_at`, `updated_at`, `referer`, `person_id`, `user_agent`, `request_url`, `ip_address`) VALUES('2010-01-22 11:05:29', '2010-01-22 11:05:29', 'http://127.0.0.1:3000/', 1, 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US; rv:1.9.1.7) Gecko/20091221 Firefox/3.5.7 GTB6', '/resources/banks', '127.0.0.1')[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mCOMMIT[0m
+  [4;36;1mPerson Columns (2.1ms)[0m   [0;1mSHOW FIELDS FROM `people`[0m
+  [4;35;1mPerson Load (1.6ms)[0m   [0mSELECT * FROM `people` WHERE (`people`.`id` = 1) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mPerson Exists (0.4ms)[0m   [0mSELECT `people`.id FROM `people` WHERE (`people`.`email` = BINARY 'shawn_a_johnson@3rmedia.com' AND `people`.id <> 1) LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `people` WHERE (`people`.`id` = 1) [0m
+  [4;35;1mPerson Update (0.3ms)[0m   [0mUPDATE `people` SET `updated_at` = '2010-01-22 11:05:29', `last_logged_in_at` = '2010-01-22 11:05:29' WHERE `id` = 1[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mPreference Load (0.3ms)[0m   [0mSELECT * FROM `preferences` LIMIT 1[0m
+  [4;36;1mPreference Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `preferences`[0m
+  [4;35;1mCentralbankList Load (0.0ms)[0m   [0mMysql::Error: Table 'test_insoshi_development.centralbank_lists' doesn't exist: SELECT * FROM `centralbank_lists` ORDER BY country_name[0m
+
+
+ActiveRecord::StatementInvalid (Mysql::Error: Table 'test_insoshi_development.centralbank_lists' doesn't exist: SELECT * FROM `centralbank_lists`  ORDER BY country_name):
+    /vendor/rails/activerecord/lib/active_record/connection_adapters/abstract_adapter.rb:188:in `log'
+    /vendor/rails/activerecord/lib/active_record/connection_adapters/mysql_adapter.rb:309:in `execute'
+    /vendor/rails/activerecord/lib/active_record/connection_adapters/mysql_adapter.rb:563:in `select'
+    /vendor/rails/activerecord/lib/active_record/connection_adapters/abstract/database_statements.rb:7:in `select_all_without_query_cache'
+    /vendor/rails/activerecord/lib/active_record/connection_adapters/abstract/query_cache.rb:60:in `select_all'
+    /vendor/rails/activerecord/lib/active_record/connection_adapters/abstract/query_cache.rb:81:in `cache_sql'
+    /vendor/rails/activerecord/lib/active_record/connection_adapters/abstract/query_cache.rb:60:in `select_all'
+    /vendor/rails/activerecord/lib/active_record/base.rb:635:in `find_by_sql'
+    /vendor/rails/activerecord/lib/active_record/base.rb:1490:in `find_every'
+    /vendor/rails/activerecord/lib/active_record/base.rb:589:in `find'
+    /app/controllers/resources/banks_controller.rb:4:in `index'
+    /vendor/rails/actionpack/lib/action_controller/base.rb:1253:in `send'
+    /vendor/rails/actionpack/lib/action_controller/base.rb:1253:in `perform_action_without_filters'
+    /vendor/rails/actionpack/lib/action_controller/filters.rb:617:in `call_filters'
+    /vendor/rails/actionpack/lib/action_controller/filters.rb:610:in `perform_action_without_benchmark'
+    /vendor/rails/actionpack/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /vendor/rails/actionpack/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /vendor/rails/actionpack/lib/action_controller/rescue.rb:136:in `perform_action_without_caching'
+    /vendor/rails/actionpack/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    /vendor/rails/activerecord/lib/active_record/connection_adapters/abstract/query_cache.rb:34:in `cache'
+    /vendor/rails/activerecord/lib/active_record/query_cache.rb:8:in `cache'
+    /vendor/rails/actionpack/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    /vendor/rails/actionpack/lib/action_controller/base.rb:524:in `send'
+    /vendor/rails/actionpack/lib/action_controller/base.rb:524:in `process_without_filters'
+    /vendor/rails/actionpack/lib/action_controller/filters.rb:606:in `process_without_session_management_support'
+    /vendor/rails/actionpack/lib/action_controller/session_management.rb:134:in `process'
+    /vendor/rails/actionpack/lib/action_controller/base.rb:392:in `process'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:183:in `handle_request'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:110:in `dispatch_unlocked'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:123:in `dispatch'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:122:in `synchronize'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:122:in `dispatch'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:132:in `dispatch_cgi'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:39:in `dispatch'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/rails.rb:76:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/rails.rb:74:in `synchronize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/rails.rb:74:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:159:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:158:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:158:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run'
+    /System/Library/Frameworks/RubyCocoa.framework/Resources/ruby/osx/objc/ruby_addition.rb:110:in `initialize'
+    /System/Library/Frameworks/RubyCocoa.framework/Resources/ruby/osx/objc/ruby_addition.rb:110:in `pre_rubycocoa_new'
+    /System/Library/Frameworks/RubyCocoa.framework/Resources/ruby/osx/objc/ruby_addition.rb:110:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel/configurator.rb:282:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel/configurator.rb:281:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel/configurator.rb:281:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:128:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel/command.rb:212:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:281
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:142:in `load_without_new_constant_marking'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:142:in `load'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:142:in `load'
+    /vendor/rails/railties/lib/commands/servers/mongrel.rb:64
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:153:in `require'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:153:in `require'
+    /vendor/rails/railties/lib/commands/server.rb:49
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    script/server:3
+
+Rendered /Users/shawn/codebase/clientwork/kirkwood/centralbank/trunk/central/vendor/rails/actionpack/lib/action_controller/templates/rescues/_trace (32.8ms)
+Rendered /Users/shawn/codebase/clientwork/kirkwood/centralbank/trunk/central/vendor/rails/actionpack/lib/action_controller/templates/rescues/_request_and_response (1.1ms)
+Rendering /Users/shawn/codebase/clientwork/kirkwood/centralbank/trunk/central/vendor/rails/actionpack/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+^C** INT signal received.
+Exiting
+bash-3.2$ mate .
+bash-3.2$ 

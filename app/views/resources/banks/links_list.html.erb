@@ -1,0 +1,22 @@
+<div id="center" class="column">
+  <h2> Links</h2>
+  <table width="50%"  style="margin-left:150px;margin-top: 30px">
+				<tbody>
+					  <%- if current_person.admin? -%>				<div  align="right">	 <a href="add_link" title='Add New Link' font-color='red'>Add Link</a> </div><%end%>
+                  <% @links.each do |l| %>
+					<tr>
+						<td valign="top" width="25%">
+							<%=l.name%>
+						</td>
+                        <td valign="top" width="25%"> <a href="http://<%=l.link%>" target="_blank"><%=image_tag((l.icon),:size => "100x40")%></a></td>
+					<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					  <%- if current_person.admin? -%>		
+				<td>    <%= link_to  'Edit |' ,:controller=>'banks',:action=>'edit_link',:id=>l.id%></td>				
+					<td>    <%= link_to  'Delete' ,{:controller=>'resources/banks',:action=>'delete_link',:id=>l.id},:confirm=>'Are you Sure to delete this link'%></td>			
+					<%end%>
+		
+					</tr>
+                    <%end%>
+  </tbody></table>
+
+</div>

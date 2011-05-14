@@ -1,0 +1,42 @@
+ <style>
+ 	#tabCol .col1 {
+ float:left;
+left:0px;
+
+width:230px;  
+}
+
+ </style>
+ 
+ <ul class="list messages small">
+  <li>
+  <div class="profile-image">
+     <%unless room.person.docattachments.length < 1%>
+    <%  room.person.docattachments.each do |attachment|%>
+
+      <%= image_tag attachment.public_filename, :class => "profile-image photo",
+        :alt => h(room.person.name),:height=>50,:width=>50  %>
+    <%end%>
+  <%else%>
+    <%= image_tag "default.png",:height=>50,:width=>50 ,:alt => h(room.person.name)  %>
+  <%end%>
+   </div>
+  <p><span class="field">Title:<%=link_to room.title,:controller=>'rooms',:action=>'show',:id=>room.id%></span></p>
+  <p class="meta published"> <span>
+  	
+
+
+   <% if DateTime.now.strftime("%Y-%m-%d") == room.created_at.strftime("%Y-%m-%d") %>
+   created by <%=link_to room.person.name,:controller=>:people,:action=>:show,:id=>room.person_id%> on <%=room.created_at.strftime("%m/%d/%y")%> <%= time_ago_in_words room.created_at %> ago 
+   <% else %>
+   created by <%=link_to room.person.name,:controller=>:people,:action=>:show,:id=>room.person_id%> on <%=room.created_at.strftime("%m/%d/%y")%> at <%=room.created_at.strftime("%I:%M:%S %p")%>
+  <%end%>
+  <% if room.person_id==current_person.id %>
+    <%= link_to image_tag('icons/page_white_delete.png'), room, :confirm => 'Are you sure?', :method => :delete %>
+  <%end%>
+   <% if room.person_id==current_person.id %>
+    <%= link_to image_tag('icons/page_white_edit.png'),:controller=>'rooms',:action=>'edit',:id=>room.id %>
+  <%end%></span>
+  </p>
+</li>
+ </ul>

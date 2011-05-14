@@ -1,0 +1,15 @@
+<table>
+ <% videos.each do |video|%>
+  <tr>
+    <td>
+      <% @curr_video = YouTube.find_by_id(video.uniqueid) %>
+      <%=youtube_embed @curr_video%>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <%=video.title%>
+    </td>
+  </tr>
+  <%end%>
+</table>

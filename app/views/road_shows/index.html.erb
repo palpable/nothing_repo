@@ -1,0 +1,59 @@
+<div id="backEnd">
+  <div class="pageHdr">
+<h4>Roadshow</h4>
+	<ul class="pagination top">
+      <li><%= will_paginate @road_shows %></li>
+     </ul>
+     <%= link_to 'Create new',{:action=>'new'},:class =>"plusLink roadshow"%>
+  </div>
+   <div class="rightContent small">
+     <%= render :partial => 'searches/box' %>
+    <a id="adv_link">Advance Search</a>
+ <div id="advsearch" style="display:none;">
+  <%= render :partial=> 'advance_search' %>
+  </div>
+ <div class="rightContentWrap">
+   <p><%= link_to image_tag('../images/new_images/invite_user.jpg'), :controller =>'home',:action =>'invite_user'%></p>
+     <%= render :partial => 'shared/requested_contacts' ,:locals => {:requested_contacts => @requested_contacts}%>
+     <%= render :partial => 'shared/latest_news' ,:locals => {:items => @items}%>
+ </div>
+<div class="rightContentWrap noSpacing">
+ 
+    <h6>Contacts</h6>
+    <ul class="contacts">
+    <%= render :partial => 'shared/contacts_preview',:locals => { :person => current_person } %>
+   </ul>
+   <ul class="contactLinks">
+     <li><%= link_to "All contacts", person_connections_path(current_person) %></li>
+   
+   </ul>
+  </div>
+<!-- end of right content wrap -->
+</div>
+
+<div class="leftContent wide">
+	<table class="roadshow" cellspacing="0" cellpadding="0" border="0" summary="A table of roadshow information.">
+      <% @road_shows.in_groups_of(2).each do |road_shows| %>
+		<% road_shows.compact! %>
+		 <tr><%= render :partial => partial(road_shows), :collection => road_shows %></tr>
+	<% end %>
+  
+    </table>
+ <ul class="pagination bottom">
+     <li><%= will_paginate @road_shows %></li>
+    </ul>
+</div>
+
+
+
+</div>
+
+<script language="javascript">
+        jQuery(function(){
+
+          jQuery("#adv_link").click(function(){
+            jQuery('#advsearch').toggle();
+          });
+        });
+      </script>
+

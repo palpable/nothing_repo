@@ -1,0 +1,15 @@
+<div class="middleContent">
+<ul class="articleList">
+<% if @items %>
+  <% @items.each do |item| %>
+<li>
+<h4><a href='<%= item.link %>' target="_blank"><%= item.title %></a></h4>
+<p class="feed">News feed: <a href='<%=@link%>' target="_blank"><%= @title%></a></p>
+<p><%= item.description%>...<a href='<%= item.link %>'>More</a>
+<span><%=DateTime.now.strftime("%B %d,%Y")%>,<%=DateTime.now.strftime("%I:%M %p")%></span>
+</p>
+</li>
+<%end%>
+<%end%>
+</ul>
+</div>	

@@ -1,0 +1,121 @@
+<%= javascript_include_tag 'swfobject' %>
+<div id="backEnd">
+    <div class="pageHdr">
+      
+   </div>
+     <div class="profileContent myProfile">
+    <% if @room.person_id==current_person.id %>
+       <%= link_to 'Edit',{:action=>:edit,:id=>@room.id},:class =>"plusLink roadshow" %>
+       <%= link_to 'Destroy', @room, :confirm => 'Are you sure?', :method => :delete,:class =>"plusLink roadshow" %>
+       <%end%>
+  <%= link_to 'Create new',{:controller=>'rooms',:action=>'new'},:class =>"plusLink roadshow" %>
+  <%= link_to 'Email the Room',{:controller =>'rooms',:action=>'room_show_message',:id =>@room.id},:class =>"plusLink roadshow"%>
+     </div>
+      <div class="rightContent small">
+     <%= render :partial => 'searches/box' %>
+ <div class="rightContentWrap">
+     <%= render :partial => 'shared/latest_news' ,:locals => {:items => @items}%>
+ </div>
+<div class="rightContentWrap noSpacing">
+    <%= render :partial => 'shared/requested_contacts' ,:locals => {:requested_contacts => @requested_contacts}%>
+    <h6>Contacts</h6>
+    <ul class="contacts">
+    <%= render :partial => 'shared/contacts_preview',:locals => { :person => current_person } %>
+   </ul>
+   <ul class="contactLinks">
+     <li><%= link_to "All contacts", person_connections_path(current_person) %></li>
+     <li><%= link_to "Invite users ", :controller =>'home',:action =>'invite_user'%></li>
+   </ul>
+  </div>
+<!-- end of right content wrap -->
+</div>
+
+ <div class="leftContent wide">
+
+
+  <% if  @room.youtube_u_links.length > 0 %>
+    <table>
+      <% @room.youtube_u_links.each do |video|%>
+        <% if youtube_addr(video.addr) %>
+          <tr>
+            <td>
+
+              <% @curr_video = YouTube.find_by_id(@uniqueid) %>
+              <%=youtube_embed @curr_video%>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <%=@curr_video.title%>
+            </td>
+          </tr>
+        <%else%>
+          <tr><td>
+              Saved Youtube URL is not Correct.
+            </td></tr>
+        <%end%>
+      <%end%>
+    </table>
+    
+  <%end%>
+
+  <% if  @room.flvu_u_urls.length > 0 %>
+    <table>
+      <% @room.flvu_u_urls.each do |video|%>
+        <tr>
+          <td>
+            <%= flv_player :file => video.addr %>
+          </td>
+        </tr>
+      <%end%>
+    </table>
+    <br>
+  <%end%>
+  <% if  @room.docattachments.length > 0 %>
+
+    <table>
+      <% @room.docattachments.each do |attachment|%>
+        <tr>
+          <td><% next if attachment.size.nil? %>
+            <%attachment_images(attachment.content_type)%>
+            <% if attachment.content_type=='video/x-flv' %>
+              <%#= flv_player :file =>attachment.public_filename.to_s%>
+              <%#=image_tag @img,:class => 'attachments-img'%>
+              <%#=link_to attachment.filename.to_s,attachment.public_filename.to_s%>
+               <div id="container_flash">
+        You need to have <%= link_to 'Flash Player', 'http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash' %>installed to display this video
+    </div>
+
+    <script type="text/javascript">
+              var so = new SWFObject('/swf/player.swf', 'ply', '510', '385', '8', '#ffffff');
+              so.addParam('allowscriptaccess', 'always');
+              so.addParam('allowfullscreen', 'true');
+               so.addParam('wmode','transparent');
+               so.addVariable("width","510");
+               so.addVariable("frontcolor","0xFFFFFF");
+               so.addVariable("height","385");
+               so.addVariable('overstretch', 'true')
+               so.addParam('flashvars', '&file=<%= attachment.public_filename.to_s%>&skin=/swf/stijl-Source.swf&&controlbar=over&autostart=true&icons=false');
+               so.write('container_flash');
+
+    </script>
+            <%else%>
+              <%=image_tag @img,:class => 'attachments-img'%>
+              <%=link_to attachment.filename.to_s,attachment.public_filename.to_s,:popup => true%>
+            <%end%>
+          </td>
+        </tr>
+      <%end%>
+    </table>
+  <%end%>
+	<ul class="list">
+ 
+     <li> <%=@room.person.name%></li>
+    </ul>
+<h6 class="roadshowDetail">  <%=@room.title%> </h6>
+ <p><%=@room.description%> </p>
+
+
+ <%= link_to 'see other items in the room',{:controller =>'people',:action=>'show',:id =>@room.person_id,:tabvalue =>"1"},:class =>"backTo"%>
+</div>
+ </div>

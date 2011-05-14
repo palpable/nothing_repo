@@ -1,0 +1,56 @@
+<tr>
+  <td>
+  <div class="profile-image">
+     <%unless message.sender.docattachments.length < 1%>
+    <%  message.sender.docattachments.each do |attachment|%>
+
+      <%= image_tag attachment.public_filename,
+        :alt => h(message.sender.name),:width=>62,:height=>62  %>
+    <%end%>
+  <%else%>
+    <%= image_tag "default.png",:width=>62,:height=>62 ,:alt => h(message.sender.name)  %>
+  <%end%>
+  </div></td>
+  <td>
+    <ul class="newsInfo">
+  
+  <li>
+    <%= message_icon(message) %>
+    <%- if current_person?(message.sender) -%>
+     
+      <%= person_link message.recipient, :class => "url fn" %>
+    <%- else -%>
+      
+      <%= person_link message.sender, :class => "url fn" %>
+    <%- end -%>
+  </li>
+
+
+  <% if DateTime.now.strftime("%Y-%m-%d") == message.created_at.strftime("%Y-%m-%d") %>
+   <li><%= message.created_at.strftime("%B %d,%Y")%> ,<%= time_ago_in_words message.created_at %> ago</li>
+  <%else%>
+ <li><%= message.created_at.strftime("%B %d,%Y")%> , <%= message.created_at.strftime("%I:%M %p")%>
+  <%end%></li><li>
+    <%= link_to image_tag("icons/email_edit.png", :class => 'actioner'), 
+                reply_message_path(message),
+                :title => "Reply to this message" %>
+    <% unless message.trashed?(current_person) -%>
+      <%= link_to image_tag("icons/email_delete.png", :class => 'actioner'), 
+                  message_path(message), 
+                  :method => :delete, 
+                  :confirm => %(Delete this message?),
+                  :title => "Delete this message" %>
+    <% else -%>
+      <%= link_to "Untrash", undestroy_message_path(message),
+                             :method => :put %>
+    <% end -%>    
+  
+   </li></ul></td>
+  <td>	
+<h6>
+     <%=  link_to sanitize(truncate(message.subject, :length => 30)), message %>
+  </h6>
+  <p><%= link_to sanitize(truncate(message.content, :length => 30)), message %> </p>
+
+</td>
+</tr>

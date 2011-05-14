@@ -1,0 +1,31 @@
+<h2>  Contact Us </h2>
+  <p>
+    Please review this site before contacting us, you might find many answers on the
+ <%= link_to "About Us",{:controller =>'infos',:action =>'about'}%> page.</p>
+   
+   
+  <p>
+  If you have additional questions please use the form below.</p><br/>
+  
+  <%- form_tag({:controller=>'infos',:action=>'contact_us'}, {:method => :post}) do %>
+    <p>
+      <label> Name </label> </p>
+    <%= text_field_tag 'name','',:class=>"text width230px" %><br/>
+    
+    <p>      <label>
+        Email </label>
+      <%= text_field_tag 'email','',:class=>"text width230px" %>
+    <br/>
+    <p>
+      <label>
+    Message</label> </p>
+    <p>
+      <%= text_area_tag 'email_message', '', {:id=>'email_message',:style =>"font-size:0.8em;height:200px;padding:5px;width:450px;"} %></p>
+
+    <br/>
+    <p>
+    <%=   submit_tag "Send message" %></p>
+ <%end%>
+
+
+    

@@ -1,0 +1,63 @@
+<%= javascript_include_tag :defaults %>
+<div id="backEnd">
+ <div class="pageHdr">
+  <h4>New Road Show</h4>
+  <%=link_to_remote "File Upload",
+      :url => {:action=>"partialrenderer",:value=>'fileform'},
+      :update => { :success => "fieldsfordiv", :failure => "error"} ,:html =>{:class =>"plusLink roadshow"}%>
+ </div>
+
+ <div class="rightContent small">
+     <%= render :partial => 'searches/box' %>
+ <div class="rightContentWrap">
+   <p><%= link_to image_tag('../images/new_images/invite_user.jpg'), :controller =>'home',:action =>'invite_user'%></p>
+     <%= render :partial => 'shared/requested_contacts' ,:locals => {:requested_contacts => @requested_contacts}%>
+     <%= render :partial => 'shared/latest_news' ,:locals => {:items => @items}%>
+ </div>
+<div class="rightContentWrap noSpacing">
+ 
+    <h6>Contacts</h6>
+    <ul class="contacts">
+    <%= render :partial => 'shared/contacts_preview',:locals => { :person => current_person } %>
+   </ul>
+   <ul class="contactLinks">
+     <li><%= link_to "All contacts", person_connections_path(current_person) %></li>
+     <li><%= link_to "Invite users ", :controller =>'home',:action =>'invite_user'%></li>
+   </ul>
+  </div>
+<!-- end of right content wrap -->
+</div>
+
+<div class="leftContent wide">
+  <ul class="form vertical roadshow">
+  <% form_for(@road_show, :html => { :multipart => true }) do |f| %>
+    <%= f.error_messages %>
+    <li>
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+    </li>
+    <li>
+      <%= f.label :description %>
+      <%= f.text_area :description ,:rows=>5,:cols=>10%>
+    </li>
+    <li>
+    <div id="fieldsfordiv">
+      
+    </div></li>
+    <li>
+      <table>
+      <tr>
+        <td><%= check_box_tag 'accept'%></td>
+        <td> <p>Allow others to see Road show</p></td>
+      </tr></table>
+   
+    </li>
+    <li>
+      <%= submit_tag "Create", :class => "button",:style =>"color:#fff; background:url(../images/new_images/bg_page_tab_rpt.gif) left bottom repeat-x;border:1px solid #fff;" %>
+      <%= link_to 'Cancel', @road_show, :class => "button", :id => "cancel" %>
+    </li>
+    <%- end -%>
+    </ul>
+</div>
+ 
+</div>

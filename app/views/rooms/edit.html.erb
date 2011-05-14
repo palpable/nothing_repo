@@ -1,0 +1,46 @@
+<div id="backEnd">
+    <div class="pageHdr">
+      <h4>Editing room</h4>
+   </div>
+  <div class="rightContent small">
+     <%= render :partial => 'searches/box' %>
+ <div class="rightContentWrap">
+     <%= render :partial => 'shared/latest_news' ,:locals => {:items => @items}%>
+ </div>
+<div class="rightContentWrap noSpacing">
+    <%= render :partial => 'shared/requested_contacts' ,:locals => {:requested_contacts => @requested_contacts}%>
+    <h6>Contacts</h6>
+    <ul class="contacts">
+    <%= render :partial => 'shared/contacts_preview',:locals => { :person => current_person } %>
+   </ul>
+   <ul class="contactLinks">
+     <li><%= link_to "All contacts", person_connections_path(current_person) %></li>
+     <li><%= link_to "Invite users ", :controller =>'home',:action =>'invite_user'%></li>
+   </ul>
+  </div>
+<!-- end of right content wrap -->
+</div>
+
+ <div class="leftContent wide">
+    <ul class="form vertical roadshow">
+<% form_for(@room) do |f| %>
+  <%= f.error_messages %>
+ <li>
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+    </li>
+    <li>
+      <%= f.label :description %>
+      <%= f.text_area :description ,:rows=>5,:cols=>30%>
+    </li>
+    <div id="fieldsfordiv">
+
+    </div>
+  <li>
+   <%= image_submit_tag '../images/new_images/button_update.png', :class => "button" %>
+   <%= link_to 'Cancel',{:controller =>'people',:action=>'show',:id =>current_person.id,:tabvalue =>"1"}%>
+  </li>
+<% end %>
+  </ul>
+ </div>
+</div>

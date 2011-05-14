@@ -1,0 +1,23 @@
+<div id="backEnd">
+  <div class="pageHdr">
+	 <h4>Resources</h4>
+		<a class="plusLink floatRight" href="#">Add a Sovereign Wealth Fund</a>
+	</div>
+      <div id="view" class="rightContent">
+<h6>Supranational and Sovereign issuers</h6>
+<%if @supranational_sovereign.length>0%>
+<h4>List of the Supranational and Sovereign issuers.</h4><br>
+<ul class="">
+<% @supranational_sovereign.each do |asset| %>
+<li>
+  <p><%= asset.name%></p>
+ </li>
+<%end %>
+</ul>
+<%else%>
+<h3> No Supranational Sovereign Found</h3>
+<%end%></div>
+  <ul id="leftMenu">
+  <%= render :partial =>'left_nav' %>
+</ul>	
+</div>

@@ -1,0 +1,46 @@
+
+<div id="backEnd">
+   <div class="pageHdr">
+	 <h4>Email Your Colleagues to Join CentralBanks.com</h4>
+	 </div>
+        <div class="rightContent small">
+     <%= render :partial => 'searches/box' %>
+    <a id="adv_link">Advance Search</a>
+ <div id="advsearch" style="display:none;">
+  <%= render :partial=> 'advance_search' %>
+  </div>
+ <div class="rightContentWrap">
+     <%= render :partial => 'shared/latest_news' ,:locals => {:items => @items}%>
+ </div>
+<div class="rightContentWrap noSpacing">
+    <%= render :partial => 'shared/requested_contacts' ,:locals => {:requested_contacts => @requested_contacts}%>
+    <h6>Contacts</h6>
+    <ul class="contacts">
+    <%= render :partial => 'shared/contacts_preview',:locals => { :person => current_person } %>
+   </ul>
+   <ul class="contactLinks">
+     <li><%= link_to "All contacts", person_connections_path(current_person) %></li>
+     <li><%= link_to "Invite users ", :controller =>'home',:action =>'invite_user'%></li>
+   </ul>
+  </div>
+  </div>
+
+<div class="leftContent wide">
+      <ul class="form vertical roadshow">
+    <% form_tag  :action => 'invite'do -%>
+    <fieldset>
+  <!-- <h4 class="legend">Send an email invitation</h4> -->
+  <li><label>Send an email invitation from</label><%= current_person.email %></li>
+<li><label>To </label><input type="text" value="" name="recipients[1]" id="recipients_1" style="float: left"></li>
+<li><label>To </label><input type="text" value="" name="recipients[2]" id="recipients_2"></li>
+<li><label>To </label><input type="text" value="" name="recipients[3]" id="recipients_3"></li>
+<li><label>To </label><input type="text" value="" name="recipients[4]" id="recipients_4"></li>
+<li><label>To </label><input type="text" value="" name="recipients[5]" id="recipients_5"></li>
+  <li><label>Message (optional)</label><%= simple_format text_area_tag('message', "", :class => "textarea-s", :rows => 4, :style => "height: auto;") %></li>
+  <li><label for="submit-invite"></label><%= submit_tag 'Invite', :id => 'submit-invite', :class => 'button' %><%= link_to "Cancel",home_url%></li>
+</fieldset>
+    <% end -%>
+    </ul>
+    </div>
+</div>
+

@@ -1,0 +1,29 @@
+development:
+  adapter: mysql
+  database: test_insoshi_development
+  username: root
+  password: sarang
+ # password: admin
+  
+  
+test:
+  adapter: mysql
+  database: insoshi_test
+  username: root
+  password: sarang
+  #password: qtk1213
+  timeout: 5000
+
+staging:
+  adapter: mysql
+  username: root
+  password: sarang
+ # password: qtk1213
+  timeout: 5000
+
+production:
+  adapter: mysql
+  database: test_insoshi_development
+  username: root
+  password: sarang
+  timeout: 5000

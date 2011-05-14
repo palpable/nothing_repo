@@ -1,0 +1,38 @@
+<div id="backEnd">
+ <div class="pageHdr">
+<h4>Add a Photo</h4>
+ </div>
+<%= error_messages_for :photo %>
+<div class="rightContent small profile">
+     <%= render :partial => 'searches/box' %>
+ <div class="rightContentWrap">
+     <p><%= link_to image_tag('../images/new_images/invite_user.jpg'), :controller =>'home',:action =>'invite_user'%></p>
+     <%= render :partial => 'shared/requested_contacts' ,:locals => {:requested_contacts => @requested_contacts}%>
+     <%= render :partial => 'shared/latest_news' ,:locals => {:items => @items}%>
+ </div>
+<div class="rightContentWrap noSpacing">
+  
+    <h6>Contacts</h6>
+    <ul class="contacts">
+    <%= render :partial => 'shared/contacts_preview',:locals => { :person => current_person } %>
+   </ul>
+   <ul class="contactLinks">
+     <li><%= link_to "All contacts", person_connections_path(current_person) %></li>
+        </ul>
+  </div>
+<!-- end of right content wrap -->
+</div>
+<div class="leftContent wide">
+<h6>Select New Image</h6>
+<% form_for @doc_attachment,:url=>{:controller => :people, :action => 'update_photo'}, :html => { :multipart => true } do |f| -%>
+
+  <p><%= f.file_field :uploaded_data %>
+  </p>
+ 
+  <p>
+    <%= image_submit_tag '../images/new_images/button_update.png', :class => "button" %>
+    <%= link_to 'Cancel', {:controller=>'people',:action=>'show',:id=>current_person.id} %>
+  </p>
+<% end -%>
+</div>
+</div>

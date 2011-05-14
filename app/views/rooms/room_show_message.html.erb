@@ -1,0 +1,45 @@
+<%= javascript_include_tag "moo.js" %>
+<%= javascript_include_tag "multi_transfer.js" %>
+<div id="backEnd">
+  <div class="pageHdr">
+<h4>Send Messages about Room</h4>
+  </div>
+  <div class="rightContent small">
+     <%= render :partial => 'searches/box' %>
+ <div class="rightContentWrap">
+     <%= render :partial => 'shared/latest_news' ,:locals => {:items => @items}%>
+ </div>
+<div class="rightContentWrap noSpacing">
+    <%= render :partial => 'shared/requested_contacts' ,:locals => {:requested_contacts => @requested_contacts}%>
+    <h6>Contacts</h6>
+    <ul class="contacts">
+    <%= render :partial => 'shared/contacts_preview',:locals => { :person => current_person } %>
+   </ul>
+   <ul class="contactLinks">
+     <li><%= link_to "All contacts", person_connections_path(current_person) %></li>
+     <li><%= link_to "Invite users ", :controller =>'home',:action =>'invite_user'%></li>
+   </ul>
+  </div>
+<!-- end of right content wrap -->
+</div>
+<div class="leftContent wide">
+<% form_tag(:controller=>'rooms',:action=>'room_message_create') do %>
+  <table>
+      <tr>
+      <td align="center">
+  <div class="holder">  
+  <%=collection_select('message','select',@people,:id,:name,{},{:multiple=>"multiple",:id =>"select1",:style=>"height: 300px"})%>
+     <a href="javascript:;" id="add" style ="color:#fff;">add >></a>
+          </div> </td> <td align="center">
+ <div class="holder">
+ <%=collection_select('message','receipent','',:id, :name,{},{:multiple=>"multiple",:id =>"select2",:style=>"height: 300px"})%>
+  <a href="javascript:;" id="remove" style ="color:#fff;"><< remove</a>
+  </div></td></tr></table>
+  <p>
+  <p> <%= image_submit_tag '../images/new_images/button_send.png', :class => "button" %> &nbsp;or&nbsp;
+   <%= link_to 'Cancel',{:controller =>'people',:action=>'show',:id =>@room.person_id,:tabvalue =>"1"}%></p> </p>
+<%end%>
+ <%= link_to 'see other items in the room',{:controller =>'people',:action=>'show',:id =>@room.person_id,:tabvalue =>"1"},:class =>"backTo"%>
+</div>
+</div>
+

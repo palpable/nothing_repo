@@ -1,0 +1,19 @@
+<%= javascript_include_tag "moo.js" %>
+<%= javascript_include_tag "multi_transfer.js" %>
+  <h4>Delete People</h4>
+  <p> Select People to delete</p>
+<% form_tag(:controller=>'admin/people',:action=>'delete_list_people') do %>
+  <table>
+      <tr>
+      <td align="center">
+  <div class="holder">
+  <%=collection_select('message','select',@people_list,:id,:name,{},{:multiple=>"multiple",:id =>"select1",:style=>"height: 300px"})%>
+     <a href="javascript:;" id="add">add >></a>
+          </div> </td> <td align="center">
+ <div class="holder">
+ <%=collection_select('message','receipent','',:id, :name,{},{:multiple=>"multiple",:id =>"select2",:style=>"height: 300px"})%>
+  <a href="javascript:;" id="remove"><< remove</a>
+  </div></td></tr></table><br/> <p style="margin-left:160px;">
+<%=submit_tag 'Delete', :disable_with => "Deleting..."%> &nbsp;or&nbsp;
+  <%=link_to 'Cancel',:action=>"index"%> </p>
+  <%end%>

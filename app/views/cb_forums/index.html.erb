@@ -1,0 +1,62 @@
+<div id="backEnd">
+  <div class="pageHdr">
+<h4>Discussion Topics</h4>
+ </div>
+  <div class="rightContent small ">
+     <%= render :partial => 'searches/box' %>
+<p id="adv_link">Advance Search</p>
+ <div id="advsearch" style="display:none;">
+  <%= render :partial=> 'advance_search' %>
+  </div>
+    <%- if logged_in? -%>
+      <h6>New Topic</h6>
+
+      <% form_for :topic, :url => forum_topics_path(@forum) do |f| %>
+        <p>  <%= f.label :name, "Subject" %></p>
+          <p><%= f.text_field :name,:class =>"text" ,:size =>0%></p>
+          <p><%= submit_tag "Start", :class => "button",:style =>"color:#fff; background:url(../images/new_images/bg_page_tab_rpt.gif) left bottom repeat-x;border:1px solid #fff;" %></p>
+        <% end %>
+  <%- end -%>
+  <%= render :partial => 'shared/minifeed' %>
+ <div class="rightContentWrap">
+   <p><%= link_to image_tag('../images/new_images/invite_user.jpg'), :controller =>'home',:action =>'invite_user'%></p>
+     <%= render :partial => 'shared/requested_contacts' ,:locals => {:requested_contacts => @requested_contacts}%>
+     <%= render :partial => 'shared/latest_news' ,:locals => {:items => @items}%>
+ </div>
+<div class="rightContentWrap noSpacing">
+    <%= render :partial => 'shared/requested_contacts' ,:locals => {:requested_contacts => @requested_contacts}%>
+    <h6>Contacts</h6>
+    <ul class="contacts">
+    <%= render :partial => 'shared/contacts_preview',:locals => { :person => current_person } %>
+   </ul>
+   <ul class="contactLinks">
+     <li><%= link_to "All contacts", person_connections_path(current_person) %></li>
+  
+   </ul>
+  </div>
+<!-- end of right content wrap -->
+</div>
+
+
+
+ <div class="leftContent wide">
+    <table class="forumTopics" cellspacing="0" cellpadding="0" border="0" summary="A table of forum discussion topics. The
+							left column is an image and the right column is the text of the description.">
+    <%= render :partial => 'cb_topics/topic', :collection => @topics %>
+    </table>
+    <%= will_paginate(@topics) %>
+   </div>
+
+</div>
+
+
+<script language="javascript">
+        jQuery(function(){
+
+          jQuery("#adv_link").click(function(){
+            jQuery('#advsearch').toggle();
+          });
+        });
+      </script>
+
+

@@ -1,0 +1,22 @@
+ <script type="text/javascript">
+ jQuery(document).ready(function($) {
+ 
+  $('a[rel*=facebox]').facebox()
+})
+</script>
+<h6>Other issuers</h6>
+<%if @other_issuers.length>0%>
+<h4> List of the Other Issuers.</h4><br>
+<ul class="newsInfo">
+<% @other_issuers.each do |asset| %>
+<li>
+   <p> <%= link_to(asset.name,{:controller =>'banks',:action => 'profile_display', :id =>asset.id},:title => "Bank Dealer",:rel =>'facebox'
+
+      ) %></p>
+  <div class="clear"></div>
+</li>
+<%end %>
+</ul>
+<%else%>
+<h4>No Other Issuers Found</h4>
+<%end%>

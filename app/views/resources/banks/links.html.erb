@@ -1,0 +1,25 @@
+<div id="backEnd">
+<div class="pageHdr">
+	 <h4>Resources</h4>
+		<a class="plusLink floatRight" href="#">Add a Sovereign Wealth Fund</a>
+	</div>
+     <div id="view" class="rightContent">
+<div id="center" class="column">
+  <h6> Links</h6>
+  <table width="50%"  style="margin-left:150px;margin-top: 30px">
+				<tbody>
+                  <% @links.each do |l| %>
+					<tr>
+						<td valign="top" width="25%">
+							<%=l.name%>
+						</td>
+                        <td valign="top" width="25%"> <a href="http://<%=l.link%>" target="_blank"><%=image_tag((l.icon),:size => "100x40")%></a></td>
+					</tr>
+                    <%end%>
+  </tbody></table>
+
+</div></div>
+<ul id="leftMenu">
+       <%= render :partial =>'left_nav' %>
+</ul>
+</div>

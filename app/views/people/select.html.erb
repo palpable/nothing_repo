@@ -1,0 +1,70 @@
+<script language="javascript">
+  function resetNavigation() {
+   $("#TabsMenu li").each(function(){
+   /* e.preventDefault;
+    this.blur(); */
+   $(this).removeClass('active');
+    /*  return updateNavigation($(this).attr('title'));  */
+
+});
+}
+$("#TabsMenu li").live('click', function(e) {
+   /* e.preventDefault;
+    this.blur(); */
+    resetNavigation();
+   $(this).addClass('active');
+    /*  return updateNavigation($(this).attr('title'));  */
+
+});
+  </script>
+<div class="signUp">
+    <div class="textWrap">
+	 <h2 class="signUp">Sign Up - The best place to connect with central bank professionals from around the world</h2>
+	  <p>
+		Explain some of the benefits of becoming a member. Praesent ac neque condimentum ante sagittis ullamcorper.
+		Curabitur odio libero, pretium sed tempor in, aliquam quis lacus. Vestibulum eu est ipsum, nec condimentum neque.
+	  </p><div class="textWrap"></div>
+        <% if @person[:department]%>
+         <%= error_messages_for :person %>
+         <%end%>
+          <% if @person[:business_type]%>
+         <%= error_messages_for :person %>
+         <%end%>
+ 	<div class="tabWrap">
+       	<ul id="TabsMenu" class="signUpTabs">
+           <%if @person[:department] %>
+		  <li class="first active"><%= link_to_remote "central bank employee",:url=>{:controller =>'people',:action =>'central_bank_sign_up'},:update =>'non-central'%></li>
+		  <li class="second"><%= link_to_remote "non-central bank employee",:url=>{:controller =>'people',:action =>'non_central_bank_sign_up'},:update =>'non-central'%></li>
+          <%elsif @person[:business_type] %>
+           <li class="first"><%= link_to_remote "central bank employee",:url=>{:controller =>'people',:action =>'central_bank_sign_up'},:update =>'non-central'%></li>
+		  <li class="second active"><%= link_to_remote "non-central bank employee",:url=>{:controller =>'people',:action =>'non_central_bank_sign_up'},:update =>'non-central'%></li>
+          <%else%>
+          <li class="first active"><%= link_to_remote "central bank employee",:url=>{:controller =>'people',:action =>'central_bank_sign_up'},:update =>'non-central'%></li>
+		  <li class="second"><%= link_to_remote "non-central bank employee",:url=>{:controller =>'people',:action =>'non_central_bank_sign_up'},:update =>'non-central'%></li>
+          <%end%>
+		</ul>
+        <div class="formWrap">
+           <div id="non-central">
+             <%if @person[:department] %> 
+               <%= render :partial =>'central_signup' %>
+            <%elsif @person[:business_type]%>
+             <%= render :partial =>'non_central' %>
+             <%else%>
+              <%= render :partial =>'central_signup'%>
+             <%end%>
+          </div>
+        </div>
+    </div>
+ 
+ 
+</div>
+
+</div>
+
+	
+<script type="text/javascript">
+<!--
+var TabbedPanels1 = new Spry.Widget.TabbedPanels("TabbedPanels2");
+//-->
+</script>
+

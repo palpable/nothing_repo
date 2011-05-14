@@ -1,0 +1,35 @@
+
+<%- column_div :type => :primary do -%>
+
+<h2>New Link</h2>
+
+
+
+<%= form_tag ({:action => 'create_link'},  :multipart => true) %>
+
+<br/>
+
+  <p>
+    <b>Link Name</b><br />
+    <%= text_field 'checklink', 'name' %>
+  </p>
+
+  <p>
+    <b>Icon</b><br />
+      <%= file_field 'checklink', 'icon' %>
+  </p>
+
+  <p>
+    <b>Link</b><br />
+     <%= text_field 'checklink', 'link' %>
+  </p>
+
+  <p>
+    <%= submit_tag "Create" %>
+  </p>
+
+
+
+<%= link_to 'Back',:action=>'index' %>
+
+<%end%>

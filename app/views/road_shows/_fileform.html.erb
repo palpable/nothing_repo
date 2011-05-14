@@ -1,0 +1,6 @@
+<% fields_for @docattachment do |doc| -%>
+  <div class="form_field">
+    <%= doc.label 'File' %>
+    <%= doc.file_field :uploaded_data %>
+  </div>
+<% end -%>

@@ -1,0 +1,41 @@
+<div id="partialLoadDiv">
+<%- column_div :type => :primary do -%>
+
+  <h2>Discussion topics</h2>
+
+  <ol class="list forum full">
+    <%= render :partial => 'topics/topic', :collection => @topics %>
+  </ol>
+  <%= will_paginate(@topics) %>
+<%- end -%>
+
+
+<%- column_div :type => :secondary do -%>
+  <%= render :partial => 'searches/box' %>
+  <p id="adv_link">Advance Search</p>
+ <div id="advsearch" style="display:none;">
+  <%= render :partial=> 'advance_search' %>
+  </div>
+  <%- if logged_in? -%>
+      <h2>New Topic</h2>
+        
+      <% form_for :topic, :url => cb_forum_cb_topics_path(@cb_forum) do |f| %>
+        <div class="form_row">
+          <%= f.label :name, "Subject" %>
+          <%= f.text_field :name %>
+          <%= f.submit "Start", :class => "button" %>
+        </div>
+      <% end %>
+  <%- end -%>
+  <%= render :partial => 'shared/minifeed' %>
+<%- end -%>
+  </div>
+<script language="javascript">
+        jQuery(function(){
+
+          jQuery("#adv_link").click(function(){
+            jQuery('#advsearch').toggle();
+          });
+        });
+      </script>
+

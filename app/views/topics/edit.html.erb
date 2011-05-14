@@ -1,0 +1,44 @@
+<div id="backEnd">
+   <div class="pageHdr">
+  <h4>Editing topic (<%= link_to 'Show', forum_topic_path(@forum, @topic) %>)</h4>
+   </div>
+  <div class="rightContent small ">
+     <%= render :partial => 'searches/box' %>
+      
+ <div class="rightContentWrap">
+   <p><%= link_to image_tag('../images/new_images/invite_user.jpg'), :controller =>'home',:action =>'invite_user'%></p>
+     <%= render :partial => 'shared/requested_contacts' ,:locals => {:requested_contacts => @requested_contacts}%>
+     <%= render :partial => 'shared/latest_news' ,:locals => {:items => @items}%>
+ </div>
+<div class="rightContentWrap noSpacing">
+    
+    <h6>Contacts</h6>
+    <ul class="contacts">
+    <%= render :partial => 'shared/contacts_preview',:locals => { :person => current_person } %>
+   </ul>
+   <ul class="contactLinks">
+     <li><%= link_to "All contacts", person_connections_path(current_person) %></li>
+     <li><%= link_to "Invite users ", :controller =>'home',:action =>'invite_user'%></li>
+   </ul>
+  </div>
+  </div>
+  <div class="leftContent wide">
+<p><%= error_messages_for :topic %></p>
+
+<% form_for :topic, :url => forum_topic_path(@forum, @topic),
+            :html => { :method => :put} do |f| %>
+
+ 
+    <p>Forum</p>
+    <p><%= f.text_field :forum_id %></p>
+  <p> Person></p>
+   <p><%= f.text_field :person_id %></p>
+  <p>Name</p>
+   <p><%= f.text_field :name %></p>
+  <p>Posts count</p>
+  <p><%= f.text_field :forum_posts_count %></p>
+  
+    <%= f.submit "Update", :class => "button" %> <%= f.submit 'Cancel', :class => 'button', :id => "cancel" %>
+  <% end %>
+  </div>
+  </div>

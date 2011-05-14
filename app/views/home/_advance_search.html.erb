@@ -1,0 +1,11 @@
+<h2>Advance Search</h2>
+<div class="list">
+  <% form_tag({}, {:id => "advanesearch"}) do %>
+    <%= collection_select :country,:query,Country.find(:all),:id,:country_name, {:include_blank => true}  %>
+	<div>Sort By :<%= select_tag  "sort_by", options_for_select(["Name", "Branch"]),:style => "width:140px" %></div>
+  <% end %>
+  <%= observe_form 'advanesearch',
+    :update => "partialLoadDiv",
+    :url => {:controller => "people", :action => "people_by_country"}  %>
+ 
+</div>

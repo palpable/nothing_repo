@@ -1,0 +1,64 @@
+<% tabs = TabsRenderer.new(self, :id => "tabCol") %>
+     <% tabs.create('tProfile', 'Profile', :class => "") do %>
+     <%= render :partial => 'profile' %>
+      <% end %>
+         <% if @person != current_person %>
+        <% tabs.create('troom-view', 'View Rooms', :class => "") do %>
+        <%= render :partial => 'view_rooms' %>
+          <% end %>
+        <% tabs.create('tconact-list', 'View Contact List', :class => "") do %>
+        <%= render :partial => 'contact_list' %>
+       <% end %>
+        <%end%>
+
+
+		<%# 12/9 The wall be called The Room.SAJ %>
+        <% if @person == current_person %>
+        <% tabs.create('tRoom', 'Room') do %>
+        <%= render :partial => 'rooms/wall' %>
+        
+        <% end %>
+        <% tabs.create('tRecentActivity', 'Recent Activity') do %>
+        <%= render :partial => 'recent_activity' %>
+        
+        <% end %>
+        <% tabs.create('tContacts', 'Contacts') do %>
+        <%= render :partial => 'profile_contacts' %>
+        <% end %>
+        <% tabs.create('ttimezone', 'TimeZones') do %>
+        <%= render :partial => 'time_zones' %>
+       
+        <% end %>
+        <% tabs.create('tnewsfeed', 'NewsFeed') do %>
+        <%= render :partial => 'news_feed' %>
+        <% end %>
+        <% end %>
+        <%= tabs.render %>
+    
+
+
+<script type='text/javascript'>
+  $(function() {
+		$("#tabCol > ul").tabs({ selected: <%= @tab_value.to_i%>});
+	});
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

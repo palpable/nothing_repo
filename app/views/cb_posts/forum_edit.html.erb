@@ -1,0 +1,11 @@
+<h2>Edit post</h2>
+
+<%= error_messages_for :cb_post %>
+
+<%= @topic.name %><br/>
+<%=@post.title%><br/>
+<%= @post.body %>
+
+<%= render :partial => 'forum_form',
+           :locals => { :url => cb_forum_cb_topic_cb_post_path(@cb_forum, @topic, @post),
+                        :method => :put } %>

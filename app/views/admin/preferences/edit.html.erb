@@ -1,0 +1,103 @@
+<div id="backEnd">
+  <div class="pageHdr">
+    <h4>Edit Global Preferences</h4>
+  </div>
+  <div class="leftContent wide">
+    <%= error_messages_for :preferences %>
+
+    <% form_for :preferences,
+      :url => admin_preference_path(@preferences),
+      :html => { :method => :put, :id => 'admin_preferences' } do |f| %>
+
+      <p>
+      <p> <%= f.label :app_name, 'Application Name' %>
+        <%= f.text_field :app_name %></p>
+      </p>
+
+      <p>
+      <p> <%= f.label :domain, 'Email Domain' %>
+        <%= f.text_field :domain %></p>
+      </p>
+
+      <p>
+      <p><%= f.label :server_name, 'Server Name' %>
+        <%= f.text_field :server_name %></p>
+      </p>
+
+      <p>
+      <p><%= f.label :smtp_server, 'SMTP Server' %>
+        <%= f.text_field :smtp_server %></p>
+      </p>
+
+      <p>
+      <p><%= f.label :email_notifications, 'Send Notices', :class => 'checkbox' %>
+        <%= f.check_box :email_notifications %></p>
+      </p>
+      <p class="meta">Send email when messages, connection requests, etc., are sent</p>
+
+      <p>
+      <p><%= f.label :demo, 'Demo Site', :class => 'checkbox' %>
+        <%= f.check_box :demo %></p>
+      </p>
+      <p class="meta">Display a note to explain that this site is just a demonstration</p>
+
+      <p>Register new people in a deactivated state until whitelisted</p>
+      <p>
+      <p><label for="whitelist"
+                class="checkbox">Whitelist</label>
+        <%= f.check_box :whitelist %></p>
+      </p>
+      <p>Verify email for new registrations using an activation code</p>
+      <p>
+      <p> <%= f.label :email_verifications, 'Verification Emails', :class => 'checkbox' %>
+        <%= f.check_box :email_verifications %></p>
+      </p>
+      <p class="meta">Send email to new users containing an activation code</p>
+      <p>
+      <p><%= f.label :about %>
+        <%= formatting_note %>
+        <%= f.text_area :about, :rows => 10 %></p>
+      </p>
+
+      <p class="meta">Keep this short to fit the 146px width</p>
+      <p>
+      <p><%= f.label :analytics %></p>
+      <p><%= f.text_area :analytics, :rows => 10 %></p>
+      </p>
+      <p class="meta">Code will be inserted just before the &lt;/body&gt; tag</p>
+
+
+      <div>
+	Existing business type values: 
+	<div >
+	  <ul>
+            <% @business_types.each do |business_type| %>
+	      <li id='business-values-<%= business_type.id %>'>
+                <%= "#{business_type.value}  <small><a href='#' onclick='deleteBusinessType(#{business_type.id}); return false;' style='color: red;'>Delete</a></small>" %>
+              </li>      
+	   <% end %>
+	  </ul>
+        </div>
+	<div id=""><input type="text" id='preferences_business_types' name='preferences[business_types]'></div>
+      </div>
+      <p>
+      <p><%= image_submit_tag "../images/new_images/button_update.png", :class => "button" %>
+        <%= link_to "Cancel", admin_preferences_path %></p>
+      </p>
+    <% end %>
+  </div>
+  
+</div>
+
+<script type="text/javascript">
+function  deleteBusinessType(business_type_id){
+$.ajax({
+  url: "/admin/preferences/delete_record_type/" + business_type_id,
+  success: function(data) {
+     if(data == 'OK'){
+       $("#business-values-"+business_type_id).remove();
+     }
+   }
+});
+}
+</script>

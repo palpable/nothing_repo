@@ -1,0 +1,11 @@
+<h6>Latest News</h6>
+<ul class="articleList">
+<%- if logged_in? -%>
+ <% if @items %>
+ <% @items.each do |item| %>
+ <li><a href='<%= item.link %>' target="_blank"><%= item.title %></a>
+<%end%>
+  <%end%>
+<li><a href="#"><strong>More News</strong></a></li>
+<%end%>
+</ul>

@@ -1,0 +1,40 @@
+<div id="partialLoadDiv">
+<%- column_div :type => :primary do -%>
+
+  <h2>Rooms</h2>
+  <%= render :partial => partial(@rooms), :collection => @rooms %>
+  <%= will_paginate @rooms %>
+  <%- end -%>
+ <div class="rit_cnt_bt" style="margin-left: 526px; margin-bottom: 0px; margin-top: -284px;" >
+<% if  params[:page] != 1 %>
+<%- column_div :type => :secondary do -%>
+  <h2>Action</h2>
+  <p><%= link_to 'Create new',:action=>'new' %></p>
+    <h2>Search Rooms</h2>
+  <% form_tag searches_path, :method => :get, :id => "frmSearch" do %>
+    <fieldset title="Search Insoshi">
+      <%= text_field_tag :q, h(params[:q]), :id => "txtSearch", :class => "txt",
+                                            :maxlength => 50 %>
+      <%= submit_tag "Search", :name => nil, :id => "btnSearch",
+                               :class => "button"  %>
+      <%= hidden_field_tag "model", Room %>
+    </fieldset>
+    <p id="adv_link">Advance Search</p>
+ <div id="advsearch" style="display:none;">
+  <%= render :partial=> 'advance_search' %>
+  </div>
+
+  <% end %>
+
+<%- end -%>
+<% end %>
+</div>
+</div>
+<script language="javascript">
+        jQuery(function(){
+
+          jQuery("#adv_link").click(function(){
+            jQuery('#advsearch').toggle();
+          });
+        });
+      </script>

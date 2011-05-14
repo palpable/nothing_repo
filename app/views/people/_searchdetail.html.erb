@@ -1,0 +1,21 @@
+<% searchresults.each do |sr| %>
+<h2>Advance Search <%=sr.country_name%></h2>
+<%  break %>
+<%end%>
+<table>
+  <tr>
+    <th>No. </th>
+    <th> Banker Name </th>
+    <th>Branch </th>
+  </tr>
+  <% i=0 %>
+  <% searchresults.each do |sr| %>
+  <tr>
+  <td> <%=i=i+1%> </td>
+  <td><%=link_to sr.name,:controller=>'people',:action=>'show',:id=>sr.id%></td>
+  <td><%=sr.branch%></td>
+  </tr>
+  <%end%>
+</table>
+<hr />
+<p><%=searchresults.length%> record(s) found.</p>

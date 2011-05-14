@@ -1,0 +1,2 @@
+module DocattachmentsHelper
+end

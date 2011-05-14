@@ -1,0 +1,61 @@
+<div id="backEnd">
+   <div class="rightContent small profile">
+     <%= render :partial => 'searches/box' %>
+ <div class="rightContentWrap">
+      <p><%= link_to image_tag('../images/new_images/invite_user.jpg'), :controller =>'home',:action =>'invite_user'%></p>
+     <%= render :partial => 'shared/requested_contacts' ,:locals => {:requested_contacts => @requested_contacts}%>
+     <%= render :partial => 'shared/latest_news' ,:locals => {:items => @items}%>
+ </div>
+<div class="rightContentWrap noSpacing">
+ 
+    <h6>Contacts</h6>
+    <ul class="contacts">
+    <%= render :partial => 'shared/contacts_preview',:locals => { :person => current_person } %>
+   </ul>
+   <ul class="contactLinks">
+     <li><%= link_to "All contacts", person_connections_path(current_person) %></li>
+    
+   </ul>
+  </div>
+<!-- end of right content wrap -->
+</div>
+<div class="leftContent wide">
+ <p><h4>New message</h4></p>
+
+  <%= error_messages_for :message %>
+  
+  <%- unless @preview.nil? -%>
+    <h3>Message preview</h3>
+    <%= display @preview %>
+  <%- end -%>
+  
+  <% form_for(:message,:url => person_messages_path(@recipient)) do |f| %>
+    <p>
+    <p>
+      <label for="recipient">To</label>
+    <%= text_field_tag :recipient, h(@recipient.email) %> </p></p>
+     
+   <p>
+      <p><label for="message_subject">Subject</label>
+      <%= f.text_field :subject, :id => "message_subject" %> </p>
+   </p>
+ 
+   
+  <p>    <label for="message_body">Message</label>
+      <p><%= formatting_note %></p>
+      <%= f.text_area :content, :id => "message_body" %> </p>
+      <%- if @message.reply? -%>
+        <%= f.hidden_field :parent_id %>
+        <%= set_focus_to "message_body" %>
+      <%- else -%>
+        <%= set_focus_to "message_subject" %>
+      <%- end -%>
+    
+   <p><p>
+      <%= f.submit "Send", :class => "button", :id => "message_submit" %>
+      <%= f.submit "Preview", :class => "button", :id => "preview" %>
+      <%= link_to "Cancel", messages_url %></p> </p>
+   
+  <% end %>
+  </div>
+</div>

@@ -1,0 +1,95 @@
+xml.instruct! "xml", :version =>"1.0", :encoding=>"utf-8"
+  xml.declare! :DOCTYPE, :html, :PUBLIC, "-//W3C//DTD XHTML 1.0 Strict//EN", "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"
+
+xml.response{
+  xml.success("value"=>"t")
+    xml.person("id"=>@user.id){
+      xml.details("name" => @user.name, "email" => @user.email, "description" => @user.description, "lastLoginOn" => @user.last_logged_in_at, "registrationDate"=>@user.created_at, "country" => @user.country.nil? ? "" : @user.country.country_name, "phone"=>@user.phone, "company"=>@user.company_name, "jobTitle"=>@user.title ){
+      }
+      @messages = Message.find(:all, :conditions=>["recipient_id=? or sender_id=?", @user.id,@user.id], :order=>"created_at DESC", :limit => 10 )
+  xml.messages("count"=>@messages.length, "for_person_id"=>@user.id){
+    for msg in @messages
+      xml.message("id" => msg.id, "subject"=>(msg.subject.nil? or msg.subject=="(null)") ? "#{truncate(msg.content)}" : msg.subject, "content" => msg.content, "from" => msg.sender.email  ){
+#      xml.replies {
+#        @replies=Message.find(:all, :conditions => ["parent_id=?",msg.id], :order=>"created_at DESC" )
+#      for cmt in @replies
+#            xml.reply("subject"=>cmt.subject,"content"=>cmt.content) # End of reply tag
+#          end # End of for cmt
+#        } # End of replies tag
+       } # End of message tag
+      end
+  }# End of messages tag
+   xml.contacts("count"=>@user.contacts.length, "for_person_id"=>@user.id){
+      for profile in @user.contacts
+        xml.contact("name"=>profile.name, "email"=>profile.email){
+#          xml.name profile.name
+#          xml.email profile.email
+        } #End of contact tag
+      end # End of for profile
+   }# End of contacts tag
+contact_ids=Array.new
+for c in @user.contacts
+  contact_ids<<c.id
+end
+contact_ids<<@user.id
+@blogposts = Post.find(:all, :conditions => ["person_id IN (?)",contact_ids], :order=>"created_at DESC", :limit => 10)
+    xml.blogposts("count"=>@blogposts.length, "for_person_id"=>@user.id, "for_contact_ids"=>contact_ids.join(",")){
+      for blogp in @blogposts
+        xml.post("id" => blogp.id, "title" => blogp.title, "body" => blogp.body, "person_id" => blogp.person_id, "created_at" => blogp.created_at ){
+#            xml.id blogp.id
+#            xml.title blogp.title
+#            xml.body blogp.body
+#            xml.person_id blogp.person_id
+#            xml.created_at blogp.created_at
+             xml.comments {
+        @blog_comments = Comment.find(:all, :conditions => ["commentable_id=? and commentable_type=?",blogp.id, "Post"], :order=>"created_at" )
+      for bcmt in @blog_comments
+        xml.comment("commenter" => bcmt.commenter_id,"commenter_name" => bcmt.commenter.name,"body" => bcmt.body){
+#              xml.commenter bcmt.commenter_id
+#              xml.commenter_name bcmt.commenter.name
+#              xml.body bcmt.body
+            }# End of comment tag
+          end # End of for bcmt
+        } # End of comments tag
+        }#End of xml.post
+      end #End of for post
+    }#End of xml.blogposts
+xml.activities("count"=>@user.feed.length, "for_person_id"=>@user.id) {
+  @feeds = @user.feed
+  for act in @feeds
+    xml.activity("info"=>act.minifeed_without_links, "time_in_words"=>"#{distance_of_time_in_words_to_now(act.created_at)} ago")
+  end #End of for act in @feeds..
+} #End of xml.activities
+@banking_resources = Person.find(:all, :conditions=>["business_type IS NOT NULL"]).collect{ |f|  f.business_type }.uniq
+xml.resources("count"=>@banking_resources.length, "for_person_id"=>@user.id) {
+  for b_resource in @banking_resources
+      next if b_resource.to_s==""
+        xml.resource("name"=>b_resource.to_s) {
+    @cb_profiles = Person.find(:all, :conditions=>["business_type=?", "#{b_resource}"])
+    xml.profiles("count"=>@cb_profiles.length, "for_person_id" => @user.id, "for_resource"=>b_resource.to_s) {
+          for cb_prof in @cb_profiles
+            xml.profile("name"=>cb_prof.name, "email" => cb_prof.email) {
+            } #End of xml.profile
+          end #End of for cb_prof...
+          xml.profile("name"=>"last", "email"=> "last@last.com")
+    }# End of xml.profiles
+  }#End of xml.resource
+  
+  end #End of for b_resource in..
+  xml.resource("name"=>"Websites"){
+    xml.websites("for_resource"=>"Websites", "count"=>5, "for_person_id"=>@user.id){
+      xml.website("name"=>"Google", "link"=>"www.google.com")
+      xml.website("name"=>"Yahoo", "link"=>"www.yahoo.com")
+      xml.website("name"=>"Facebook", "link"=>"www.facebook.com")
+      xml.website("name"=>"Flickr", "link"=>"www.flickr.com")
+      xml.website("name"=>"Apple", "link"=>"www.apple.com")
+      } #End of xml.websites
+  } #End of xml.resource for websites
+}#End of xml.resources
+}# End of xml.person tag
+
+
+  }# End of xml.response tag
+
+
+

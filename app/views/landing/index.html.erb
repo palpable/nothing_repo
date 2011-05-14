@@ -1,0 +1,91 @@
+<div class="contentLeft home">
+	<h2>Welcome to CentralBanks.com</h2>
+	<h6>Start connecting with other central bank professionals today!</h6>
+	<div class="introText">
+	<div class="homeImgWrap">
+       <style type="text/css">
+          {border:2px solid #DDDDDD
+            margin-bottom:1em
+            margin-top:1em
+            padding:0.8em}
+        </style>
+        <script language="javascript">AC_FL_RunContent = 0;</script>
+        <%= javascript_include_tag "AC_RunActiveContent.js"%>
+        <script language="javascript">
+          if (AC_FL_RunContent == 0) {
+            alert("This page requires AC_RunActiveContent.js.");
+          } else {
+            AC_FL_RunContent(
+			'codebase', 'http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0',
+			'width', '495',
+			'height', '207',
+			'src', '/swf/cb_home',
+			'quality', 'high',
+			'pluginspage', 'http://www.macromedia.com/go/getflashplayer',
+			'align', 'middle',
+			'play', 'true',
+			'loop', 'true',
+			'scale', 'showall',
+			'wmode', 'window',
+			'devicefont', 'false',
+			'id', 'cb_home',
+			'bgcolor', '#ffffff',
+			'name', 'cb_home',
+			'menu', 'true',
+			'allowFullScreen', 'false',
+			'allowScriptAccess','sameDomain',
+			'movie', 'cb_home',
+			'salign', ''
+			); //end AC code
+	       }
+    </script>
+    <noscript>
+      <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0" width="495" height="207" id="cb_home" align="middle">
+      <param name="allowScriptAccess" value="sameDomain" />
+      <param name="allowFullScreen" value="false" />
+      <param name="movie" value="/swf/cb_home.swf" /><param name="quality" value="high" /><param name="bgcolor" value="#ffffff" />	<embed src="/swf/cb_home.swf" quality="high" bgcolor="#ffffff" width="495" height="207" name="cb_home" align="middle" allowScriptAccess="sameDomain" allowFullScreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
+      </object>
+    </noscript>
+	</div>
+	<p>
+	Centralbanks.com is an exclusive community of professionals employed at over 165 central banks, 25 sovereign wealth funds and numerous official institutions globally. Central banks.com offers its members the power to share information, form connections and provide a forum for professional growth. This unique invitation only website gives you the ability to invite fellow colleagues and peers throughout the world.
+	</p>
+	<p>
+	Start connecting now… More than <%= @members %> people have already signed up.
+	</p>
+	</div>
+</div>
+<div class="contentRight">
+	<div class="lightBlueBg">
+	 <div class="wrap padding18px">
+		<p class="becomeMember">
+	    	<strong>To become a member of <a href="#">CentralBanks.com</a>, sign up here.</strong>
+		</p>
+           <%= link_to 'sign up',{:action =>'not_a_member'},:class =>'signUp'%>
+			<p class="member">Already a member? <a href="login">Sign In</a></p><h2>
+			</div>
+		 </div>
+
+<div class="rightContentWrap">
+	<h6>Latest News</h6>
+    	<ul class="articleList">
+	     <%if @items%>
+           <% @items.each do |item| %>
+             <li><a href='<%= item.link %>' target="_blank"><%= item.title %></a>
+            <%end%>
+             <li><a href="#"><strong>More News</strong></a></li>
+             <%end%>
+		  </ul>
+</div>
+<!-- end of right content wrap -->
+<div class="rightContentWrap">
+    <h6>Latest Forum Posts</h6>
+	<ul class="articleList">
+	<% for @post in @recent_disc %>
+     <li><%= @post.name %></li>
+      <% end %>
+	</ul>
+</div>
+<!-- end of right content wrap -->
+</div>
+<!-- end of content right -->

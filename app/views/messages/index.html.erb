@@ -1,0 +1,80 @@
+<div id="backEnd">
+  <div class="pageHdr ">
+    <h4><%=current_person.name %>'s Messages </h4>
+    <ul class="pagination top">
+
+   <%- if @messages.empty? -%>
+   <%- else -%>
+   <li><%= will_paginate %></li>
+      <%- end -%>
+      <br/>
+      <li><%= link_to "Send New Message", :controller => 'messages',:action => 'new_message' %></li>
+    </ul>
+  </div>
+  <div class="rightContent small minus25px">
+      <%= render :partial => 'searches/box' %>
+     <a id="adv_link" class="advancedSearch">Advance Search</a>
+     <div id="advsearch" style="display:none;">
+        <%= render :partial=> 'advance_search' %>
+    </div>
+     <div class="rightContentWrap">
+     <p><%= link_to image_tag('../images/new_images/invite_user.jpg'), :controller =>'home',:action =>'invite_user'%></p>
+      <%= render :partial => 'shared/requested_contacts' ,:locals => {:requested_contacts => @requested_contacts}%>
+     <%= render :partial => 'shared/latest_news' ,:locals => {:items => @items}%>
+ </div>
+<div class="rightContentWrap noSpacing">
+  
+    <h6>Contacts</h6>
+    <ul class="contacts">
+    <%= render :partial => 'shared/contacts_preview',:locals => { :person => current_person } %>
+   </ul>
+   <ul class="contactLinks">
+     <li><%= link_to "All contacts", person_connections_path(current_person) %></li>
+    
+   </ul>
+  </div>
+
+  </div>
+  
+
+  <div class="leftContent wide">
+    <ul class="pageTabs myMessages">
+    <%= list_link_with_active "Inbox", messages_path %>
+     <%= list_link_with_active "Sent", sent_messages_path %>
+     <%= list_link_with_active "Trash", trash_messages_path %>
+	</ul>
+    <div class="profileContent">
+      <table class="dashboard myMessages" cellspacing="0" cellpadding="0" border="0" summary="A table of messages from a particular user. The
+								left column, the next column is the person who posted the message along with a timestamp, and the last column is the actual message.">
+           <%- if @messages.empty? -%>
+             <h3 class="blankslate">No messages (yet!)</h3>
+           <%- else -%>
+              <%= render :partial => @messages %>
+             <%- end -%>
+            
+                   
+      </table>
+    </div>
+    <ul class="pagination bottom inContent">
+      <%- if @messages.empty? -%>
+        <%- else -%>
+          <%= will_paginate %>
+      <%- end -%>
+      </ul>
+
+  </div>
+  </div>
+
+  
+ 
+  
+
+
+
+ <script language="javascript">
+        jQuery(function(){
+          jQuery("#adv_link").click(function(){
+            jQuery('#advsearch').toggle();
+          });
+        });
+      </script>

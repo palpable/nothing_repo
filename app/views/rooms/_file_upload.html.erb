@@ -1,0 +1,13 @@
+
+  <% form_for(@road_show,:html=>{:multipart=>true}) do |f| %>
+<% fields_for @docattachment do |attachment| -%>
+
+        
+          <label for="data">Attach files</label>
+        
+          <%= attachment.file_field :data -%>
+
+
+      <%- end -%>
+    <%= f.submit 'Create' %>
+    <%end%>

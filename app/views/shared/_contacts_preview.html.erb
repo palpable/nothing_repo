@@ -1,0 +1,7 @@
+<%- unless @some_contacts.empty? -%>
+    <ul class="grid contacts small">
+    <%- @some_contacts.each do |contact| -%>
+    <%= render :partial => 'shared/contact', :locals => {:contact => contact} %>
+    <%- end -%>
+    </ul>
+<%- end -%>

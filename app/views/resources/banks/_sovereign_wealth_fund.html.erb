@@ -1,0 +1,34 @@
+<div class="pageHdr">
+<%= link_to "Add Sovereign Wealth Fund",{:controller => 'banks',:action =>'new_fund'},:class =>'plusLink floatRight' %>
+</div>
+ <table border="0" cellspacing="0" cellpadding="0" summary="the columns from left to right is the country,
+ the name of the bank, and the option links for edit and delete."  class="centralBanks">
+	<thead>
+	<tr>
+	 <th>Country</th>
+		<th class="bank">Fund Name</th>
+        <th>Assets $Billion</th>
+        <th>Inception</th>
+	  </tr>
+	</thead>
+	<tbody>
+	  <% @sovereign_wealth_fund.each do |fund| %>
+          <% cycle_var = cycle("odd", "even") %>
+		 <tr class="<%= cycle_var %>-row">
+		<td>
+			<%=fund.country_name%>
+			</td>
+                        <td> <a href="http://<%=fund.url_name%>" target="_blank"><%=fund.fund_name%></a></td>
+                  <td><%=fund.assest%></td>
+                  <td><%=fund.inception%></td>
+				  <%- if current_person.admin? -%>
+				<td nowrap="nowrap">
+                   <%= link_to  'Edit' ,:controller=>'banks',:action=>'edit_fund',:id=>fund.id%> |
+					<%= link_to  'Delete' ,{:controller=>'resources/banks',:action=>'delete_fund',:id=>fund.id},:confirm=>'Are you Sure to delete this bank'%>
+                 </td>
+					<%end%>
+
+					</tr>
+		             <%end%>
+  </tbody></table>
+

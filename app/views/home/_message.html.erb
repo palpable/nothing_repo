@@ -1,0 +1,38 @@
+<tr> <td>
+  <div class="profile-image">
+     <%unless message.sender.docattachments.length < 1%>
+    <% message.sender.docattachments.each do |attachment|%>
+
+      <%= image_tag attachment.public_filename,
+        :alt => h(message.sender.name),:width=>62,:height=>62  %>
+    <%end%>
+  <%else%>
+    <%= image_tag "default.png",:width=>62,:height=>62 ,:alt => h(message.sender.name)  %>
+  <%end%>
+ 
+    <%- if not message.read? and not current_person?(message.sender) -%>
+     <%= link_to image_tag("icons/email_add.png", :class => "icon"),
+                  @message %>
+    <%- elsif message.replied_to? -%>
+      <%= link_to image_tag("icons/email_go.png", :class => "icon" ),
+                  @message %>
+    <%- end -%>    
+  </div> </td>
+  <td>
+     <ul class="newsInfo">
+   <li><%= person_link message.sender %></li>
+  <li>
+    <% if DateTime.now.strftime("%Y-%m-%d") != message.created_at.strftime("%Y-%m-%d") %>
+    <%=message.created_at.strftime("%B %d,%Y")%> , <%=message.created_at.strftime("%I:%M %p")%>
+    <%else%>
+    <%= message.created_at.strftime("%B %d,%Y")%> , <%= time_ago_in_words message.created_at %> ago
+    <%end%>
+  </li>
+  </ul></td>
+  <td>
+   <h6> <%= link_to sanitize(truncate(message.subject, :length => 30)),
+   message_path(message, :anchor => message_anchor(message)) %> </h6>
+  <p> <%= link_to sanitize(truncate(message.content, :length => 30)), message %></p>
+  </td>
+ </tr>
+

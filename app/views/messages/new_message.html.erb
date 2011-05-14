@@ -1,0 +1,62 @@
+<%= javascript_include_tag "moo.js" %>
+<%= javascript_include_tag "multi_transfer.js" %>
+<div id="backEnd">
+<div class="rightContent small profile">
+     <%= render :partial => 'searches/box' %>
+ <div class="rightContentWrap">
+      <p><%= link_to image_tag('../images/new_images/invite_user.jpg'), :controller =>'home',:action =>'invite_user'%></p>
+      <%= render :partial => 'shared/requested_contacts' ,:locals => {:requested_contacts => @requested_contacts}%>
+     <%= render :partial => 'shared/latest_news' ,:locals => {:items => @items}%>
+ </div>
+<div class="rightContentWrap noSpacing">
+    
+    <h6>Contacts</h6>
+    <ul class="contacts">
+    <%= render :partial => 'shared/contacts_preview',:locals => { :person => current_person } %>
+   </ul>
+   <ul class="contactLinks">
+     <li><%= link_to "All contacts", person_connections_path(current_person) %></li>
+    
+   </ul>
+  </div>
+<!-- end of right content wrap -->
+</div>
+<div class="leftContent wide">
+  <h4> New Message</h4>
+  <%= error_messages_for :message %>
+    <%- unless @preview.nil? -%>
+    <h3>Message preview</h3>
+    <%= display @preview %>
+  <%- end -%>
+  <% form_tag(:controller =>'messages',:action => 'create_message') do %>
+    <p>
+      <label for="recipient">To</label>
+	 <table>
+      <tr>
+      <td align="center">
+  <div class="holder">
+  <%=collection_select('message','select',@people,:id,:name,{},{:multiple=>"multiple",:id =>"select1",:style=>"height: 300px"})%>
+     <a href="javascript:;" id="add" style ="color:#fff;">add >></a>
+          </div> </td> <td align="center">
+ <div class="holder">
+ <%=collection_select('message','receipent','',:id, :name,{},{:multiple=>"multiple",:id =>"select2",:style=>"height: 300px"})%>
+  <a href="javascript:;" id="remove" style ="color:#fff;"><< remove</a>
+  </div></td></tr></table>
+  </p>
+    <p>
+      <p><label for="message_subject">Subject</label>
+      <%=text_field_tag 'subject',{},{:id => "message_subject"} %></p>
+    </p>
+    <p>
+      <label for="message_body">Message</label>
+      <p><%= formatting_note %></p>
+      <%= text_area_tag 'content',{},{:id => "message_body",:rows => 5, :cols => 45} %>
+    </p>
+    <p>
+     <p> <%= submit_tag "Send", :class => "button",:id => "message_submit",:style =>"color:#fff; background:url(../images/new_images/bg_page_tab_rpt.gif) left bottom repeat-x;border:1px solid #fff;" %>
+      <%= submit_tag "Preview", :class => "button", :id => "preview",:style =>"color:#fff; background:url(../images/new_images/bg_page_tab_rpt.gif) left bottom repeat-x; border:1px solid #fff;"%>
+       <%= link_to "Cancel", messages_url %></p>
+    </p>
+  <% end %>
+</div>
+</div>

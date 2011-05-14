@@ -1,0 +1,54 @@
+<div id="backEnd">
+<div class="rightContent small profile">
+
+ <h6>Search Rooms</h6>
+  <% form_tag searches_path, :method => :get, :id => "frmSearch" do %>
+   <fieldset class="search">
+     <ul class="form">
+      <li><%= text_field_tag :q, h(params[:q]), :id => "txtSearch", :class => "txt",
+        :maxlength => 50 %></li>
+       
+      <li><%= image_submit_tag "../images/new_images/button_search_backend.png", :name => nil, :id => "btnSearch"%></li>
+      <li><a class="advancedSearch" id="adv_link">Advance Search</a>
+             <div id="advsearch" style="display:none;">
+               <%= render :partial=> 'rooms/advance_search' %>
+          </div> </li>
+      <li><%= hidden_field_tag "model", Room %></li>
+      </ul>
+    </fieldset>
+  <% end %>
+   <div class="rightContentWrap">
+     <%= render :partial => 'shared/latest_news' ,:locals => {:items => @items}%>
+  </div>
+							<!-- end of right content wrap -->
+<div class="rightContentWrap noSpacing">
+    <%= render :partial => 'shared/requested_contacts' ,:locals => {:requested_contacts => @requested_contacts}%>
+   <h6>Contacts</h6>
+    <ul class="contacts">
+  <%= render :partial => 'shared/contacts_preview',:locals => { :person => current_person } %>
+    </ul>
+     <ul class="contactLinks">
+   <li><%= link_to "All contacts", person_connections_path(current_person) %></li>
+   <li><%= link_to "Invite users ", :controller =>'home',:action =>'invite_user'%></li>
+   </ul>
+  </div>
+							<!-- end of right content wrap -->
+</div>
+<div class="leftContent wide">
+<h4><%= @person.name %>'s Room
+   <%= link_to 'Create new',{:controller=>'rooms',:action=>'new'},:class => 'headerLink plusLink' %></h4>
+ <table class="dashboard room" cellspacing="0" cellpadding="0" border="0" summary="A table of messages from a particular user. The
+							left column, the next column is the person who posted the message along with a timestamp, and the last column is the actual message.">
+  <%= render :partial => partial(@rooms), :collection => @rooms %>
+  <%= will_paginate @rooms %>
+</table>
+</div>
+</div>
+<script language="javascript">
+        jQuery(function(){
+          jQuery("#adv_link").click(function(){
+            jQuery('#advsearch').toggle();
+          });
+        });
+</script>
+

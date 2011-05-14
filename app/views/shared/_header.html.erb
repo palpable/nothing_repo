@@ -1,0 +1,66 @@
+<div id="header">
+  <div id="logoWrap">
+  <%- if logged_in? -%>
+
+         <div id="loginWrap" class="noSignIn">
+     <%else%>
+          <div id="loginWrap">
+     <%end%>
+<h1 id="logo">
+<%= link_to '', home_url,:title => "Homepage" %>
+</h1>
+
+<!-- end of login wrap -->
+
+<%- if logged_in? -%>
+<ul class="status">
+	<li> Welcome, <%= h current_person.name %>!</li>
+	<li><%= link_to "Sign out", logout_path %></li>
+    <%- if current_person.admin? -%>
+       
+          <%- if admin_view? -%>
+          <li>   <%= link_to("Standard view", home_path) %></li>
+          <%- else -%>
+            <li><%= link_to("Admin view", admin_preferences_path) %></li>
+          <%- end -%>
+        <%- end -%>
+</ul>
+
+<%else%>
+
+<fieldset id="login">
+<div class="loginTop">
+<a class="rememberMe" href="#">
+ <%= check_box_tag 'remember_me', '1', true, :class => "checkbox" %>
+<span>Remember me</span>
+</a>
+   <%= link_to "I forgot my password",new_password_reminder_path ,:class => 'forgetPass'%>
+
+<!-- end of login top -->
+<ul class="signUp">
+   <% form_tag session_path do -%>
+  <li> <%= text_field_tag 'email', params[:email],:class =>"text",:maxlength => Person::MAX_EMAIL  %></li>
+  <%= set_focus_to "email" %>
+  <li><%= password_field_tag 'password', params[:password],:class =>"text",:maxlength => Person::MAX_PASSWORD %></li>
+  <li><%= image_submit_tag "../images/new_images/button_sign_in.png", :class => "button",:alt =>"Sign in button" %></li>
+  <%end%>
+</ul>
+</div
+</fieldset>
+<%end%>
+
+</div>
+</div>
+<!-- end of logo wrap -->
+</div>
+<!-- end of header -->
+
+ <div id="menu">
+   <ul id="menu">
+	<% unless @menutype == "none" %>
+      <%- menu.each do |link| -%>
+       <%= menu_li link %>
+      <%- end -%>
+        <% end %>
+   </ul>
+</div>

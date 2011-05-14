@@ -1,0 +1,47 @@
+<div id="backEnd">
+  <div class="rightContent small profile">
+    <%= render :partial => 'searches/box' %>
+    <div class="rightContentWrap">
+      <p><%= link_to image_tag('../images/new_images/invite_user.jpg'), :controller =>'home',:action =>'invite_user'%></p>
+      <%= render :partial => 'shared/requested_contacts' ,:locals => {:requested_contacts => @requested_contacts}%>
+      <%= render :partial => 'shared/latest_news' ,:locals => {:items => @items}%>
+    </div>
+    <div class="rightContentWrap noSpacing">
+      <h6>Contacts</h6>
+      <ul class="contacts">
+        <%= render :partial => 'shared/contacts_preview',:locals => { :person => current_person } %>
+      </ul>
+      <ul class="contactLinks">
+        <li><%= link_to "All contacts", person_connections_path(current_person) %></li>
+
+      </ul>
+    </div>
+    <!-- end of right content wrap -->
+  </div>
+
+  <div class="leftContent wide">
+    <% unless @people.empty? -%>
+      <h2>People</h2>
+      <%= will_paginate @people, :param_name => 'page_people' %>
+      <table class="memberProfiles" cellspacing="0" cellpadding="0" border="1" summary="A table of member profiles
+                                                          with the image of the member and an option to message them or add them as a contact">
+             <% @people.in_groups_of(2).each do |people| %>
+               <% people.compact! %>
+          <tr> <%= render :partial => people %></tr>
+        <%end%>
+      </table>
+      <%= will_paginate @people, :param_name => 'page_people' %>
+    <% end -%>
+
+  </div>
+
+</div>
+
+<script language="javascript">
+  jQuery(function(){
+
+    jQuery("#adv_link").click(function(){
+      jQuery('#advsearch').toggle();
+    });
+  });
+</script>

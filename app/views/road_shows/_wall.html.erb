@@ -1,0 +1,47 @@
+<style>
+	#tabCol .col2 {
+  float:right;
+width:240px;
+}
+</style>
+<div id="partialLoadDiv">
+<%- column_div :type => :primary do -%>
+
+
+
+<h2><%= @person.name %>'s Room</h2>
+  <%= render :partial => partial(@rooms), :collection => @rooms %>
+
+  <%= will_paginate @rooms %>
+
+<%- end -%>
+
+<%- column_div :type => :secondary do -%>
+  <h2>Action</h2>
+  <p><%= link_to 'Create new',:controller=>'rooms',:action=>'new' %></p>
+ <h2>Search Road Shows</h2>
+  <% form_tag searches_path, :method => :get, :id => "frmSearch" do %>
+    <fieldset title="Search Insoshi">
+      <%= text_field_tag :q, h(params[:q]), :id => "txtSearch", :class => "txt",
+        :maxlength => 50 %>
+      <%= submit_tag "Search", :name => nil, :id => "btnSearch",
+        :class => "button"  %>
+      <%= hidden_field_tag "model", Room %>
+    </fieldset>
+
+    <p id="adv_link">Advance Search</p>
+ <div id="advsearch" style="display:none;">
+  <%= render :partial=> 'rooms/advance_search' %>
+  </div>
+  <% end %>
+<%- end -%>
+</div>
+ 
+<script language="javascript">
+        jQuery(function(){
+          jQuery("#adv_link").click(function(){
+            jQuery('#advsearch').toggle();
+          });
+        });
+</script>
+

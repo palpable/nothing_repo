@@ -1,0 +1,10 @@
+<div class="list">
+<% form_tag({}, {:id => "advanesearch"}) do %>
+    <%= select('search', 'sort',@sort_by=sort_by ,{:prompt => 'Sort By'},{:style=>"width: 150px;"})%>
+  <% end %>
+  <%= observe_field 'search_sort',
+    :update => "search",
+    :url => {:controller => "messages", :action => "search_sort_by",:message_type =>@message_type},
+    :with => "'sort='+escape(value)"
+ %>
+</div>

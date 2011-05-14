@@ -1,0 +1,67 @@
+<p class="top">
+  Other Related Professionals. <br/>
+  <span>Mandatory fields are marked with * </span>
+</p>
+<fieldset>
+  <% form_for @person do |f| -%>
+    <ul class="form floatLeft">
+      <li><label for="fname">First Name <em>*</em></label>
+        <%= f.text_field :firstname, :maxlength => Person::MAX_NAME , :class=>"text" %>
+      </li>
+      <li><label for="lname">Last Name <em>*</em></label>
+        <%= f.text_field :lastname, :maxlength => Person::MAX_NAME , :class=>"text"%>
+      </li>
+      <li>
+        <label for="email">Email <em>*</em></label>
+        <%= f.text_field :email, :maxlength => Person::MAX_EMAIL, :class=>"text" %>
+      </li>
+      <li>
+        <label for="email">Confirm Email <em>*</em></label>
+        <%= f.text_field :email_confirmation, :maxlength => Person::MAX_EMAIL, :class=>"text" %>
+      </li>
+      <li>
+        <label for="phone">Phone</label>
+        <%= f.text_field :phone , :maxlength => Person::MAX_EMAIL, :class=>"text" %>
+      </li>
+      <li>
+        <label for="fax">Fax</label>
+        <%= f.text_field :fax, :class=>"text"%>
+      </li>
+      <li class="checkbox">
+        <div class="checkBoxWrap">
+          <input id="checkbox2" type="checkbox" name="checkbox2" alt="Allow others to see phone number" />
+          <label for="see_phone" class="checkbox">Allow others to see phone number</label>
+        </div>
+      </li>
+      <li class="checkbox">
+        <div class="checkBoxWrap">
+          <input id="checkbox3" name="checkbox3" type="checkbox" alt="Allow others to see email" />
+          <label for="see_email" class="checkbox">Allow others to see email</label>
+        </div>
+      </li>
+    </ul>
+    <ul class="form floatRight">
+      <li>
+        <label for="name_of_company">Name of Company <em>*</em></label>
+        <%= f.text_field :company_name, :class =>'text',:style=>"width:143px; margin:0; padding:0;" -%>
+      </li>
+      <li>
+        <label for="business_type">Type of Business</label>
+        <%= f.select :business_type, Person::BUSINESS_TYPES, :style=>"width:143px; margin:0; padding:0;" -%>
+      </li>
+      <li> <%= f.hidden_field(:isbanker, :value => 0) %></li>
+      <li><label for="title">Title <em>*</em></label>
+        <%= f.text_field :title,:class=>"text" -%>
+      </li>
+      <li>
+        <label for="password">Password <em>*</em></label>
+        <%= f.password_field :password, :maxlength => Person::MAX_PASSWORD, :class=>"text" %>
+      </li>
+      <li>
+        <label for="password">Confirm Password <em>*</em></label>
+        <%= f.password_field :password_confirmation, :maxlength => Person::MAX_PASSWORD, :value => "", :class=>"text" %></li>
+      <li> <%= image_submit_tag('/images/new_images/button_sign_up_form.png',:class => "button") %></li>
+    </ul>
+  <%end%>
+</fieldset>
+

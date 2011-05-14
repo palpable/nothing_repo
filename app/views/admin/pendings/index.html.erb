@@ -1,0 +1,17 @@
+<div id="backEnd">
+  <div class="pageHdr">
+  <h4>Pending List for Admin Approval</h4>
+  </div>
+  <div class="rightContent small">
+       <%= render :partial => 'searches/box' %>
+       </div>
+ <div class="leftContent wide">
+  <%= will_paginate %>
+
+  <ul class="list people admin">
+    <li><%= render :partial =>'active' %> </li>
+  </ul>
+
+  <%= will_paginate %>
+  </div>
+</div>

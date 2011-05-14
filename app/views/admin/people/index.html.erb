@@ -1,0 +1,32 @@
+<%= javascript_include_tag "moo.js" %>
+<%= javascript_include_tag "multi_transfer.js" %>
+
+<div id="backEnd">
+<div class="pageHdr">
+  <h4>People Admin</h4>
+   <%= link_to 'Delete people',{:controller=>'admin/people',:action=>'delete_person'},:class =>'plusLink roadshow' %>
+  
+</div>
+  <div class="rightContent small">
+       <%= render :partial => 'searches/box' %>
+       </div>
+    <div class="leftContent wide">
+<ul class="pagination top">
+ <li><%= will_paginate %></li>
+</ul>
+   <ul class="list people admin">
+    <%= render :partial => @people %>
+  </ul>
+ 
+  <ul class="pagination bottom">
+  <li> <%= will_paginate %></li>
+  </ul>
+
+  
+
+  </div>
+ 
+
+</div>
+
+  

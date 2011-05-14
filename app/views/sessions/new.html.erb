@@ -1,0 +1,113 @@
+<div class="contentLeft signIn">
+<div class="wrap">
+<h4>Sign in</h4>
+<a class="back" href="#">Back to main</a>
+<fieldset class="signIn">
+<div class="wrap">
+<div class="loginTop">
+<a class="rememberMe" href="#">
+ <%= check_box_tag 'remember_me', '1', true, :class => "checkbox" %>
+<span>Remember me</span>
+</a>
+  <%= link_to "I forgot my password",new_password_reminder_path ,:class => 'forgetPass'%>
+</div>
+<!-- end of login top -->
+<ul class="signUp">
+  <% form_tag session_path do -%>
+  <li> <%= text_field_tag 'email', params[:email],:class =>"text",:maxlength => Person::MAX_EMAIL  %></li>
+  <%= set_focus_to "email" %>
+  <li><%= password_field_tag 'password', params[:password],:class =>"text",:maxlength => Person::MAX_PASSWORD %></li>
+  <li><%= image_submit_tag "../images/new_images/button_sign_in.png", :class => "button",:alt =>"Sign in button" %></li>
+  <%end%>
+</ul>
+</div>
+</fieldset>
+	<p class="textCenter">Not a member? <%= link_to "Sign up",signup_selection_path%></p>
+</div>
+<!-- end of wrap -->
+</div>
+ <!-- end of content left -->
+
+ <div class="contentRight">
+	<div class="rightContentWrap">
+	<h6>Latest News</h6>
+    	<ul class="articleList">
+	     <%if @items%>
+           <% @items.each do |item| %>
+             <li><a href='<%= item.link %>' target="_blank"><%= item.title %></a>
+            <%end%>
+             <li><a href="#"><strong>More News</strong></a></li>
+             <%end%>
+		  </ul>
+</div>
+<!-- end of right content wrap -->
+<div class="rightContentWrap">
+    <h6>Latest Forum Posts</h6>
+	<ul class="articleList">
+      <% if @post %>
+	<% for @post in @recent_disc %>
+     <li><%= @post.name %></li>
+      <% end %>
+      <%end%>
+	</ul>
+</div>
+<!-- end of right content wrap -->
+</div>
+<!-- end of content right -->
+
+
+
+
+
+<script type='text/javascript'>
+$(document).ready(function() {
+  show_openid = function() {
+      $('#openid').show();
+      $('#standard').hide();
+      $('#openid_link').hide();
+      $('#standard_link').show();
+      createCookie('use_openid', 1, 30);
+      $('#openid_url').value = 'http://';
+  }
+  show_standard = function() {
+      $('#openid').hide();
+      $('#standard').show();
+      $('#openid_link').show();
+      $('#standard_link').hide();
+      eraseCookie('use_openid');
+      $('#openid_url').value = '';
+  }
+  $('#openid').hide();
+  $('#standard_link').hide();
+  $('#noscript').show();
+
+  if (readCookie('use_openid')){
+      show_openid();
+  }
+
+  function createCookie(name,value,days) {
+      if (days) {
+          var date = new Date();
+          date.setTime(date.getTime()+(days*24*60*60*1000));
+          var expires = "; expires="+date.toGMTString();
+      }
+      else var expires = "";
+      document.cookie = name+"="+value+expires+"; path=/";
+  }
+
+  function readCookie(name) {
+      var nameEQ = name + "=";
+      var ca = document.cookie.split(';');
+      for(var i=0;i < ca.length;i++) {
+          var c = ca[i];
+          while (c.charAt(0)==' ') c = c.substring(1,c.length);
+          if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+      }
+      return null;
+  }
+
+  function eraseCookie(name) {
+      createCookie(name,"",-1);
+  }
+})
+</script>

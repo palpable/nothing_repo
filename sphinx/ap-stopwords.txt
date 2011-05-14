@@ -1,0 +1,11 @@
+person 5
+allperson 5
+dhin 4
+dutta 4
+admin 3
+bratish 2
+goswami 2
+guru 2
+chak 2
+hello 2
+message 1

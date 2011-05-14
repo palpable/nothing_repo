@@ -1,0 +1,11 @@
+<table>
+ <% videos.each do |video|%>
+  <tr>
+    <td>
+      <%= flv_player :file => video.addr %>
+     
+    </td>
+  </tr>
+ 
+  <%end%>
+</table>

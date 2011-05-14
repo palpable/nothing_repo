@@ -1,0 +1,6 @@
+<% fields_for @youtubelink do |youtube| -%>
+  <div class="form_field">
+    <%= youtube.label 'Youtube URL' %>
+    <%= youtube.text_field :addr %>
+  </div>
+<% end -%>

@@ -1,0 +1,37 @@
+<script language="javascript">
+  function resetNavigation() {
+   $("#leftMenu li").each(function(){
+   /* e.preventDefault;
+    this.blur(); */
+   $(this).removeClass('active');
+    /*  return updateNavigation($(this).attr('title'));  */
+
+});
+}
+$("#leftMenu li").live('click', function(e) {
+   /* e.preventDefault;
+    this.blur(); */
+    resetNavigation();
+   $(this).addClass('active');
+    /*  return updateNavigation($(this).attr('title'));  */
+   
+});
+  </script>
+<div id="backEnd" style="padding:10px 30px 0px 0px;">
+	<div class="pageHdr">
+	 <h4>Resources</h4>
+	
+	</div>
+    <div id="view" class="rightContent"></div>
+    <ul id="leftMenu">
+ <li id="one"><%=link_to_remote "Central Bank", :update =>'view', :success => "" ,:url =>{:controller => 'banks',:action => 'central_bank'},:with => "'choose=' +encodeURIComponent('central_bank')" %></li>
+	<li><%=link_to_remote "Sovereign wealth Funds",:update =>'view',:url =>{:controller => 'banks',:action => 'central_bank'},:method => :post,:with => "'choose=' +encodeURIComponent('wealthfunds')" %></li>
+  	<li><%=link_to_remote "Supranational &amp; Sovereign Issuers",:update =>'view',:url =>{:controller => 'banks',:action => 'central_bank'},:with => "'choose=' +encodeURIComponent('sovereign')" %></li>
+	<li><%=link_to_remote "Asset Managers",:update =>'view',:url =>{:controller => 'banks',:action => 'central_bank'},:with => "'choose=' +encodeURIComponent('asset')" %></li>
+   	<li><%=link_to_remote "Hedge Funds",:update =>'view',:url =>{:controller => 'banks',:action => 'central_bank'},:with => "'choose=' +encodeURIComponent('hedge')" %></li>
+   	<li><%=link_to_remote "Banks &amp; dealers",:update =>'view',:url =>{:controller => 'banks',:action => 'central_bank'},:with => "'choose=' +encodeURIComponent('bankdealers')" %></li>
+    <li><%=link_to_remote "Other issuers",:update =>'view',:url =>{:controller => 'banks',:action => 'central_bank'},:with => "'choose=' +encodeURIComponent('otherissuer')" %></li>
+   	<li><%=link_to_remote "News",:update =>'view',:url =>{:controller => 'banks',:action => 'central_bank'},:with => "'choose=' +encodeURIComponent('news')" %></li>
+   <li><%=link_to_remote "Links",:update =>'view',:url =>{:controller => 'banks',:action => 'central_bank'},:with => "'choose=' +encodeURIComponent('links')" %></li>
+	</ul>	
+</div>

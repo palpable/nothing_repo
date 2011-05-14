@@ -1,0 +1,15 @@
+<div id="center" class="column">
+  <h6> Links</h6>
+  <table width="50%"  style="margin-left:150px;margin-top: 30px">
+				<tbody>
+                  <% @links.each do |l| %>
+					<tr>
+						<td valign="top" width="25%">
+							<%=l.name%>
+						</td>
+                        <td valign="top" width="25%"> <a href="http://<%=l.link%>" target="_blank"><%=image_tag((l.icon),:size => "100x40")%></a></td>
+					</tr>
+                    <%end%>
+  </tbody></table>
+
+</div>

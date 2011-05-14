@@ -1,0 +1,27 @@
+<table>
+  <tr><th>Discussion Forum</th></tr>
+  <%- @topics.each do |topic| -%>
+  <%- last_post = topic.posts.reverse.first -%>
+  <tr class=<%= cycle("odd", "even") %>>
+    <td>
+      <%= topic_link topic %>
+      <br />
+      <span class="quiet small">
+       <% if DateTime.now.strftime("%Y-%m-%d") == last_post.created_at.strftime("%Y-%m-%d") %>
+      Last post on <%= last_post.created_at.strftime("%B /%d,/%y")  %> at
+      <%= time_ago_in_words(last_post.created_at) %> ago
+      by <%= person_link last_post.person %>
+      <% else %>
+       Last post on <%= last_post.created_at.strftime("%m/%d/%y")  %> at
+      <%= last_post.created_at.strftime("%I:%M %p")%>
+      by <%= person_link last_post.person %>
+      <%end%>
+      </span>
+    </td>
+  </tr>
+  <%- end -%>
+</table>
+
+<div class="more">
+<%= link_to "Go to discussion forum &raquo;", forum_path(topic.forum) %>
+</div>

@@ -1,0 +1,56 @@
+[Tue Sep  1 05:31:52.925 2009] [10673] accepting connections
+[Tue Sep  1 05:43:20.216 2009] [10673] caught SIGTERM, shutting down
+[Tue Sep  1 05:43:20.284 2009] [10673] shutdown complete
+[Tue Sep  1 05:43:24.376 2009] [10799] accepting connections
+[Tue Sep  1 05:45:40.828 2009] [10799] caught SIGTERM, shutting down
+[Tue Sep  1 05:45:40.832 2009] [10799] shutdown complete
+[Tue Sep  1 05:45:44.852 2009] [11038] accepting connections
+[Tue Sep  1 05:46:00.801 2009] [11038] caught SIGTERM, shutting down
+[Tue Sep  1 05:46:00.805 2009] [11038] shutdown complete
+[Tue Sep  1 05:46:14.542 2009] [11050] accepting connections
+[Tue Sep  1 19:09:56.280 2009] [11050] caught SIGTERM, shutting down
+[Tue Sep  1 19:09:57.436 2009] [11050] shutdown complete
+[Sun Sep 13 05:51:18.010 2009] [ 5931] accepting connections
+[Sun Sep 13 05:52:04.980 2009] [ 5931] rotating indices (seamless=1)
+[Sun Sep 13 05:52:04.984 2009] [ 5931] rotating index 'main': success
+[Sun Sep 13 05:52:04.984 2009] [ 5931] rotating finished
+[Mon Sep 14 05:11:24.676 2009] [ 5931] caught SIGTERM, shutting down
+[Mon Sep 14 05:11:24.676 2009] [ 5931] shutdown complete
+[Thu Sep 17 02:06:28.454 2009] [29939] accepting connections
+[Thu Sep 17 02:06:51.412 2009] [29939] rotating indices (seamless=1)
+[Thu Sep 17 02:06:52.412 2009] [29939] rotating index 'main': success
+[Thu Sep 17 02:06:52.412 2009] [29939] rotating finished
+[Thu Sep 17 02:07:31.822 2009] [29939] rotating indices (seamless=1)
+[Thu Sep 17 02:07:32.826 2009] [29939] rotating index 'main': success
+[Thu Sep 17 02:07:32.826 2009] [29939] rotating finished
+[Thu Sep 17 02:07:51.319 2009] [29939] rotating indices (seamless=1)
+[Thu Sep 17 02:07:52.319 2009] [29939] rotating index 'main': success
+[Thu Sep 17 02:07:52.319 2009] [29939] rotating finished
+[Thu Sep 17 02:11:21.935 2009] [30017] accepting connections
+[Sun Oct 11 21:39:32.785 2009] [30017] rotating indices (seamless=1)
+[Sun Oct 11 21:39:33.785 2009] [30017] rotating index 'main': success
+[Sun Oct 11 21:39:33.785 2009] [30017] rotating finished
+[Sat May 14 15:11:41.245 2011] [15435] accepting connections
+[Sat May 14 15:15:31.934 2011] [15435] rotating indices (seamless=1)
+[Sat May 14 15:15:31.944 2011] [15435] WARNING: rotating index 'main': unable to unlink 'sphinx//sphinx_index_main.old.spk': No such file or directory
+[Sat May 14 15:15:31.944 2011] [15435] rotating index 'main': success
+[Sat May 14 15:15:31.944 2011] [15435] rotating finished
+[Sat May 14 15:15:35.972 2011] [15435] caught SIGTERM, shutting down
+[Sat May 14 15:15:35.972 2011] [15435] shutdown complete
+[Sat May 14 15:15:39.982 2011] [15559] accepting connections
+[Sat May 14 15:15:53.797 2011] [15559] rotating indices (seamless=1)
+[Sat May 14 15:15:53.798 2011] [15559] rotating index 'main': success
+[Sat May 14 15:15:53.798 2011] [15559] rotating finished
+[Sat May 14 15:16:53.009 2011] [15559] caught SIGTERM, shutting down
+[Sat May 14 15:16:53.009 2011] [15559] shutdown complete
+[Sat May 14 15:16:57.019 2011] [15607] accepting connections
+[Sat May 14 15:19:05.068 2011] [15660] accepting connections
+[Sat May 14 15:25:43.283 2011] [15660] caught SIGTERM, shutting down
+[Sat May 14 15:25:43.284 2011] [15660] shutdown complete
+[Sat May 14 15:25:47.294 2011] [15788] accepting connections
+[Sat May 14 15:27:00.865 2011] [15788] rotating indices (seamless=1)
+[Sat May 14 15:27:00.866 2011] [15788] rotating index 'main': success
+[Sat May 14 15:27:00.866 2011] [15788] rotating finished
+[Sat May 14 15:27:15.459 2011] [15788] caught SIGTERM, shutting down
+[Sat May 14 15:27:15.459 2011] [15788] shutdown complete
+[Sat May 14 15:27:19.469 2011] [15834] accepting connections

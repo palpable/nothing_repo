@@ -1,0 +1,12 @@
+<h6>Search <%= search_type %></h6>
+<% form_tag searches_path, :method => :get, :id => "frmSearch" do %>
+  <fieldset class="search">
+    <ul class="form">
+   <li><%= text_field_tag :q, h(params[:q]), :id => "txtSearch", :class => "text",:maxlength => 50 %></li>
+   <li><%= image_submit_tag "../images/new_images/button_search_backend.png", :name => nil, :id => "btnSearch",:class => "button"  %></li>
+    <li><%= hidden_field_tag "model", search_model %></li>
+    </ul>
+  </fieldset>
+<% end %>
+
+							

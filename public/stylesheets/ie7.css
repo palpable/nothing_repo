@@ -1,0 +1,10 @@
+ul#menu li.active span { padding-right:18px; }
+
+ul.pageTabs li a span { padding:7px 10px 0; }
+ul.pageTabs li.active a span { padding-left:10px; padding-right:10px; }
+ul.pageTabs li { padding-right:2px;  }
+ul.pageTabs li.active { margin:0 -15px 0 -3px; padding-right:0px; }
+
+td.noBorder a { width:auto; display:inline-block; min-width:100px !important; position:relative; left:-15px; }
+
+div#content div.contentLeft.signIn a.back { display:block; font-size:.8em; /*13px*/ color:#008FA9; padding-bottom:15px; }

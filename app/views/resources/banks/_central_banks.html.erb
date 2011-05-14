@@ -1,0 +1,31 @@
+<div class="pageHdr">
+<%= link_to "Add Central Bank",{:controller => 'banks',:action =>'new_bank'},:class =>'plusLink floatRight' %>
+</div>
+ <table border="0" cellspacing="0" cellpadding="0" summary="the columns from left to right is the country,
+ the name of the bank, and the option links for edit and delete."  class="centralBanks">
+	<thead>
+	<tr>
+	 <th>Country</th>
+		<th class="bank" colspan="2">Bank Name</th>
+	  </tr>
+	</thead>
+	<tbody>
+	  <% @central_banks.each do |bank| %>
+          <% cycle_var = cycle("odd", "even") %>
+		 <tr class="<%= cycle_var %>-row">
+		<td>
+			<%=bank.country_name%>
+			</td>
+                        <td> <a href="http://<%=bank.url_name%>" target="_blank"><%=bank.bank_name%></a></td>
+				  <%- if current_person.admin? -%>		
+				<td nowrap="nowrap">
+                   <%= link_to  'Edit' ,:controller=>'banks',:action=>'edit_bank',:id=>bank.id%> |
+					<%= link_to  'Delete' ,{:controller=>'resources/banks',:action=>'delete_bank',:id=>bank.id},:confirm=>'Are you Sure to delete this bank'%>
+                 </td>
+					<%end%>
+					
+					</tr>
+		             <%end%>
+  </tbody></table>
+
+

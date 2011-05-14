@@ -1,0 +1,124 @@
+<div id="backEnd">
+<div class="rightContent small profile">
+     <%= render :partial => 'searches/box' %>
+   
+ <div class="rightContentWrap">
+    <p><%= link_to image_tag('../images/new_images/invite_user.jpg'), :controller =>'home',:action =>'invite_user'%></p>
+      <%= render :partial => 'shared/requested_contacts' ,:locals => {:requested_contacts => @requested_contacts}%>
+     <%= render :partial => 'shared/latest_news' ,:locals => {:items => @items}%>
+ </div>
+<div class="rightContentWrap noSpacing">
+  
+    <h6>Contacts</h6>
+    <ul class="contacts">
+    <%= render :partial => 'shared/contacts_preview',:locals => { :person => current_person } %>
+   </ul>
+   <ul class="contactLinks">
+     <li><%= link_to "All contacts", person_connections_path(current_person) %></li>
+     
+   </ul>
+  </div>
+<!-- end of right content wrap -->
+</div>
+<!-- end of right content -->
+<div class="profileContent myProfile">
+<h4> <%= @person.name%> 's profile
+  <%- if current_person.admin? -%>
+    <%- activity = activated_status(@person)  -%>
+    <%= link_to activity,
+      admin_person_path(@person, :task => "deactivated"),
+      :method => :put ,:class =>'headerLink' %>
+    
+  <%- end -%>
+  <%- if current_person?(@person) -%>
+    <%= link_to "Edit profile", edit_person_path(@person),:class =>'headerLink' %> 
+    <%= link_to "Change photo",{:controller=>'people',:action=>'change_photo'},:class =>'headerLink'%>
+  <%- end -%>
+</h4>
+<div class="contactInfo">
+  <%- if admin? and not @person.active? -%>
+  <p class="error">This person is not active</p>
+<%- end -%>
+<div>
+  <%unless @person.docattachments.length < 1%>
+    <%  @person.docattachments.each do |attachment|%>      
+      <%= image_tag attachment.public_filename(:thumb),:alt => h(@person.name)  %>
+    <%end%>
+  <%else%>
+    <%= image_tag "default_thumbnail.png",:alt => h(@person.name)%>
+  <%end%>
+  <%- unless current_person?(@person) -%>
+    <h3><%= @person.name %></h3>
+    <ul class="tools">
+      <%- if logged_in? -%>
+        <%- unless Connection.exists?(@person, current_person) -%>
+          <li><%= link_to "Request Connection",
+              person_connections_path(@person),
+              :method => :post %></li>
+          <%- end -%>
+          <%- if Connection.connected?(@person, current_person) -%>
+          <li>You're connected!
+            <%= link_to image_tag('icons/icon_01.jpg'),
+              connection_path(Connection.conn(current_person,
+                @person)),
+              :method => :delete,
+              :title => "Remove connection",
+              :confirm => "Are you sure you want to remove this connection?" %>
+          </li>
+        <%- end -%>
+        <%- if Connection.pending?(current_person, @person) -%>
+          <li>
+            <%= h @person.name %> has contacted you
+            <br />
+            (<%= link_to "respond to contact request",
+              edit_connection_path(Connection.conn(current_person,
+                @person)) %>)
+          </li>
+        <%- end -%>
+        <%- if Connection.pending?(@person, current_person) -%>
+          <li>
+            You've contacted <%= h @person.name %>
+          </li>
+        <%- end -%>
+        <li><%= email_link(@person) %></li>
+      <%- end -%>
+    </ul>
+  <%- end -%>
+</div>
+</div>
+<ul class="list">
+<% unless @person.isbanker == 1 %>
+  <li><h6> Title</h6> <p><%=h @person.title %></p></li>
+   <li><h6>Company</h6><p><%=h @person.company_name %></p></li>
+  <li><h6>Department</h6><p><%=h @person.department %></p></li>
+   <li><h6>Business Type</h6><p><%=h @person.business_type %></p></li>
+  <li><h6>Country</h6><p> <%=h @person.country %></p></li>
+<% else %>
+  <li><h6>Central Bank</h6> <p><%=h @person.branch %></p></li>
+  <li> <h6> Department</h6><p> <%=h @person.department %></p> </li>
+  <!-- <li>For: <%=h @person.years %> years</li> -->
+<% end %>
+<% unless @person.country_id.nil? %>
+  <li>
+    <% 
+      # Obviously this is stupid. But the former coder created a country field inside the model, instead of using the association. 
+      # I could fix it, but God knows what even the slightest change may break.
+    %>
+    <h6>Country</h6><p><%= Country.find(@person.country_id).country_name %></p>
+  </li>
+<% end %>
+
+<% if @person.phone_visibility? %>
+  <li>
+    <h6>Phone</h6><p><%=h @person.phone %></p>
+  </li>
+<% end %>
+<% if @person.fax %>
+  <li>
+    <h6> Fax</h6><p> <%=h @person.fax %></p>
+  </li>
+<% end %>
+</ul>
+</div>
+</div>
+

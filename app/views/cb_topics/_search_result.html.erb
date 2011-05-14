@@ -1,0 +1,15 @@
+<li>
+  <div class="profile-image">
+    <%= image_link search_result.person, :image => :thumbnail %>
+    <%= image_tag "icons/comment.png", :class => "icon" %>
+  </div>
+  <p >
+    In <%= link_to(h(search_result.cb_topic.name),
+                  cb_forum_cb_topic_path(search_result.cb_topic.cb_forum,
+                                   search_result.cb_topic,
+                                   :anchor => "post_#{search_result.id}")) %>:
+  </p>
+  <div class="forum">
+  <%= display search_result.body %>
+  </div>
+</li>

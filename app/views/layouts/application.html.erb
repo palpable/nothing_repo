@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title><%= app_name %></title>
+    <% if @forum %>
+      <%= auto_discovery_link_tag(:atom, :action => :show, :format => :atom,
+        :id => @forum.id ) %>
+    <% elsif @feed %>
+      <%= auto_discovery_link_tag(:atom, :action => :index,
+        :format => :atom ) %>
+    <% end %>
+    <%= stylesheet_link_tag "style"%>
+    <%= stylesheet_link_tag "ie7" %>
+    <%= stylesheet_link_tag "reset"%>
+    <%= stylesheet_link_tag "SpryTabbedPanels"%>
+    <%= stylesheet_link_tag "jquery-flora.tabs.css", "jquery.tooltip.css",
+      "facebox.css" %>
+
+    <%= stylesheet_link_tag "redbox" %>
+    <%= javascript_include_tag "jquery.js", "jquery-ui.js", "jquery-fx.js","jrails.js" %>
+    <%= javascript_include_tag "jquery.collection-min.js",
+      "jquery.bgiframe.js", "jquery.tooltip.pack.js",
+      "jquery.livequery.js",
+      "facebox.js", "application.js" %>
+
+    <%= javascript_include_tag :fckeditor %>
+    <%= javascript_include_tag 'ufo' %>
+    <%= javascript_include_tag "SpryTabbedPanels.js" %>
+
+  </head>
+  <body>
+
+    <div id="wrapper">
+      <div id="templateWrap">
+        <div id="footerBg">
+          <div id="paddingWrap">
+            <%= render :partial => 'shared/header' %>
+            <%- if global_prefs.demo? -%>
+              <p class="error" style="font-weight: bold;">
+                      This is a demonstration site.
+                      Data may be modified or removed without warning.
+              </p>
+            <%- end -%>
+            <% flash.each do |key, msg| %>
+              <%= content_tag :p, msg, :class => "flash #{key}" %>
+            <% end %>
+            
+            <div id="content">
+              <% if flash[:notice] %>
+                <div id="message" style="border: solid #008FA9 1px; text-align: center; margin-bottom: 5px; padding: 5px">
+                  <%= flash[:notice] %>
+                </div>
+              <% end %>
+              <%= yield %>
+            </div>
+
+            <!-- end of content -->
+            <%= render :partial => 'shared/footer' %>
+          </div>
+          <!-- end of padding wrap -->
+        </div>
+        <!-- end of footer bg -->
+      </div>
+      <!-- end of template wrap -->
+      <p id="copyright">&copy; 2009, centralbanks.com. All rights reserved.</p>
+    </div>
+    <!-- end of wrapper -->
+  </body>
+</html>

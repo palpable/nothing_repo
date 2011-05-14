@@ -127,6 +127,8 @@ ActionMailer::Base.delivery_method = :smtp
 # The directory /tmp/ruby.[USER] is used instead
 ENV['INLINEDIR']="/tmp/ruby.#{ENV['USER']}" unless ENV['OS'] =~ /Windows/
 
+
+
 require 'rss/1.0'
 require 'rss/2.0'
 require 'open-uri'
